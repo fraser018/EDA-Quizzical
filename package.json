@@ -8,7 +8,7 @@
   "license": "ISC",
   "scripts": {
     "client": "webpack-dev-server --hot --inline",
-    "dev": "nodemon",
+    "dev": "nodemon && webpack --watch",
     "start": "webpack --watch",
     "test": "jest --watchAll"
   },
