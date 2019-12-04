@@ -4,6 +4,9 @@ import Instructions from './Instructions'
 import SetupGame from './SetupGame'
 import Game from './Game'
 import GameEnd from './GameEnd'
+import Lobby from './Lobby'
+
+import {connect} from 'react-redux'
 
 class App extends React.Component {
   constructor(props){
@@ -13,11 +16,12 @@ class App extends React.Component {
   render() {
     return (
       <>
-      < Game />  
-      < Welcome />
-      < SetupGame />
-      < Instructions />    
-      < GameEnd />      
+        {this.props.pageNumber == -1 && <Instructions />}
+        {this.props.pageNumber == 0 && <Welcome />}
+        {this.props.pageNumber == 1 && <SetupGame />}
+        {this.props.pageNumber == 3 && <Game />}
+        {this.props.pageNumber == 4 && <Lobby />}
+        {this.props.pageNumber == 5 && <GameEnd />}
       </>
     )
   }
@@ -25,4 +29,10 @@ class App extends React.Component {
 
 }
 
-export default App
+function mapStateToProps(state){
+  return {
+    pageNumber: state.pageNumber
+  }
+}
+
+export default connect(mapStateToProps)(App)

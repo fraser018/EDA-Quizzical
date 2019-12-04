@@ -7,7 +7,7 @@ const reducer = (state = 0, action) => {
           return -1
       }
       case 'START_GAME':{
-        return 1
+        return 3
     }
       default: return state
     }

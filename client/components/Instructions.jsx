@@ -14,7 +14,6 @@ class Instructions extends React.Component {
         this.props.dispatch({
             type: 'START_GAME'
         })
-        console.log("Start Game")
         // Need to change the pageNumber to = 1
     }
 
