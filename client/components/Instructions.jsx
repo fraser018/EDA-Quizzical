@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 class Instructions extends React.Component {
     constructor(props) {
@@ -10,6 +11,9 @@ class Instructions extends React.Component {
 
     startGame = (event) => {
         event.preventDefault();
+        this.props.dispatch({
+            type: 'START_GAME'
+        })
         console.log("Start Game")
         // Need to change the pageNumber to = 1
     }
@@ -36,4 +40,12 @@ class Instructions extends React.Component {
     }
 }
 
-export default Instructions
+function mapStateToProps(state) {
+    return {
+        room: state.roomName,
+    }
+}
+
+
+
+export default connect(mapStateToProps)(Instructions)

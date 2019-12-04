@@ -6,6 +6,9 @@ const reducer = (state = 0, action) => {
       case 'INSTRUCT':{
           return -1
       }
+      case 'START_GAME':{
+        return 1
+    }
       default: return state
     }
   }
