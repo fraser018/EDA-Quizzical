@@ -12,6 +12,9 @@ const reducer = (state = 0, action) => {
       case 'START_GAME':{
         return 3
     }
+    case 'MAIN_MENU': {
+      return 0
+    }
       default: return state
     }
   }

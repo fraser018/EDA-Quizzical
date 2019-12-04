@@ -18,7 +18,8 @@ class Lobby extends React.Component{
     })
     socket.on('all players in', ()=>{
       this.props.dispatch({
-        type: 'INCREMENT_PAGE'
+        type: 'ADD_ALL_PLAYERS',
+        players: this.state.players
       })
     })
   }

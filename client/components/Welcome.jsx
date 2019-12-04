@@ -7,10 +7,6 @@ class Welcome extends React.Component {
         super(props)
     }
 
-    componentDidMount() {
-
-    }
-
     startClick = (e) => {
         e.preventDefault()
         this.props.dispatch({
@@ -18,26 +14,23 @@ class Welcome extends React.Component {
         })
     }
 
-    instrctClick = (e) => {
+    instructClick = (e) => {
         e.preventDefault()
         this.props.dispatch({
             type: 'INSTRUCT'
         })
     }
 
-
-
     render() {
         return (
             <>
                 <h1>WELCOME TO THE GAME</h1>
                 <button onClick={this.startClick}>GET STARTED</button>
-                <button onClick={this.instrctClick}>INSTRUCTIONS</button>
+                <button onClick={this.instructClick}>INSTRUCTIONS</button>
             </>
         )
     }
 }
-
 
 function mapStateToProps(state) {
     return {
@@ -45,7 +38,5 @@ function mapStateToProps(state) {
         name: state.name
     }
 }
-
-
 
 export default connect(mapStateToProps)(Welcome)

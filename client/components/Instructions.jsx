@@ -5,7 +5,6 @@ class Instructions extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-
         }
     }
 
@@ -14,7 +13,6 @@ class Instructions extends React.Component {
         this.props.dispatch({
             type: 'CREATE_GAME'
         })
-        // Need to change the pageNumber to = 1
     }
 
     render() {
@@ -34,7 +32,6 @@ class Instructions extends React.Component {
                     You'll need to be quick about it thought - and answer before the time runs out!</p>
                 <button onClick={this.startGame}>Start Game</button>
             </div>
-
         )
     }
 }
@@ -44,7 +41,5 @@ function mapStateToProps(state) {
         room: state.roomName,
     }
 }
-
-
 
 export default connect(mapStateToProps)(Instructions)

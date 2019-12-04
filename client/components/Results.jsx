@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getQuestions } from '../api/game'
-// import { getQuestions } from '../api/game'
+import socket from '../api/socket'
 
 class Results extends React.Component {
     constructor(props) {
@@ -12,19 +12,12 @@ class Results extends React.Component {
 
     nextQuestion = (event) => {
         event.preventDefault()
-        this.props.dispatch({
-            type: 'START_GAME',
-        })
-        this.props.dispatch({
-            type: 'CLEAR_PR_STATE'
-        })
+        socket.emit('new question', { teamName: this.props.teamName, numOfPlayers: this.props.players.length })
     }
 
     endGame = (event) => {
         event.preventDefault()
-        this.props.dispatch({
-            type: 'INCREMENT_PAGE',
-        })
+        socket.emit('end game', { teamName: this.props.teamName, numOfPlayers: this.props.players.length })
     }
 
     render() {
@@ -35,18 +28,19 @@ class Results extends React.Component {
                 {response != undefined && <div>
                     <h2>{response.question}</h2>
 
-                    {response.correctAnswer == response.selectedAnswer ? 
-                    <div>
-                        <h3>Correct: {response.correctAnswer}</h3></div> : 
-                    <div>
-                        <h3>Incorrect: {response.selectedAnswer}</h3>
-                        <h3>Correct: {response.correctAnswer}</h3>
-                    </div>}
+                    {response.correctAnswer == response.selectedAnswer ?
+                        <div>
+                            <h3>Correct: {response.correctAnswer}</h3></div> :
+                        <div>
+                            <h3>Incorrect: {response.selectedAnswer}</h3>
+                            <h3>Correct: {response.correctAnswer}</h3>
+                        </div>
+                    }
 
                 </div>}
-                {this.props.player.captain && <button onClick={this.nextQuestion}>Next Question</button>}     
-                {this.props.player.captain && <button onClick={this.endGame}>End Game</button>}                  
-               
+                {this.props.player.captain && <button onClick={this.nextQuestion}>Next Question</button>}
+                {this.props.player.captain && <button onClick={this.endGame}>End Game</button>}
+
             </div>
         )
     }
@@ -56,8 +50,8 @@ function mapStateToProps(state) {
     return {
         teamName: state.teamName,
         playerResponses: state.playerResponses,
-        player : state.player,
-
+        player: state.player,
+        players: state.players
     }
 }
 
