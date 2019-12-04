@@ -22,14 +22,18 @@ class Lobby extends React.Component{
 
   render(){
     return(
-      <button onClick={this.handleClick}>click me</button>
+      <>
+        <h2>Welcome {this.props.player} you are in team {this.props.teamName}</h2>
+        <button onClick={this.handleClick}>all players are in!</button>
+      </>
     )
   }
 }
 
 function mapStateToProps(state){
   return{
-    teamName : state.teamName
+    teamName : state.teamName,
+    player : state.player,
   }
 }
 
