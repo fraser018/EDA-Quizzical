@@ -1,6 +1,6 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {getQuestions} from '../api/game'
+import { connect } from 'react-redux'
+import { getQuestions } from '../api/game'
 class Game extends React.Component {
     constructor(props) {
         super(props)
@@ -10,11 +10,24 @@ class Game extends React.Component {
     }
 
     componentDidMount() {
-        //do api call and set question and answer in state
         getQuestions()
-        .then(result =>{ 
-            // DON'T DELETE CONSOLE.LOG -> some string chars need formatting - this will help us detect them
-            console.log(result)
+            .then(result => {
+                // DON'T DELETE CONSOLE.LOG -> some string chars need formatting - this will help us detect them
+                console.log(result)
+                this.setState({
+                    question: result.question,
+                    correctAnswer: result.correctAnswer,
+                    incorrectAnswer1: result.incorrectAnswer1,
+                    incorrectAnswer2: result.incorrectAnswer2,
+                    incorrectAnswer3: result.incorrectAnswer3
+                })
+            })
+    }
+
+    selectAnswer = (event) => {
+        event.preventDefault()
+        this.setState({
+            selectedAnswer: event.target.id
         })
     }
 
@@ -22,6 +35,14 @@ class Game extends React.Component {
         return (
             <div>
                 <h1>Game Component</h1>
+                <h2>{this.state.question}</h2>
+                <div className="btn-group">
+                    <button id={this.state.correctAnswer} onClick={this.selectAnswer}>{this.state.correctAnswer}</button>
+                    <button id={this.state.incorrectAnswer1} onClick={this.selectAnswer}>{this.state.incorrectAnswer1}</button>
+                    <button id={this.state.incorrectAnswer2} onClick={this.selectAnswer}>{this.state.incorrectAnswer2}</button>
+                    <button id={this.state.incorrectAnswer3} onClick={this.selectAnswer}>{this.state.incorrectAnswer3}</button>
+                </div>
+                <button>Submit Answer</button>
             </div>
 
         )
