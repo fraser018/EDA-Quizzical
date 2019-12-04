@@ -32,7 +32,10 @@ class Game extends React.Component {
                 question: this.state.question,
                 correctAnswer: this.state.correctAnswer,
                 selectedAnswer: event.target.id
-            } 
+            }     
+        })
+        this.props.dispatch({
+            type: 'INCREMENT_PAGE',
         })
     }
 
