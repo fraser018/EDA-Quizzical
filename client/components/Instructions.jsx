@@ -16,7 +16,7 @@ class Instructions extends React.Component {
 
     render() {
         return (
-            <div className="m-5">
+            <div>
                 <h1>Quizzle</h1>
                 <h3>Instructions:</h3>
                 <p>Step 1: Create your team! One player needs to go to the 'Start Game' page, and create a new game by entering in
