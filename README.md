@@ -10,22 +10,29 @@
 ---
 
 ## User Stories
-### MVP
-As a user:
+
+### MVP1
 * I want to be able to play the game on my phone
 * I want to be able to play the game in a group
-* I want the game to be a fun and hectic quiz game
 * I want to be able to read the instructions of the game
 * I want to be able to create a group
 * I want to be able to join a group
+* I want to see a matching question and answer on my screen
+* I want to be able to see if my answer was right or wrong
+* I want to be able to end/leave the game
+
+### MVP2
 * I want to be able to see the names of everyone who has joined before we start the game
+* I want there to be a timer that limits how long I have to answer the question
+* I want the game to be a fun and hectic quiz game
 * I want to see a random question and a random answer on my screen
-* I want to see how long I have left to answer my question
-* I want to see what round we are on during each round of the game
-* I want to see the answer to my question
-* I want the captain of the team to be able to start a new round when everyone is ready
 * When the game is completed, I want to see the overall results for the team
 * I want the captain of the team to be able to start a new game when everyone is ready
+
+### MVP3
+* I want to be able to play multiple rounds
+* I want to see what round we are on during each round of the game
+* I want the captain of the team to be able to start a new round when everyone is ready
 
 ### Stretch
 * Start Game: initially only show ‘create team’ button. ‘Join team’ button only shows if you have specified a team name that already exists
@@ -35,7 +42,8 @@ As a user:
 * Delete user after two days(e.g. function happening on create team name)
 * Randomly generate team names
 * Player icons
-  ---
+* Timer is represented by colour/shape change
+---
 
 ## Views (Client Side)
   | number | name | purpose |
@@ -87,8 +95,8 @@ As a user:
   | --- | --- |
   | id | Integer |
   | question | String |
-  | answer_1 | String |
-  | answer_2 | String |
-  | answer_3 | String |
-  | answer_4 | String |
+  | correct_answer | String |
+  | incorrect_answer_1 | String |
+  | incorrect_answer_2 | String |
+  | incorrect_answer_3 | String |
  ---
