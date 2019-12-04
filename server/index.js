@@ -1,6 +1,7 @@
 const server = require('./server')
 const http = require('http').createServer(server)
 const io = require('socket.io')(http)
+const questions = require('./routes/questions')
 
 const port = process.env.PORT || 3000
 
@@ -17,8 +18,10 @@ io.on('connection', function(socket){
   })
   socket.on('all players in', teamData=>{
     io.to(teamData.teamName).emit('all players in')
-    console.log(teamData.numOfPlayers)
-    //call API with teamData.numOfPlayers
+    questions.getQuestions(teamData.numOfPlayers)
+      .then(questions => {
+        console.log(questions)
+      })
   })
   socket.on('new question', teamData=>{
     io.to(teamData.teamName).emit('new question')
