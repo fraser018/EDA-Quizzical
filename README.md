@@ -17,19 +17,21 @@
 * I want to be able to read the instructions of the game
 * I want to be able to create a group
 * I want to be able to join a group
+* I want to be able to see the names of everyone who has joined before we start the game
 * I want to see a matching question and answer on my screen
 * I want to be able to see if my answer was right or wrong
 * I want to be able to end/leave the game
-
-### MVP2
-* I want to be able to see the names of everyone who has joined before we start the game
-* I want there to be a timer that limits how long I have to answer the question
-* I want the game to be a fun and hectic quiz game
-* I want to see a random question and a random answer on my screen
-* When the game is completed, I want to see the overall results for the team
 * I want the captain of the team to be able to start a new game when everyone is ready
 
+### MVP2
+* I want the game to be a fun and hectic quiz game
+* I want to see a random question and a random answer on my screen
+* I want there to be protection against duplicate team and user names
+* When the game is completed, I want to see the overall results for the team
+* Wait for timer or all player answers to be in before displaying results
+
 ### MVP3
+* I want there to be a timer that limits how long I have to answer the question
 * I want to be able to play multiple rounds
 * I want to see what round we are on during each round of the game
 * I want the captain of the team to be able to start a new round when everyone is ready

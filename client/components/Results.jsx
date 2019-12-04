@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getQuestions } from '../api/game'
-// import { getQuestions } from '../api/game'
+import socket from '../api/socket'
 
 class Results extends React.Component {
     constructor(props) {
@@ -10,35 +10,14 @@ class Results extends React.Component {
         }
     }
 
-    // componentDidMount = () => {
-    //     if (this.props.playerResponses[0].correctAnswer == this.props.playerResponses[0].selectedAnswer){
-    //         this.setState({
-    //             correct: true
-    //         })
-    //     }
-    // }
-
-    // display question again
-
-    // is selected answer correct
-    // if true - display selected answer with a green border
-    // if false - display selected answer with a red border, and display correct answer in grey border
-
     nextQuestion = (event) => {
         event.preventDefault()
-        this.props.dispatch({
-            type: 'START_GAME',
-        })
-        this.props.dispatch({
-            type: 'CLEAR_PR_STATE'
-        })
+        socket.emit('new question', { teamName: this.props.teamName, numOfPlayers: this.props.players.length })
     }
 
     endGame = (event) => {
         event.preventDefault()
-        this.props.dispatch({
-            type: 'INCREMENT_PAGE',
-        })
+        socket.emit('end game', { teamName: this.props.teamName, numOfPlayers: this.props.players.length })
     }
 
     render() {
@@ -49,17 +28,18 @@ class Results extends React.Component {
                 {response != undefined && <div>
                     <h2>{response.question}</h2>
 
-                    {response.correctAnswer == response.selectedAnswer ? 
-                    <div>
-                        <h3>Correct: {response.correctAnswer}</h3></div> : 
-                    <div>
-                        <h3>Incorrect: {response.selectedAnswer}</h3>
-                        <h3>Correct: {response.correctAnswer}</h3>
-                    </div>}
+                    {response.correctAnswer == response.selectedAnswer ?
+                        <div>
+                            <h3>Correct: {response.correctAnswer}</h3></div> :
+                        <div>
+                            <h3>Incorrect: {response.selectedAnswer}</h3>
+                            <h3>Correct: {response.correctAnswer}</h3>
+                        </div>
+                    }
 
                 </div>}
-                <button onClick={this.nextQuestion}>Next Question</button>
-                <button onClick={this.endGame}>End Game</button>
+                {this.props.player.captain && <button onClick={this.nextQuestion}>Next Question</button>}
+                {this.props.player.captain && <button onClick={this.endGame}>End Game</button>}
 
             </div>
         )
@@ -69,8 +49,9 @@ class Results extends React.Component {
 function mapStateToProps(state) {
     return {
         teamName: state.teamName,
-        playerResponses: state.playerResponses
-
+        playerResponses: state.playerResponses,
+        player: state.player,
+        players: state.players
     }
 }
 

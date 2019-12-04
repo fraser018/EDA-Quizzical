@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import socket from '../api/socket'
 
 class GameEnd extends React.Component {
   constructor(props){
@@ -8,9 +9,12 @@ class GameEnd extends React.Component {
 
   playAgain = (e) => {
     e.preventDefault()
-    this.props.dispatch({
-      type: 'START_GAME',
-    })
+    socket.emit('new question', {teamName:this.props.teamName, numOfPlayers: this.props.players.length})
+  }
+
+  mainMenu = (e) => {
+    e.preventDefault()
+    socket.emit('main menu', {teamName:this.props.teamName, numOfPlayers: this.props.players.length})
   }
 
   render(){
@@ -19,7 +23,8 @@ class GameEnd extends React.Component {
       <h1>Congrats, you played our game and survived!</h1>
       <h2>{this.props.teamName}</h2>
       {/* <p>you got 7 out of 10 answers correct </p> from redux number of correct and false responses */}
-      <button onClick={this.playAgain}>Play again!!</button>
+      {this.props.player.captain && <button onClick={this.playAgain}>Play again!!</button>}     
+      {this.props.player.captain && <button onClick={this.mainMenu}>Main Menu</button>}          
       </>
     )
   }
@@ -28,6 +33,8 @@ class GameEnd extends React.Component {
 function mapStateToProps(state){
   return {
     teamName: state.teamName,
+    player : state.player,
+    players: state.players
   }
 }
 

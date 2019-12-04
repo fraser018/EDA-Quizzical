@@ -18,7 +18,8 @@ class Lobby extends React.Component{
     })
     socket.on('all players in', ()=>{
       this.props.dispatch({
-        type: 'INCREMENT_PAGE'
+        type: 'ADD_ALL_PLAYERS',
+        players: this.state.players
       })
     })
   }
@@ -32,7 +33,7 @@ class Lobby extends React.Component{
     return(
       <>
         <h2>Welcome {this.props.player.name} you are in team {this.props.teamName}</h2>
-        <button onClick={this.handleClick}>all players are in!</button>
+        {this.props.player.captain && <button onClick={this.handleClick}>all players are in!</button>}        
         {this.state.players.length > 0 && this.state.players.map(player=>{
         return <h3 key={player.id}>{player.name} has join the team!</h3>
         })}
