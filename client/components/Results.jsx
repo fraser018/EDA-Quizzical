@@ -24,6 +24,20 @@ class Results extends React.Component {
     // if true - display selected answer with a green border
     // if false - display selected answer with a red border, and display correct answer in grey border
 
+    nextQuestion = (event) => {
+        event.preventDefault()
+        this.props.dispatch({
+            type: 'START_GAME',
+        })
+    }
+
+    endGame = (event) => {
+        event.preventDefault()
+        this.props.dispatch({
+            type: 'INCREMENT_PAGE',
+        })
+    }
+
     render() {
         let response = this.props.playerResponses[0]
         return (
@@ -41,6 +55,8 @@ class Results extends React.Component {
                     </div>}
 
                 </div>}
+                <button onClick={this.nextQuestion}>Next Question</button>
+                <button onClick={this.endGame}>End Game</button>
 
             </div>
         )

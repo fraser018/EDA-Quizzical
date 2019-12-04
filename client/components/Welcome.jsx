@@ -14,7 +14,7 @@ class Welcome extends React.Component {
     startClick = (e) => {
         e.preventDefault()
         this.props.dispatch({
-            type: 'START_GAME'
+            type: 'INCREMENT_PAGE'
         })
     }
 

@@ -12,9 +12,8 @@ class Instructions extends React.Component {
     startGame = (event) => {
         event.preventDefault();
         this.props.dispatch({
-            type: 'START_GAME'
+            type: 'CREATE_GAME'
         })
-        console.log("Start Game")
         // Need to change the pageNumber to = 1
     }
 
