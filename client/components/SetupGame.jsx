@@ -34,8 +34,12 @@ class SetupGame extends React.Component {
     addPlayerToTeam(this.state.player, this.state.team, captain)
       .then(players=> socket.emit('show players in lobby', players))
     this.props.dispatch({
-      type: 'SAVE_NAME',
-      name: this.state.player
+      type: 'SAVE_PLAYER_DETAILS',
+      playerInfo: {
+        name: this.state.player,
+        captain: captain
+      }
+
     })
     this.props.dispatch({
       type: 'SAVE_TEAM_NAME',
@@ -61,11 +65,12 @@ class SetupGame extends React.Component {
           </section>
 
           <section>
-            <button onClick={this.joinTeam}>Join Team</button>
-          </section>
-          <section>
             <button onClick={this.createTeam}>Create Team</button>
           </section>
+          <section>
+            <button onClick={this.joinTeam}>Join Team</button>
+          </section>
+
         </form>
       </>
     )
