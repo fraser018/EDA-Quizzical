@@ -1,8 +1,12 @@
 import React from 'react'
+import Instructions from './Instructions'
 
 const App = () => {
   return (
-    <h1>React development has begun!</h1>
+    <div>
+      < Instructions />
+    </div>
+
   )
 }
 
