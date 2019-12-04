@@ -29,6 +29,9 @@ class Results extends React.Component {
         this.props.dispatch({
             type: 'START_GAME',
         })
+        this.props.dispatch({
+            type: 'CLEAR_PR_STATE'
+        })
     }
 
     endGame = (event) => {

@@ -3,6 +3,9 @@ const reducer = (state = [], action) => {
       case 'SUBMIT_ANSWER':{
         return [...state, action.response]
       }
+      case 'CLEAR_PR_STATE':{
+        return []
+      }
 
       default: return state
     }
