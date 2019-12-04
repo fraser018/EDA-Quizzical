@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 import {addPlayerToTeam} from '../api/users'
 
@@ -31,6 +32,10 @@ class SetupGame extends React.Component {
     }
 
     addPlayerToTeam = (captain) => {
+      this.props.dispatch({
+        type: 'SAVE_TEAM_NAME',
+        teamName : this.state.team
+      })
       addPlayerToTeam(this.state.user, this.state.team, captain)
     }
 
@@ -60,4 +65,4 @@ class SetupGame extends React.Component {
   }
 }
 
-export default SetupGame
+export default connect()(SetupGame)
