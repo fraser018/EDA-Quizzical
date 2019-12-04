@@ -25,7 +25,7 @@ class Lobby extends React.Component{
 
   handleClick = (e) => {
     e.preventDefault()
-    socket.emit('all players in', this.props.teamName)
+    socket.emit('all players in', {teamName:this.props.teamName, numOfPlayers: this.state.players.length})
   }
 
   render(){

@@ -13,8 +13,10 @@ io.on('connection', function(socket){
   socket.on('join team', teamName =>{
     socket.join(teamName)
   })
-  socket.on('all players in', teamName=>{
-    io.to(teamName).emit('all players in')
+  socket.on('all players in', teamData=>{
+    io.to(teamData.teamName).emit('all players in')
+    console.log(teamData.numOfPlayers)
+    //call API with teamData.numOfPlayers
   })
   socket.on('show players in lobby', players =>{
     io.to(players[0].team).emit('show players in lobby', players)
