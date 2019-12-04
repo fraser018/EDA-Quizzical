@@ -10,20 +10,6 @@ class Results extends React.Component {
         }
     }
 
-    // componentDidMount = () => {
-    //     if (this.props.playerResponses[0].correctAnswer == this.props.playerResponses[0].selectedAnswer){
-    //         this.setState({
-    //             correct: true
-    //         })
-    //     }
-    // }
-
-    // display question again
-
-    // is selected answer correct
-    // if true - display selected answer with a green border
-    // if false - display selected answer with a red border, and display correct answer in grey border
-
     nextQuestion = (event) => {
         event.preventDefault()
         this.props.dispatch({
@@ -58,9 +44,9 @@ class Results extends React.Component {
                     </div>}
 
                 </div>}
-                <button onClick={this.nextQuestion}>Next Question</button>
-                <button onClick={this.endGame}>End Game</button>
-
+                {this.props.player.captain && <button onClick={this.nextQuestion}>Next Question</button>}     
+                {this.props.player.captain && <button onClick={this.endGame}>End Game</button>}                  
+               
             </div>
         )
     }
@@ -69,7 +55,8 @@ class Results extends React.Component {
 function mapStateToProps(state) {
     return {
         teamName: state.teamName,
-        playerResponses: state.playerResponses
+        playerResponses: state.playerResponses,
+        player : state.player,
 
     }
 }
