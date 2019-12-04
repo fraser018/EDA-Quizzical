@@ -41,6 +41,10 @@ class SetupGame extends React.Component {
       })
       addPlayerToTeam(this.state.user, this.state.team, captain)
       this.props.dispatch({
+        type: 'SAVE_NAME',
+        name: this.state.user
+      })
+      this.props.dispatch({
         type: 'INCREMENT_PAGE',
       })
     }
