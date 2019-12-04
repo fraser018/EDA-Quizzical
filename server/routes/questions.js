@@ -1,47 +1,71 @@
-const express = require('express')
 const request = require('superagent')
-const router = express.Router()
 
+function getQuestions(qAmount) {
+  console.log('teamnumber', qAmount)
+  const gameApi =
+    'https://opentdb.com/api.php?amount=' +
+    qAmount +
+    '&category=9&difficulty=medium&type=multiple'
 
-
-const qAmount = '1'
-const gameApi =
-  ('https://opentdb.com/api.php?amount=' + qAmount + '&category=9&difficulty=medium&type=multiple')
-
-
-  router.get('/', (req,res) => {
-    return request
+  return (
+    request
       .get(gameApi)
-      .then(res => processApiQuestions(res.body.results[0]))
-  })
+      .then(res => processApiQuestions(res.body.results))
+  )
+  
 
-// export function getQuestions() {
-//   return request
-//     .get(gameApi)
-//     .then(res => processApiQuestions(res.body.results[0]))
-// }
+}
 
 function processApiQuestions(apiResponse) {
+  let trivias = apiResponse.map(trivia => {
+      return {
+          question: trivia.question
+            .replace(/&quot;/g, '"')
+            .replace(/&#039;/g, "'"),
+          correctAnswer: trivia.correct_answer
+            .replace(/&quot;/g, '"')
+            .replace(/&#039;/g, "'"),
+          incorrectAnswer1: trivia.incorrect_answers[0]
+            .replace(/&quot;/g, '"')
+            .replace(/&#039;/g, "'"),
+          incorrectAnswer2: trivia.incorrect_answers[1]
+            .replace(/&quot;/g, '"')
+            .replace(/&#039;/g, "'"),
+          incorrectAnswer3: trivia.incorrect_answers[2]
+            .replace(/&quot;/g, '"')
+            .replace(/&#039;/g, "'")
+        }
+      })
   return {
-    question: apiResponse.question
-      .replace(/&quot;/g, '"')
-      .replace(/&#039;/g, "'"),
-    correctAnswer: apiResponse.correct_answer
-      .replace(/&quot;/g, '"')
-      .replace(/&#039;/g, "'"),
-    incorrectAnswer1: apiResponse.incorrect_answers[0]
-      .replace(/&quot;/g, '"')
-      .replace(/&#039;/g, "'"),
-    incorrectAnswer2: apiResponse.incorrect_answers[1]
-      .replace(/&quot;/g, '"')
-      .replace(/&#039;/g, "'"),
-    incorrectAnswer3: apiResponse.incorrect_answers[2]
-      .replace(/&quot;/g, '"')
-      .replace(/&#039;/g, "'")
+    trivias: trivias,
+    jumbledTrivias: jumbleQuestions([...trivias])
   }
 }
 
 
 
+function jumbleQuestions(trivias) {
+  // const trivias = processApiQuestions(res.body.results)
+  let length = trivias.length
+  let lastItem
+  let i
 
-module.exports = router
+  // While there remain elements to shuffle…
+  while (length) {
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * length--)
+
+    // And swap it with the current element.
+    lastItem = trivias[length]
+    trivias[length] = trivias[i]
+    trivias[i] = lastItem
+  }
+  // console.log(trivias);
+  let jumbledTrivias = trivias
+  return jumbledTrivias
+}
+
+module.exports = {
+  // router,
+  getQuestions
+}

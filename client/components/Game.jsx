@@ -8,20 +8,20 @@ class Game extends React.Component {
         }
     }
 
-    componentDidMount() {
-        getQuestions()
-            .then(result => {
-                // DON'T DELETE CONSOLE.LOG -> some string chars need formatting - this will help us detect them
-                console.log(result)
-                this.setState({
-                    question: result.question,
-                    correctAnswer: result.correctAnswer,
-                    incorrectAnswer1: result.incorrectAnswer1,
-                    incorrectAnswer2: result.incorrectAnswer2,
-                    incorrectAnswer3: result.incorrectAnswer3
-                })
-            })
-    }
+    // componentDidMount() {
+    //     getQuestions()
+    //         .then(result => {
+    //             // DON'T DELETE CONSOLE.LOG -> some string chars need formatting - this will help us detect them
+    //             console.log(result)
+    //             this.setState({
+    //                 question: result.question,
+    //                 correctAnswer: result.correctAnswer,
+    //                 incorrectAnswer1: result.incorrectAnswer1,
+    //                 incorrectAnswer2: result.incorrectAnswer2,
+    //                 incorrectAnswer3: result.incorrectAnswer3
+    //             })
+    //         })
+    // }
 
     selectAnswer = (event) => {
         event.preventDefault()
