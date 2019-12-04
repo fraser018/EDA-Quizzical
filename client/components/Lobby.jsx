@@ -5,9 +5,17 @@ import socket from '../api/socket'
 class Lobby extends React.Component{
   constructor(props){
     super(props)
+    this.state={
+      players:[]
+    }
   }
 
   componentDidMount(){
+    socket.on('show players in lobby', players=>{
+      this.setState({
+        players: players
+      })
+    })
     socket.on('all players in', ()=>{
       this.props.dispatch({
         type: 'INCREMENT_PAGE'
@@ -25,6 +33,9 @@ class Lobby extends React.Component{
       <>
         <h2>Welcome {this.props.player} you are in team {this.props.teamName}</h2>
         <button onClick={this.handleClick}>all players are in!</button>
+        {this.state.players.length > 0 && this.state.players.map(player=>{
+        return <h3 key={player.id}>{player.name} has join the team!</h3>
+        })}
       </>
     )
   }

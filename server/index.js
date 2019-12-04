@@ -16,7 +16,9 @@ io.on('connection', function(socket){
   socket.on('all players in', teamName=>{
     io.to(teamName).emit('all players in')
   })
-  // start up funcs below here
+  socket.on('show players in lobby', players =>{
+    io.to(players[0].team).emit('show players in lobby', players)
+  })
   
 })
 

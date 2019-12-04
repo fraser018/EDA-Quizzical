@@ -6,7 +6,9 @@ const router = express.Router()
 
 router.post('/', (req,res) => {
   db.addPlayerToTeam(req.body.user, req.body.team, req.body.captain)
-  .then(id => id)
+  .then(() =>{ db.getPlayersFromTeam(req.body.team)
+    .then(players => res.send(players))
+  })
 })
 
 

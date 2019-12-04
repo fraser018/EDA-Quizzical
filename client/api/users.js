@@ -6,5 +6,4 @@ export function addPlayerToTeam(user, team, captain){
     .post('/api/v1/users')
     .send({user, team, captain})
     .then(res => res.body)
-
 }
