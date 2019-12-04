@@ -7,3 +7,7 @@ export function addPlayerToTeam(user, team, captain){
     .send({user, team, captain})
     .then(res => res.body)
 }
+
+export function getTeams(){
+  return request.get('/api/v1/teams')
+}

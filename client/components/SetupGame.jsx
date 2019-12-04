@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {addPlayerToTeam} from '../api/users'
+import {addPlayerToTeam, getTeams} from '../api/users'
 import socket from '../api/socket'
 
 
@@ -21,6 +21,7 @@ class SetupGame extends React.Component {
 
   joinTeam = (event) => {
     event.preventDefault()
+    // getTeams().then()
     this.addPlayerToTeam(false)
   }
 
