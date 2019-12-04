@@ -13,42 +13,38 @@ class SetupGame extends React.Component {
     }
   }
 
-    componentDidMount() {
+  handleChange = (event) =>  {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
 
-    }
+  joinTeam = (event) => {
+    event.preventDefault()
+    this.addPlayerToTeam(false)
+  }
 
-    handleChange = (event) =>  {
-      this.setState({
-        [event.target.name]: event.target.value
-      })
-    }
+  createTeam = (event) => {
+    event.preventDefault()
+    this.addPlayerToTeam(true)
+  }
 
-    joinTeam = (event) => {
-      event.preventDefault()
-      this.addPlayerToTeam(false)
-    }
-
-    createTeam = (event) => {
-      event.preventDefault()
-      this.addPlayerToTeam(true)
-    }
-
-    addPlayerToTeam = (captain) => {
-      socket.emit('join team', this.state.team)
-      this.props.dispatch({
-        type: 'SAVE_TEAM_NAME',
-        teamName : this.state.team
-      })
-      addPlayerToTeam(this.state.user, this.state.team, captain)
-        .then(players=> socket.emit('show players in lobby', players))
-      this.props.dispatch({
-        type: 'SAVE_NAME',
-        name: this.state.user
-      })
-      this.props.dispatch({
-        type: 'INCREMENT_PAGE',
-      })
-    }
+  addPlayerToTeam = (captain) => {
+    socket.emit('join team', this.state.team)
+    addPlayerToTeam(this.state.player, this.state.team, captain)
+      .then(players=> socket.emit('show players in lobby', players))
+    this.props.dispatch({
+      type: 'SAVE_NAME',
+      name: this.state.player
+    })
+    this.props.dispatch({
+      type: 'SAVE_TEAM_NAME',
+      teamName : this.state.team
+    })
+    this.props.dispatch({
+      type: 'INCREMENT_PAGE',
+    })
+  }
 
   render() {
     return (
@@ -61,7 +57,7 @@ class SetupGame extends React.Component {
           </section>
           <section>
             User Name:
-            <input type='text' name='user' onChange={this.handleChange} />
+            <input type='text' name='player' onChange={this.handleChange} />
           </section>
 
           <section>
