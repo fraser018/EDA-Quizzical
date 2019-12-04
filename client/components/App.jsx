@@ -1,13 +1,21 @@
 import React from 'react'
 import Instructions from './Instructions'
+import SetupGame from './SetupGame'
 
-const App = () => {
-  return (
-    <div>
+class App extends React.Component {
+  constructor(props){
+    super(props)
+  }
+
+  render() {
+    return (
+      <>
+      <SetupGame />
       < Instructions />
-    </div>
+      </>
+    )
+  }
 
-  )
 }
 
 export default App
