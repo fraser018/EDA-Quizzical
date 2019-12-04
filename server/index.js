@@ -10,6 +10,12 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     console.log('user disconnected')
   })
+  socket.on('join team', teamName =>{
+    socket.join(teamName)
+  })
+  socket.on('all players in', teamName=>{
+    io.to(teamName).emit('all players in')
+  })
   // start up funcs below here
   
 })

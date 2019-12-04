@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import {addPlayerToTeam} from '../api/users'
+import socket from '../api/socket'
+
 
 class SetupGame extends React.Component {
   constructor(props) {
@@ -32,6 +34,7 @@ class SetupGame extends React.Component {
     }
 
     addPlayerToTeam = (captain) => {
+      socket.emit('join team', this.state.team)
       this.props.dispatch({
         type: 'SAVE_TEAM_NAME',
         teamName : this.state.team
