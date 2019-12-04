@@ -5,7 +5,6 @@ class Game extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-
         }
     }
 
@@ -26,8 +25,14 @@ class Game extends React.Component {
 
     selectAnswer = (event) => {
         event.preventDefault()
-        this.setState({
-            selectedAnswer: event.target.id
+        this.props.dispatch({
+            type: 'SUBMIT_ANSWER',
+            response: 
+            {
+                question: this.state.question,
+                correctAnswer: this.state.correctAnswer,
+                selectedAnswer: event.target.id
+            } 
         })
     }
 
@@ -42,18 +47,9 @@ class Game extends React.Component {
                     <button id={this.state.incorrectAnswer2} onClick={this.selectAnswer}>{this.state.incorrectAnswer2}</button>
                     <button id={this.state.incorrectAnswer3} onClick={this.selectAnswer}>{this.state.incorrectAnswer3}</button>
                 </div>
-                <button>Submit Answer</button>
             </div>
-
         )
     }
 }
 
-// function mapStateToProps(state) {
-//     return {
-//         room: state.roomName,
-//     }
-// }
-
-//export default connect(mapStateToProps)(Game)
-export default Game
+export default connect()(Game)

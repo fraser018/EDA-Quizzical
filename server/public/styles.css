@@ -7,11 +7,6 @@
     width: 25%; /* Set a width if needed */
     display: block; /* Make the buttons appear below each other */
   }
-
-  .btn-group button:active {
-    background-color: darkgreen; /* Green background */
-
-  }
   
   .btn-group button:not(:last-child) {
     border-bottom: none; /* Prevent double borders */

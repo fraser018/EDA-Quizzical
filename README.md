@@ -68,7 +68,7 @@
   | player | Stores info about the current player |
   | teamName | Stores the name of the current team |
   | score | Stores info about current score (e.g. 5/10) |
-  | answers | Stores players answers |
+  | playerResponses | Stores players answers |
   | (roundCount) | Stores which round the team is on |
   ---
 
