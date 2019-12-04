@@ -3,6 +3,7 @@ import Welcome from './Welcome'
 import Instructions from './Instructions'
 import SetupGame from './SetupGame'
 import Game from './Game'
+import Results from './Results'
 
 class App extends React.Component {
   constructor(props){
@@ -12,6 +13,7 @@ class App extends React.Component {
   render() {
     return (
       <>
+      < Results />
       < Game />  
       < Welcome />
       <SetupGame />
