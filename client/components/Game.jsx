@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { log } from 'util'
 import socket from '../api/socket'
+import { setInterval } from 'timers'
 // import { getQuestions } from '../../server/routes/questions'
 class Game extends React.Component {
   constructor(props) {
@@ -10,14 +10,22 @@ class Game extends React.Component {
       display1: '',
       display2: '',
       display3: '',
-      display4: ''
+      display4: '',
+      clock: 10
     }
   }
 
   componentDidMount() {
-    if(this.props.player.captain){
-      setTimeout(() => this.finishRound(), 10000);
-    }
+    socket.on('receive questions', ()=>{
+      if(this.props.player.captain){
+        setTimeout(() => this.finishRound(), 10000)
+      }
+        setInterval(() => {
+          this.setState({
+            clock: this.state.clock - 1
+          })
+        }, 1000)
+    })
 
     const answerArr = ['correctAnswer', 'incorrectAnswer1', 'incorrectAnswer2', 'incorrectAnswer3']
 
@@ -86,7 +94,7 @@ class Game extends React.Component {
     return (
       <div>
         {q.trivias && <h2>{q.trivias[this.props.player.index].question}</h2>}
-
+        <p>{this.state.clock}</p>
         {!this.state.submittedAnswer && q.jumbledTrivias && (
           <div className='btn-group'>
             <button
