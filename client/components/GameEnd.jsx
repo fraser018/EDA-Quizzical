@@ -10,12 +10,14 @@ class GameEnd extends React.Component {
   playAgain = (e) => {
     e.preventDefault()
     socket.emit('reset score', this.props.teamName)
+    socket.emit('reset round count', this.props.teamName)
     socket.emit('new question', {teamName:this.props.teamName, numOfPlayers: this.props.players.length})
   }
 
   mainMenu = (e) => {
     e.preventDefault()
-    socket.emit('main menu', this.props.teamName)
+    socket.emit('reset round count', this.props.teamName)
+    socket.emit('main menu', this.props.teamName)    
   }
 
   render(){

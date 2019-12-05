@@ -27,6 +27,10 @@ io.on('connection', function(socket){
     })
   })
 
+  socket.on('reset round count', teamName => {
+    io.to(teamName).emit('reset round count')
+  })
+
   socket.on('submitted answer', teamName=>{
     io.to(teamName).emit('submitted answer')
   })

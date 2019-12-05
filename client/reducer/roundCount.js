@@ -1,9 +1,11 @@
 const reducer = (state = 1, action) => {
     switch (action.type){
       case 'INCREMENT_ROUND':{
-          console.log(state)
         return state += 1
       }  
+      case 'RESET_ROUND': {
+        return 1
+      }
       default: return state
     }
   }

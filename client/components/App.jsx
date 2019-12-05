@@ -63,19 +63,19 @@ class App extends React.Component {
         type: 'ADD_QUESTIONS',
         questions: questions
       })
-      this.interval = setInterval(() => {
-        if(this.props.clock == 0){
-          clearInterval(this.interval)
-          this.props.dispatch({
-            type: 'RESET_CLOCK'
-          })
-        }
-        else{
-          this.props.dispatch({
-            type: 'DECREMENT_CLOCK'
-          })      
-        }
-      }, 1000)
+      // this.interval = setInterval(() => {
+      //   if(this.props.clock == 0){
+      //     clearInterval(this.interval)
+      //     this.props.dispatch({
+      //       type: 'RESET_CLOCK'
+      //     })
+      //   }
+      //   else{
+      //     this.props.dispatch({
+      //       type: 'DECREMENT_CLOCK'
+      //     })      
+      //   }
+      // }, 1000)
     })
 
     // Get final results (from Results to GameEnd)
@@ -97,6 +97,12 @@ class App extends React.Component {
     socket.on('end game', () => {
       this.props.dispatch({
         type: 'INCREMENT_PAGE'
+      })
+    })
+
+    socket.on('reset round count', () => {
+      this.props.dispatch({
+        type: 'RESET_ROUND'
       })
     })
 
