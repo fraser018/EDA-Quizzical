@@ -82,7 +82,6 @@ class Game extends React.Component {
     let q = this.props.questions
     return (
       <div>
-        <h1>Game Component</h1>
         {q.trivias && <h2>{q.trivias[this.props.player.index].question}</h2>}
 
         {!this.state.submittedAnswer && q.jumbledTrivias && (

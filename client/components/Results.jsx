@@ -33,7 +33,6 @@ class Results extends React.Component {
         let response = this.props.playerResponses[0]
         return (
             <div>
-                <h1>Results Component</h1>
                 {response != undefined && <div>
                     <h2>{response.question}</h2>
 
