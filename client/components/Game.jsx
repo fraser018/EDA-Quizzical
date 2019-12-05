@@ -55,6 +55,7 @@ class Game extends React.Component {
 
     if (this.props.answerCount == this.props.players.length - 1) {
       this.selectAnswer(event)
+      socket.emit('reset answer count', this.props.teamName)
       socket.emit('increment pages', this.props.teamName)
     }
     else {

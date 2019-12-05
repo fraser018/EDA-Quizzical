@@ -26,6 +26,9 @@ io.on('connection', function(socket){
   socket.on('submitted answer', teamName=>{
     io.to(teamName).emit('submitted answer')
   })
+  socket.on('reset answer count', teamName=>{
+    io.to(teamName).emit('reset answer count')
+  })  
   socket.on('new question', teamData=>{
     io.to(teamData.teamName).emit('new question')
     questions.getQuestions(teamData.numOfPlayers)

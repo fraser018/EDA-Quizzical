@@ -42,6 +42,13 @@ class App extends React.Component {
       })
     })
 
+        // Listen for submitted answers
+        socket.on('reset answer count', () => {
+          this.props.dispatch({
+            type: 'RESET_ANSWER_COUNT',
+          })
+        })
+
     // Get questions arrays form API
     socket.on('receive questions', questions => {
       this.props.dispatch({
