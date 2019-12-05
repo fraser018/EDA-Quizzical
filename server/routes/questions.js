@@ -2,11 +2,10 @@ const request = require('superagent')
 const he = require('he')
 
 function getQuestions(qAmount) {
-  console.log('teamnumber', qAmount)
   const gameApi =
     'https://opentdb.com/api.php?amount=' +
     qAmount +
-    '&category=9&difficulty=medium&type=multiple'
+    '&type=multiple'
 
   return (
     request
