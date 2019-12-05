@@ -1,4 +1,5 @@
 const request = require('superagent')
+const he = require('he')
 
 function getQuestions(qAmount) {
   console.log('teamnumber', qAmount)
@@ -19,21 +20,21 @@ function getQuestions(qAmount) {
 function processApiQuestions(apiResponse) {
   let trivias = apiResponse.map(trivia => {
       return {
-          question: trivia.question
-            .replace(/&quot;/g, '"')
-            .replace(/&#039;/g, "'"),
-          correctAnswer: trivia.correct_answer
-            .replace(/&quot;/g, '"')
-            .replace(/&#039;/g, "'"),
-          incorrectAnswer1: trivia.incorrect_answers[0]
-            .replace(/&quot;/g, '"')
-            .replace(/&#039;/g, "'"),
-          incorrectAnswer2: trivia.incorrect_answers[1]
-            .replace(/&quot;/g, '"')
-            .replace(/&#039;/g, "'"),
-          incorrectAnswer3: trivia.incorrect_answers[2]
-            .replace(/&quot;/g, '"')
-            .replace(/&#039;/g, "'")
+          question: he.decode(trivia.question),
+            // .replace(/&quot;/g, '"')
+            // .replace(/&#039;/g, "'"),
+          correctAnswer: he.decode(trivia.correct_answer),
+            // .replace(/&quot;/g, '"')
+            // .replace(/&#039;/g, "'"),
+          incorrectAnswer1: he.decode(trivia.incorrect_answers[0]),
+            // .replace(/&quot;/g, '"')
+            // .replace(/&#039;/g, "'"),
+          incorrectAnswer2: he.decode(trivia.incorrect_answers[1]),
+            // .replace(/&quot;/g, '"')
+            // .replace(/&#039;/g, "'"),
+          incorrectAnswer3: he.decode(trivia.incorrect_answers[2])
+            // .replace(/&quot;/g, '"')
+            // .replace(/&#039;/g, "'")
         }
       })
   return {
