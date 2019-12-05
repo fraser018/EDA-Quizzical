@@ -1,7 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import socket from '../api/socket'
-import { setInterval } from 'timers'
+// import { setInterval } from 'timers'
+
+import QuestionSplash from './QuestionSplash'
+
 // import { getQuestions } from '../../server/routes/questions'
 class Game extends React.Component {
   constructor(props) {
@@ -91,7 +94,13 @@ class Game extends React.Component {
 
   render() {
     let q = this.props.questions
-    return (
+
+    if (!q.trivias){
+      return < QuestionSplash />
+    }
+    else {
+
+    return (      
       <div>
         {q.trivias && <h2>{q.trivias[this.props.player.index].question}</h2>}
         <p>{this.state.clock}</p>
@@ -140,7 +149,7 @@ class Game extends React.Component {
           </div>
         )}
       </div>
-    )
+    )}
   }
 }
 

@@ -99,12 +99,6 @@ class App extends React.Component {
   render() {
     return (
       <>
-        {/* < Results />
-        < Game />  
-        < Welcome />
-        < SetupGame />
-        < Instructions />    
-        < GameEnd />       */}
         {this.props.pageNumber == -1 && <Instructions />}
         {this.props.pageNumber == 0 && <Welcome />}
         {this.props.pageNumber == 1 && <SetupGame />}

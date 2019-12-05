@@ -23,11 +23,30 @@ class Welcome extends React.Component {
 
     render() {
         return (
-            <>
-                <h1>WELCOME TO THE GAME</h1>
-                <button onClick={this.startClick}>GET STARTED</button>
-                <button onClick={this.instructClick}>INSTRUCTIONS</button>
-            </>
+          <>
+            <main>
+              <section className='home'>
+                <h1 className='home-gameTitle'>Quizzical</h1>
+                <div className='home-logo'>
+                  <img className='home-logo__pic'
+                    src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ2O1b8CY6ZxPzZQP84Wxau5ZDFTdYiWS9EfknQHxCqSp4TX2iO'
+                    alt='logo'
+                  />
+                </div>
+                <div className='home-btns'>
+                  <div className='home-btns__btn' onClick={this.startClick}>
+                    GET STARTED
+                  </div>
+                  <div
+                    className='home-btns__btn'
+                    onClick={this.instructClick}
+                  >
+                    INSTRUCTIONS
+                  </div>
+                </div>
+              </section>
+            </main>
+          </>
         )
     }
 }

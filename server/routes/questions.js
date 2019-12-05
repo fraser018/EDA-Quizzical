@@ -2,10 +2,11 @@ const request = require('superagent')
 const he = require('he')
 
 function getQuestions(qAmount) {
-  console.log('teamnumber', qAmount)
   const gameApi =
-  'https://opentdb.com/api.php?amount='+qAmount+'&type=multiple'
-//+ qAmount +'&category=' + (Math.floor(Math.random()*22) + 9) + 
+    'https://opentdb.com/api.php?amount=' +
+    qAmount +
+    '&type=multiple'
+
   return (
     request
       .get(gameApi)
@@ -15,7 +16,6 @@ function getQuestions(qAmount) {
 }
 
 function processApiQuestions(apiResponse) {
-  console.log(apiResponse)
   let trivias = apiResponse.map(trivia => {
       return {
           question: he.decode(trivia.question),
