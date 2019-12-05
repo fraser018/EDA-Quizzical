@@ -12,40 +12,40 @@
 ## User Stories
 
 ### MVP1
-[ ]I want to be able to play the game on my phone 
-[x]I want to be able to play the game in a group
-[x]I want to be able to read the instructions of the game
-[x]I want to be able to create a group
-[x]I want to be able to join a group
-[x]I want to be able to see the names of everyone who has joined before we start the game
-[x]I want to see a matching question and answer on my screen
-[x]I want to be able to see if my answer was right or wrong
-[x]I want to be able to end/leave the game
-[x]I want the captain of the team to be able to start a new game when everyone is ready
+* [ ]I want to be able to play the game on my phone 
+* [x]I want to be able to play the game in a group
+* [x]I want to be able to read the instructions of the game
+* [x]I want to be able to create a group
+* [x]I want to be able to join a group
+* [x]I want to be able to see the names of everyone who has joined before we start the game
+* [x]I want to see a matching question and answer on my screen
+* [x]I want to be able to see if my answer was right or wrong
+* [x]I want to be able to end/leave the game
+* [x]I want the captain of the team to be able to start a new game when everyone is ready
 
 ### MVP2
-[x]I want the game to be a fun and hectic quiz game
-[x]I want to see a random question and a random answer on my screen
-[ ]I want to make the users wait for everyone to amswer to go to the result screen
-[ ]I want there to be protection against duplicate team and user names
-[ ]When the game is completed, I want to see the overall results for the team
-[ ]Wait for timer or all player answers to be in before displaying results
+* [x]I want the game to be a fun and hectic quiz game
+* [x]I want to see a random question and a random answer on my screen
+* [ ]I want to make the users wait for everyone to amswer to go to the result screen
+* [ ]I want there to be protection against duplicate team and user names
+* [ ]When the game is completed, I want to see the overall results for the team
+* [ ]Wait for timer or all player answers to be in before displaying results
 
 ### MVP3
-[ ]I want there to be a timer that limits how long I have to answer the question
-[ ]I want to be able to play multiple rounds
-[ ]I want to see what round we are on during each round of the game
-[ ]I want the captain of the team to be able to start a new round when everyone is ready
+* [ ]I want there to be a timer that limits how long I have to answer the question
+* [ ]I want to be able to play multiple rounds
+* [ ]I want to see what round we are on during each round of the game
+* [ ]I want the captain of the team to be able to start a new round when everyone is ready
 
 ### Stretch
-[ ]Start Game: initially only show ‘create team’ button. ‘Join team’ button only shows if you have specified a team name that already exists
-[ ]Lobby: can only start game when more than 1 person has joined
-[ ]Splash screens: Question and Result
-[ ]Results shown in pie chart
-[ ]Delete user after two days(e.g. function happening on create team name)
-[ ]Randomly generate team names
-[ ]Player icons
-[ ]Timer is represented by colour/shape change
+* [ ]Start Game: initially only show ‘create team’ button. ‘Join team’ button only shows if you have specified a team name that already exists
+* [ ]Lobby: can only start game when more than 1 person has joined
+* [ ]Splash screens: Question and Result
+* [ ]Results shown in pie chart
+* [ ]Delete user after two days(e.g. function happening on create team name)
+* [ ]Randomly generate team names
+* [ ]Player icons
+* [ ]Timer is represented by colour/shape change
 ---
 
 ## Views (Client Side)
