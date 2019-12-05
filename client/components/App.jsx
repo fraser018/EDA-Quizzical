@@ -65,6 +65,12 @@ class App extends React.Component {
       })
     })
 
+    // Reset scores
+    socket.on('reset score', ()=>{
+      this.props.dispatch({
+        type: 'RESET_SCORE'
+      })
+    })
 
     // factor this out
     socket.on('end game', () => {

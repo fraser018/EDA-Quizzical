@@ -9,6 +9,7 @@ class GameEnd extends React.Component {
 
   playAgain = (e) => {
     e.preventDefault()
+    socket.emit('reset score', this.props.teamName)
     socket.emit('new question', {teamName:this.props.teamName, numOfPlayers: this.props.players.length})
   }
 

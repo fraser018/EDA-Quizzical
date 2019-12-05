@@ -39,6 +39,10 @@ io.on('connection', function(socket){
     io.to(response.teamName).emit('score', response.score)
   })
 
+  socket.on('reset score', teamName=>{
+    io.to(teamName).emit('reset score')
+  })
+
   socket.on('new question', teamData=>{
     io.to(teamData.teamName).emit('new question')
     questions.getQuestions(teamData.numOfPlayers)
