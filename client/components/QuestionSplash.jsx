@@ -11,11 +11,17 @@ class QuestionSplash extends React.Component {
   render() {
     return (      
       <div>
-        <h1>Loading...</h1>
+        <h1>Loading Question {this.props.roundCount} ...</h1>
         <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
       </div>
     )
   }
 }
 
-export default connect()(QuestionSplash)
+function mapStateToProps(state) {
+  return {
+    roundCount: state.roundCount
+  }
+}
+
+export default connect(mapStateToProps)(QuestionSplash)
