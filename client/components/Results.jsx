@@ -11,7 +11,6 @@ class Results extends React.Component {
         }
     }
 
-
     componentDidMount(){
         if(this.props.playerResponses[0]){
             if (this.props.playerResponses[0].selectedAnswer == this.props.playerResponses[0].correctAnswer) {
@@ -47,7 +46,6 @@ class Results extends React.Component {
         else {
             return (
                 <div>
-
 
                     {response != undefined ? <div>
                         <h2>{response.question}</h2>
