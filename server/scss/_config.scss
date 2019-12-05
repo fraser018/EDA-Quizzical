@@ -1,5 +1,5 @@
-$primary-color: #272727;
-$secondary-color: #a0d6b4;
+$primary-color: #f0923b;
+$secondary-color: #d3f3eb;
 
 * {
   box-sizing: border-box;
@@ -7,6 +7,10 @@ $secondary-color: #a0d6b4;
   padding: 0;
 }
 
+
+h1, h2 {
+  font-family: 'Comfortaa', cursive;
+}
 
 @function set-text-color($color) {
   @if (lightness($color) > 40%) {
