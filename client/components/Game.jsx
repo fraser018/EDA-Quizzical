@@ -1,13 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import socket from '../api/socket'
-// import { setInterval } from 'timers'
 
 import QuestionSplash from './QuestionSplash'
 
-const timeOut = setTimeout(() => this.finishRound(), 10000)
 
-// import { getQuestions } from '../../server/routes/questions'
 class Game extends React.Component {
   constructor(props) {
     super(props)
@@ -16,24 +13,16 @@ class Game extends React.Component {
       display2: '',
       display3: '',
       display4: '',
-      clock: 10
+      clock: 10,
+      finishedRound: false
     }
+    this.interval
   }
 
+  componentWillUnmount(){}
+
   componentDidMount() {
-    socket.on('receive questions', ()=>{
-      if(this.props.player.captain){
-        timeOut()
-      }
-        setInterval(() => {
-          this.setState({
-            clock: this.state.clock - 1
-          })
-        }, 1000)
-    })
-
     const answerArr = ['correctAnswer', 'incorrectAnswer1', 'incorrectAnswer2', 'incorrectAnswer3']
-
     function randomAnswer(answerArr) {
       let length = answerArr.length
       let lastItem
@@ -62,12 +51,10 @@ class Game extends React.Component {
   finishRound = () => {
     socket.emit('reset answer count', this.props.teamName)
     socket.emit('increment pages', this.props.teamName)
-    clearTimeout(timeOut)
   }
 
   handleClick = event => {
     event.preventDefault()
-
     if (this.props.answerCount == this.props.players.length - 1) {
       this.selectAnswer(event)
       this.finishRound()
@@ -96,6 +83,12 @@ class Game extends React.Component {
   }
 
   render() {
+    if(this.props.clock == 0 && this.props.player.captain && this.state.finishedRound == false){
+      this.finishRound()
+      this.setState({
+        finishedRound: true
+      })
+    }
     let q = this.props.questions
 
     if (!q.trivias){
@@ -106,7 +99,7 @@ class Game extends React.Component {
     return (      
       <div>
         {q.trivias && <h2>{q.trivias[this.props.player.index].question}</h2>}
-        <p>{this.state.clock}</p>
+        <p>{this.props.clock}</p>
         {!this.state.submittedAnswer && q.jumbledTrivias && (
           <div className='btn-group'>
             <button
@@ -163,7 +156,8 @@ function mapStateToProps(state) {
     playerResponses: state.playerResponses,
     teamName: state.teamName,
     players: state.players,
-    answerCount: state.answerCount
+    answerCount: state.answerCount,
+    clock: state.clock
   }
 }
 

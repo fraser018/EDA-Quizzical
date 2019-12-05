@@ -12,7 +12,7 @@ class ResultSplash extends React.Component {
     return (      
       <div>
         <h1>Checking Results...</h1>
-        <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
       </div>
     )
   }

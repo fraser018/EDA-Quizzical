@@ -52,12 +52,26 @@ class App extends React.Component {
       })
     })
 
-    // Get questions arrays form API
+    // Get questions arrays form API, when questions are received start timer
     socket.on('receive questions', questions => {
       this.props.dispatch({
         type: 'ADD_QUESTIONS',
         questions: questions
       })
+
+      this.interval = setInterval(() => {
+        if(this.props.clock == 0 || this.props.pageNumber != 3){
+          clearInterval(this.interval)
+          this.props.dispatch({
+            type: 'RESET_CLOCK'
+          })
+        }
+        else{
+          this.props.dispatch({
+            type: 'DECREMENT_CLOCK'
+          })      
+        }
+      }, 1000)
     })
 
     // Get final results (from Results to GameEnd)
@@ -109,13 +123,15 @@ class App extends React.Component {
       </>
     )
   }
-
-
 }
 
 function mapStateToProps(state) {
   return {
-    pageNumber: state.pageNumber
+    pageNumber: state.pageNumber,
+    clock: state.clock,
+    // players: state.players,
+    // answerCount: state.answerCount
+
   }
 }
 
