@@ -20,9 +20,8 @@ class GameEnd extends React.Component {
   render(){
     return(
       <>
-      <h1>Congrats, you played our game and survived!</h1>
-      <h2>{this.props.teamName}</h2>
-      {/* <p>you got 7 out of 10 answers correct </p> from redux number of correct and false responses */}
+      <h1>Congrats Team {this.props.teamName}, you played our game and survived!</h1>
+      <p>Your team got {this.props.score.correct} out of {this.props.score.total} answers correct!</p>
       {this.props.player.captain && <button onClick={this.playAgain}>Play again!!</button>}     
       {this.props.player.captain && <button onClick={this.mainMenu}>Main Menu</button>}          
       </>
@@ -34,7 +33,8 @@ function mapStateToProps(state){
   return {
     teamName: state.teamName,
     player : state.player,
-    players: state.players
+    players: state.players,
+    score: state.score
   }
 }
 
