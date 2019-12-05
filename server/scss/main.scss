@@ -1,5 +1,8 @@
 @import 'config';
 @import 'home';
+@import 'instruct';
+@import 'setup';
+@import 'lobby';
 
 
 
@@ -18,17 +21,4 @@ main {
    
 }
 
-.instruct-subTitle {
-  h3 {
-    margin-top: .2rem;
-  }
-}
-.instruct-info {
-  p {
-    margin-bottom: .4rem;
-  }
 
-  &__step {
-    margin-top: .4rem;
-  }
-}
