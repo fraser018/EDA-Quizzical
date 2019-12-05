@@ -35,6 +35,14 @@ class App extends React.Component {
       })
     })
 
+    // Get questions arrays form API
+    socket.on('receive questions', questions=>{
+      this.props.dispatch({
+        type: 'ADD_QUESTIONS',
+        questions: questions
+      })
+    })
+
     // Get final results (from Results to GameEnd)
     socket.on('end game', () => {
       this.props.dispatch({

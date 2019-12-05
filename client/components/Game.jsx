@@ -27,12 +27,12 @@ class Game extends React.Component {
         event.preventDefault()
         this.props.dispatch({
             type: 'SUBMIT_ANSWER',
-            response: 
+            response:
             {
-                question: this.state.question,
-                correctAnswer: this.state.correctAnswer,
+                question: this.props.questions.jumbledTrivias[this.props.player.index].question,
+                correctAnswer: this.props.questions.jumbledTrivias[this.props.player.index].correctAnswer,
                 selectedAnswer: event.target.id
-            }     
+            }
         })
         this.props.dispatch({
             type: 'INCREMENT_PAGE',
@@ -40,19 +40,41 @@ class Game extends React.Component {
     }
 
     render() {
+        let q = this.props.questions
         return (
             <div>
                 <h1>Game Component</h1>
-                <h2>{this.state.question}</h2>
-                <div className="btn-group">
-                    <button id={this.state.correctAnswer} onClick={this.selectAnswer}>{this.state.correctAnswer}</button>
-                    <button id={this.state.incorrectAnswer1} onClick={this.selectAnswer}>{this.state.incorrectAnswer1}</button>
-                    <button id={this.state.incorrectAnswer2} onClick={this.selectAnswer}>{this.state.incorrectAnswer2}</button>
-                    <button id={this.state.incorrectAnswer3} onClick={this.selectAnswer}>{this.state.incorrectAnswer3}</button>
-                </div>
+                {q.trivias && <h2>{q.trivias[this.props.player.index].question}</h2>}
+                {q.jumbledTrivias &&
+                    <div className="btn-group">
+                        <button id={q.jumbledTrivias[this.props.player.index].correctAnswer}
+                            onClick={this.selectAnswer}>
+                                {q.jumbledTrivias[this.props.player.index].correctAnswer}
+                        </button>
+                        <button id={q.jumbledTrivias[this.props.player.index].incorrectAnswer1}
+                            onClick={this.selectAnswer}>
+                                {q.jumbledTrivias[this.props.player.index].incorrectAnswer1}
+                        </button>
+                        <button id={q.jumbledTrivias[this.props.player.index].incorrectAnswer2}
+                            onClick={this.selectAnswer}>
+                                {q.jumbledTrivias[this.props.player.index].incorrectAnswer2}
+                        </button>
+                        <button id={q.jumbledTrivias[this.props.player.index].incorrectAnswer3}
+                            onClick={this.selectAnswer}>
+                                {q.jumbledTrivias[this.props.player.index].incorrectAnswer3}
+                        </button>
+                    </div>
+                }
             </div>
         )
     }
 }
 
-export default connect()(Game)
+function mapStateToProps(state) {
+    return {
+        player: state.player,
+        questions: state.questions
+    }
+}
+
+export default connect(mapStateToProps)(Game)
