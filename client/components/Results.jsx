@@ -17,7 +17,7 @@ class Results extends React.Component {
 
     endGame = (event) => {
         event.preventDefault()
-        socket.emit('end game', { teamName: this.props.teamName, numOfPlayers: this.props.players.length })
+        socket.emit('increment pages', this.props.teamName)
     }
 
     render() {

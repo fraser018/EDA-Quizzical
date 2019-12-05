@@ -35,8 +35,15 @@ class App extends React.Component {
       })
     })
 
+    // Listen for submitted answers
+    socket.on('submitted answer', () => {
+      this.props.dispatch({
+        type: 'INCREMENT_ANSWER_COUNT',
+      })
+    })
+
     // Get questions arrays form API
-    socket.on('receive questions', questions=>{
+    socket.on('receive questions', questions => {
       this.props.dispatch({
         type: 'ADD_QUESTIONS',
         questions: questions
@@ -44,6 +51,7 @@ class App extends React.Component {
     })
 
     // Get final results (from Results to GameEnd)
+    // factor this out
     socket.on('end game', () => {
       this.props.dispatch({
         type: 'INCREMENT_PAGE'
@@ -54,6 +62,13 @@ class App extends React.Component {
     socket.on('main menu', () => {
       this.props.dispatch({
         type: 'MAIN_MENU',
+      })
+    })
+
+    // Get final results (from Results to GameEnd)
+    socket.on('increment pages', () => {
+      this.props.dispatch({
+        type: 'INCREMENT_PAGE'
       })
     })
   }

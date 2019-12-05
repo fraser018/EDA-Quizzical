@@ -23,6 +23,9 @@ io.on('connection', function(socket){
       io.to(teamData.teamName).emit('receive questions', questions)
     })
   })
+  socket.on('submitted answer', teamName=>{
+    io.to(teamName).emit('submitted answer')
+  })
   socket.on('new question', teamData=>{
     io.to(teamData.teamName).emit('new question')
     questions.getQuestions(teamData.numOfPlayers)
@@ -30,14 +33,13 @@ io.on('connection', function(socket){
       io.to(teamData.teamName).emit('receive questions', questions)
     })
   })
-  socket.on('end game', teamData=>{
-    io.to(teamData.teamName).emit('end game')
-  })
-  socket.on('main menu', teamData=>{
-    io.to(teamData.teamName).emit('main menu')
+  socket.on('main menu', teamName=>{
+    io.to(teamName).emit('main menu')
+  })  
+  socket.on('increment pages', teamName=>{
+    io.to(teamName).emit('increment pages')
   })  
 })
-
 
 http.listen(port, function () {
   // eslint-disable-next-line no-console

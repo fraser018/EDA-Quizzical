@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { log } from 'util'
+import socket from '../api/socket'
 // import { getQuestions } from '../../server/routes/questions'
 class Game extends React.Component {
   constructor(props) {
@@ -46,8 +47,22 @@ class Game extends React.Component {
     })
   }
 
-  selectAnswer = event => {
+  handleClick = event => {
     event.preventDefault()
+
+    console.log(this.props.answerCount)
+    console.log(this.props.players.length - 1)
+
+    if (this.props.answerCount == this.props.players.length - 1) {
+      this.selectAnswer(event)
+      socket.emit('increment pages', this.props.teamName)
+    }
+    else {
+      this.selectAnswer(event)
+    }
+  }
+
+  selectAnswer = (event) => {
     this.props.dispatch({
       type: 'SUBMIT_ANSWER',
       response: {
@@ -62,9 +77,7 @@ class Game extends React.Component {
     this.setState({
       submittedAnswer: true
     })
-    // this.props.dispatch({
-    //   type: 'INCREMENT_PAGE'
-    // })
+    socket.emit('submitted answer', this.props.teamName)
   }
 
   render() {
@@ -80,7 +93,7 @@ class Game extends React.Component {
               id={
                 q.jumbledTrivias[this.props.player.index][this.state.display1]
               }
-              onClick={this.selectAnswer}
+              onClick={this.handleClick}
             >
               {q.jumbledTrivias[this.props.player.index][this.state.display1]}
             </button>
@@ -88,7 +101,7 @@ class Game extends React.Component {
               id={
                 q.jumbledTrivias[this.props.player.index][this.state.display2]
               }
-              onClick={this.selectAnswer}
+              onClick={this.handleClick}
             >
               {q.jumbledTrivias[this.props.player.index][this.state.display2]}
             </button>
@@ -96,7 +109,7 @@ class Game extends React.Component {
               id={
                 q.jumbledTrivias[this.props.player.index][this.state.display3]
               }
-              onClick={this.selectAnswer}
+              onClick={this.handleClick}
             >
               {q.jumbledTrivias[this.props.player.index][this.state.display3]}
             </button>
@@ -104,18 +117,18 @@ class Game extends React.Component {
               id={
                 q.jumbledTrivias[this.props.player.index][this.state.display4]
               }
-              onClick={this.selectAnswer}
+              onClick={this.handleClick}
             >
               {q.jumbledTrivias[this.props.player.index][this.state.display4]}
             </button>
           </div>
         )}
 
-        {this.state.submittedAnswer  && (
+        {this.state.submittedAnswer && (
           <div className='btn-group'>
             <button>
               {this.props.playerResponses[0].selectedAnswer}
-            </button>            
+            </button>
           </div>
         )}
       </div>
@@ -127,7 +140,10 @@ function mapStateToProps(state) {
   return {
     player: state.player,
     questions: state.questions,
-    playerResponses: state.playerResponses
+    playerResponses: state.playerResponses,
+    teamName: state.teamName,
+    players: state.players,
+    answerCount: state.answerCount
   }
 }
 

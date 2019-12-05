@@ -7,6 +7,7 @@ import teamName from './teamName'
 import player from './player'
 import players from './players'
 import questions from './questions'
+import answerCount from './answerCount'
 
 
 export default combineReducers({
@@ -15,5 +16,6 @@ export default combineReducers({
     teamName,
     player, 
     players,
-    questions
+    questions,
+    answerCount
 })

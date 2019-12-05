@@ -14,7 +14,7 @@ class GameEnd extends React.Component {
 
   mainMenu = (e) => {
     e.preventDefault()
-    socket.emit('main menu', {teamName:this.props.teamName, numOfPlayers: this.props.players.length})
+    socket.emit('main menu', this.props.teamName)
   }
 
   render(){
