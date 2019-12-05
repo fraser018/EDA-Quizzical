@@ -12,8 +12,6 @@ import socket from '../api/socket'
 
 import { connect } from 'react-redux'
 
-
-
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -60,8 +58,9 @@ class App extends React.Component {
         type: 'ADD_QUESTIONS',
         questions: questions
       })
+
       this.interval = setInterval(() => {
-        if(this.props.clock == 0){
+        if(this.props.clock == 0 || this.props.pageNumber != 3){
           clearInterval(this.interval)
           this.props.dispatch({
             type: 'RESET_CLOCK'
@@ -124,14 +123,15 @@ class App extends React.Component {
       </>
     )
   }
-
-
 }
 
 function mapStateToProps(state) {
   return {
     pageNumber: state.pageNumber,
-    clock: state.clock
+    clock: state.clock,
+    // players: state.players,
+    // answerCount: state.answerCount
+
   }
 }
 
