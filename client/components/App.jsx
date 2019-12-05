@@ -38,6 +38,9 @@ class App extends React.Component {
       this.props.dispatch({
         type: 'CLEAR_PR_STATE'
       })
+      this.props.dispatch({
+        type: 'INCREMENT_ROUND'
+      })
     })
 
     // Listen for submitted answers
@@ -54,7 +57,7 @@ class App extends React.Component {
       })
     })
 
-    // Get questions arrays form API, when questions are received start timer
+    // Get questions arrays from API, when questions are received start timer
     socket.on('receive questions', questions => {
       this.props.dispatch({
         type: 'ADD_QUESTIONS',

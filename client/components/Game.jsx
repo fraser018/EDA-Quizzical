@@ -19,8 +19,6 @@ class Game extends React.Component {
     this.interval
   }
 
-  componentWillUnmount(){}
-
   componentDidMount() {
     const answerArr = ['correctAnswer', 'incorrectAnswer1', 'incorrectAnswer2', 'incorrectAnswer3']
     function randomAnswer(answerArr) {
