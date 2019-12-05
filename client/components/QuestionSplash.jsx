@@ -12,7 +12,8 @@ class QuestionSplash extends React.Component {
   render() {
     return (      
       <div>
-        <h1>QuestionSplash</h1>
+        <h1>Next Question:</h1>
+        <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
       </div>
     )
   }
