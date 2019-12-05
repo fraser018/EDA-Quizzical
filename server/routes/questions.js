@@ -12,8 +12,7 @@ function getQuestions(qAmount) {
     request
       .get(gameApi)
       .then(res => processApiQuestions(res.body.results))
-  )
-  
+  )  
 
 }
 
@@ -21,20 +20,9 @@ function processApiQuestions(apiResponse) {
   let trivias = apiResponse.map(trivia => {
       return {
           question: he.decode(trivia.question),
-            // .replace(/&quot;/g, '"')
-            // .replace(/&#039;/g, "'"),
           correctAnswer: he.decode(trivia.correct_answer),
-            // .replace(/&quot;/g, '"')
-            // .replace(/&#039;/g, "'"),
-          incorrectAnswer1: he.decode(trivia.incorrect_answers[0]),
-            // .replace(/&quot;/g, '"')
-            // .replace(/&#039;/g, "'"),
           incorrectAnswer2: he.decode(trivia.incorrect_answers[1]),
-            // .replace(/&quot;/g, '"')
-            // .replace(/&#039;/g, "'"),
           incorrectAnswer3: he.decode(trivia.incorrect_answers[2])
-            // .replace(/&quot;/g, '"')
-            // .replace(/&#039;/g, "'")
         }
       })
   return {
