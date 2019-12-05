@@ -11,12 +11,14 @@ class Results extends React.Component {
 
 
     componentDidMount(){
-       if(this.props.playerResponses[0].selectedAnswer == this.props.playerResponses[0].correctAnswer){
-           socket.emit('score', {score:1, teamName:this.props.teamName})
-       }
-       else{
-           socket.emit('score', {score:0, teamName:this.props.teamName})
-       }
+        if(this.props.playerResponses[0]){
+            if(this.props.playerResponses[0].selectedAnswer == this.props.playerResponses[0].correctAnswer){
+                socket.emit('score', {score:1, teamName:this.props.teamName})
+            }
+            else{
+                socket.emit('score', {score:0, teamName:this.props.teamName})
+            }
+        }
     }
 
     nextQuestion = (event) => {

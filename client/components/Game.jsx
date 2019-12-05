@@ -15,12 +15,11 @@ class Game extends React.Component {
   }
 
   componentDidMount() {
-    const answerArr = [
-      'correctAnswer',
-      'incorrectAnswer1',
-      'incorrectAnswer2',
-      'incorrectAnswer3'
-    ]
+    if(this.props.player.captain){
+      setTimeout(() => this.finishRound(), 10000);
+    }
+
+    const answerArr = ['correctAnswer', 'incorrectAnswer1', 'incorrectAnswer2', 'incorrectAnswer3']
 
     function randomAnswer(answerArr) {
       let length = answerArr.length
@@ -47,13 +46,17 @@ class Game extends React.Component {
     })
   }
 
+  finishRound = () => {
+    socket.emit('reset answer count', this.props.teamName)
+    socket.emit('increment pages', this.props.teamName)
+  }
+
   handleClick = event => {
     event.preventDefault()
 
     if (this.props.answerCount == this.props.players.length - 1) {
       this.selectAnswer(event)
-      socket.emit('reset answer count', this.props.teamName)
-      socket.emit('increment pages', this.props.teamName)
+      this.finishRound()
     }
     else {
       this.selectAnswer(event)
