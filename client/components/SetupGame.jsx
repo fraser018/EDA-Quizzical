@@ -1,15 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {addPlayerToTeam, getTeams} from '../api/users'
+import {addPlayerToTeam, getTeams, getPlayersByTeam} from '../api/users'
 import socket from '../api/socket'
-
 
 class SetupGame extends React.Component {
   constructor(props) {
     super(props)
     this.state ={
-
     }
   }
 
@@ -19,15 +17,49 @@ class SetupGame extends React.Component {
     })
   }
 
-  joinTeam = (event) => {
-    event.preventDefault()
-    // getTeams().then()
-    this.addPlayerToTeam(false)
-  }
-
   createTeam = (event) => {
     event.preventDefault()
-    this.addPlayerToTeam(true)
+    getTeams().then((res) => {
+      this.setState({
+        message: ''
+      })
+      if (res.text.includes(this.state.team)) {
+        this.setState({
+          message: 'This team name is taken, please choose a different one.'
+        })
+      }
+      else {
+        this.addPlayerToTeam(true)
+      }      
+    })    
+  }
+
+  joinTeam = (event) => {
+    event.preventDefault()
+    getTeams().then(res => {
+      this.setState({
+        message: ''
+      })
+      if (!res.text.includes(this.state.team)) {
+        this.setState({
+          message: 'This team does not exist, maybe you would like to create one?'
+        })
+      }
+      else {
+        getPlayersByTeam(this.state.team).then(res => {
+          if (!JSON.parse(res.text).find(player=>{
+            return player.name == this.state.player
+          })){
+            this.addPlayerToTeam(false)
+          }
+          else {
+            this.setState({
+              message: 'This username is taken - please pick a new one.'
+            })
+          }
+        })
+      }
+    })    
   }
 
   addPlayerToTeam = (captain) => {
@@ -74,6 +106,7 @@ class SetupGame extends React.Component {
           <section>
             <button onClick={this.joinTeam}>Join Team</button>
           </section>
+          {this.state.message != "" && <h2>{this.state.message}</h2>}
 
         </form>
       </>
