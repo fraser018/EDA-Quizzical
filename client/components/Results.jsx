@@ -11,12 +11,15 @@ class Results extends React.Component {
         }
     }
 
-    componentDidMount() {
-        if (this.props.playerResponses[0].selectedAnswer == this.props.playerResponses[0].correctAnswer) {
-            socket.emit('score', { score: 1, teamName: this.props.teamName })
-        }
-        else {
-            socket.emit('score', { score: 0, teamName: this.props.teamName })
+
+    componentDidMount(){
+        if(this.props.playerResponses[0]){
+            if (this.props.playerResponses[0].selectedAnswer == this.props.playerResponses[0].correctAnswer) {
+                socket.emit('score', { score: 1, teamName: this.props.teamName })
+            }
+            else {
+                socket.emit('score', { score: 0, teamName: this.props.teamName })
+            }
         }
         setTimeout(() => {
             this.setState({
@@ -44,9 +47,11 @@ class Results extends React.Component {
         else {
             return (
                 <div>
-                    {response != undefined && <div>
+
+
+                    {response != undefined ? <div>
                         <h2>{response.question}</h2>
-    
+                        
                         {response.correctAnswer == response.selectedAnswer ?
                             <div>
                                 <h3>Correct: {response.correctAnswer}</h3></div> :
@@ -56,6 +61,9 @@ class Results extends React.Component {
                             </div>
                         }
     
+                    </div>:
+                    <div>
+                        <h3>Be quicker next time!</h3>  
                     </div>}
                     {this.props.player.captain && <button onClick={this.nextQuestion}>Next Question</button>}
                     {this.props.player.captain && <button onClick={this.endGame}>End Game</button>}
