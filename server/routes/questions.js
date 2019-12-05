@@ -6,7 +6,7 @@ function getQuestions(qAmount) {
   const gameApi =
     'https://opentdb.com/api.php?amount=' +
     qAmount +
-    '&category=9&difficulty=medium&type=multiple'
+    '&type=multiple'
 
   return (
     request
@@ -21,6 +21,7 @@ function processApiQuestions(apiResponse) {
       return {
           question: he.decode(trivia.question),
           correctAnswer: he.decode(trivia.correct_answer),
+          incorrectAnswer1: he.decode(trivia.incorrect_answers[0]),
           incorrectAnswer2: he.decode(trivia.incorrect_answers[1]),
           incorrectAnswer3: he.decode(trivia.incorrect_answers[2])
         }
