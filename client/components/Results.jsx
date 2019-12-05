@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getQuestions } from '../api/game'
 import socket from '../api/socket'
 
 class Results extends React.Component {
@@ -8,6 +7,16 @@ class Results extends React.Component {
         super(props)
         this.state = {
         }
+    }
+
+
+    componentDidMount(){
+       if(this.props.playerResponses[0].selectedAnswer == this.props.playerResponses[0].correctAnswer){
+           socket.emit('score', {score:1, teamName:this.props.teamName})
+       }
+       else{
+           socket.emit('score', {score:0, teamName:this.props.teamName})
+       }
     }
 
     nextQuestion = (event) => {

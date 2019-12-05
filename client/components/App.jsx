@@ -42,12 +42,12 @@ class App extends React.Component {
       })
     })
 
-        // Listen for submitted answers
-        socket.on('reset answer count', () => {
-          this.props.dispatch({
-            type: 'RESET_ANSWER_COUNT',
-          })
-        })
+    // Listen for submitted answers
+    socket.on('reset answer count', () => {
+      this.props.dispatch({
+        type: 'RESET_ANSWER_COUNT',
+      })
+    })
 
     // Get questions arrays form API
     socket.on('receive questions', questions => {
@@ -58,6 +58,14 @@ class App extends React.Component {
     })
 
     // Get final results (from Results to GameEnd)
+    socket.on('score', score=>{
+      this.props.dispatch({
+        type: 'INCREMENT_SCORE',
+        score: score
+      })
+    })
+
+
     // factor this out
     socket.on('end game', () => {
       this.props.dispatch({
