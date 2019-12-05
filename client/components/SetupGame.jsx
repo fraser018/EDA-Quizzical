@@ -17,6 +17,19 @@ class SetupGame extends React.Component {
     })
   }
 
+   getRandomUppercaseChar = () => {
+    let r = Math.floor(Math.random() * 26);
+    return String.fromCharCode(65 + r);
+}
+
+    generateCode = () => {
+    let prefix = new Array(2).fill().map(() => getRandomUppercaseChar()).join(""),
+        integer = Math.floor((Math.random() * 999) * 7);
+        console.log(prefix + integer);
+        
+    return prefix + integer;
+}
+
   createTeam = (event) => {
     event.preventDefault()
     getTeams().then((res) => {
@@ -105,6 +118,9 @@ class SetupGame extends React.Component {
           </section>
           <section>
             <button onClick={this.joinTeam}>Join Team</button>
+          </section>
+          <section>
+            <button onClick={this.generateCode}>Code Make</button>
           </section>
           {this.state.message != "" && <h2>{this.state.message}</h2>}
 
