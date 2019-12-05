@@ -23,11 +23,17 @@ class Welcome extends React.Component {
 
     render() {
         return (
-            <>
-                <h1>WELCOME TO THE GAME</h1>
-                <button onClick={this.startClick}>GET STARTED</button>
-                <button onClick={this.instructClick}>INSTRUCTIONS</button>
-            </>
+          <>
+            <main>
+              <section className='home'>
+                <h1 className='home-gameTitle'>Quizzical</h1>
+                <div className='home-btns'>
+                  <button className='home-btns__btn' onClick={this.startClick}>GET STARTED</button>
+                  <button className='home-btns__btn' onClick={this.instructClick}>INSTRUCTIONS</button>
+                </div>
+              </section>
+            </main>
+          </>
         )
     }
 }
