@@ -31,20 +31,18 @@
 * [x] When the game is completed, I want to see the overall results for the team
 
 ### MVP3
-* [ ] I want there to be a timer that limits how long I have to answer the question
-* [ ] Wait for timer or all player answers to be in before displaying results
+* [x] I want there to be a timer that limits how long I have to answer the question
+* [x] Wait for timer or all player answers to be in before displaying results
 * [x] Splash screens: Question and Result
 * [ ] I want to be able to play multiple rounds
 * [ ] I want to see what round we are on during each round of the game
 * [x] I want the captain of the team to be able to start a new round when everyone is ready
 
 ### Stretch
-* [ ] Start Game: initially only show ‘create team’ button. ‘Join team’ button only shows if you have specified a team name that already exists
 * [ ] Lobby: can only start game when more than 1 person has joined
 * [ ] Results shown in pie chart
 * [ ] Delete user after two days(e.g. function happening on create team name)
 * [ ] Randomly generate team names
-* [ ] Player icons
 * [ ] Timer is represented by colour/shape change
 ---
 
