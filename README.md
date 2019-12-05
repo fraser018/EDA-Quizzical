@@ -12,7 +12,7 @@
 ## User Stories
 
 ### MVP1
-* [ ] I want to be able to play the game on my phone 
+* [x] I want to be able to play the game on my phone 
 * [x] I want to be able to play the game in a group
 * [x] I want to be able to read the instructions of the game
 * [x] I want to be able to create a group
@@ -27,7 +27,7 @@
 * [x] I want the game to be a fun and hectic quiz game
 * [x] I want to see a random question and a random answer on my screen
 * [ ] I want to make the users wait for everyone to amswer to go to the result screen
-* [ ] I want there to be protection against duplicate team and user names
+* [x] I want there to be protection against duplicate team and user names
 * [ ] When the game is completed, I want to see the overall results for the team
 * [ ] Wait for timer or all player answers to be in before displaying results
 
