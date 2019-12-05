@@ -23,12 +23,13 @@ class SetupGame extends React.Component {
 }
 
     generateCode = () => {
-    let prefix = new Array(2).fill().map(() => getRandomUppercaseChar()).join(""),
+    let prefix = new Array(2).fill().map(() => this.getRandomUppercaseChar()).join(""),
         integer = Math.floor((Math.random() * 999) * 7);
         console.log(prefix + integer);
         
     return prefix + integer;
 }
+
 
   createTeam = (event) => {
     event.preventDefault()
@@ -119,12 +120,12 @@ class SetupGame extends React.Component {
           <section>
             <button onClick={this.joinTeam}>Join Team</button>
           </section>
-          <section>
-            <button onClick={this.generateCode}>Code Make</button>
-          </section>
           {this.state.message != "" && <h2>{this.state.message}</h2>}
 
         </form>
+          <section>
+            <button onClick={this.generateCode}>Code Make</button>
+          </section>
       </>
     )
   }
