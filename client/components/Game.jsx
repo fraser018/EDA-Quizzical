@@ -21,29 +21,29 @@ class Game extends React.Component {
       'incorrectAnswer3'
     ]
 
-        function randomAnswer(answerArr) {
-        let length = answerArr.length
-        let lastItem
-        let i
-            while (length) {
-              i = Math.floor(Math.random() * length--)
+    function randomAnswer(answerArr) {
+      let length = answerArr.length
+      let lastItem
+      let i
+      while (length) {
+        i = Math.floor(Math.random() * length--)
 
-              lastItem = answerArr[length]
-              answerArr[length] = answerArr[i]
-              answerArr[i] = lastItem
-            }
+        lastItem = answerArr[length]
+        answerArr[length] = answerArr[i]
+        answerArr[i] = lastItem
+      }
 
-        let randomArr = answerArr
-        return randomArr
-        }
+      let randomArr = answerArr
+      return randomArr
+    }
 
-        let randomArr = randomAnswer(answerArr)
-          this.setState({
-            display1: randomArr[0],
-            display2: randomArr[1],
-            display3: randomArr[2],
-            display4: randomArr[3]
-          })
+    let randomArr = randomAnswer(answerArr)
+    this.setState({
+      display1: randomArr[0],
+      display2: randomArr[1],
+      display3: randomArr[2],
+      display4: randomArr[3]
+    })
   }
 
   selectAnswer = event => {
@@ -59,9 +59,12 @@ class Game extends React.Component {
         selectedAnswer: event.target.id
       }
     })
-    this.props.dispatch({
-      type: 'INCREMENT_PAGE'
+    this.setState({
+      submittedAnswer: true
     })
+    // this.props.dispatch({
+    //   type: 'INCREMENT_PAGE'
+    // })
   }
 
   render() {
@@ -70,7 +73,8 @@ class Game extends React.Component {
       <div>
         <h1>Game Component</h1>
         {q.trivias && <h2>{q.trivias[this.props.player.index].question}</h2>}
-        {q.jumbledTrivias && (
+
+        {!this.state.submittedAnswer && q.jumbledTrivias && (
           <div className='btn-group'>
             <button
               id={
@@ -106,6 +110,14 @@ class Game extends React.Component {
             </button>
           </div>
         )}
+
+        {this.state.submittedAnswer  && (
+          <div className='btn-group'>
+            <button>
+              {this.props.playerResponses[0].selectedAnswer}
+            </button>            
+          </div>
+        )}
       </div>
     )
   }
@@ -114,7 +126,8 @@ class Game extends React.Component {
 function mapStateToProps(state) {
   return {
     player: state.player,
-    questions: state.questions
+    questions: state.questions,
+    playerResponses: state.playerResponses
   }
 }
 
