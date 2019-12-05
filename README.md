@@ -28,7 +28,7 @@
 * [x] I want to see a random question and a random answer on my screen
 * [x] I want to make the users wait for everyone to amswer to go to the result screen
 * [x] I want there to be protection against duplicate team and user names
-* [ ] When the game is completed, I want to see the overall results for the team
+* [x] When the game is completed, I want to see the overall results for the team
 
 ### MVP3
 * [ ] I want there to be a timer that limits how long I have to answer the question

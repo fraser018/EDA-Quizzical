@@ -50,9 +50,6 @@ class Game extends React.Component {
   handleClick = event => {
     event.preventDefault()
 
-    console.log(this.props.answerCount)
-    console.log(this.props.players.length - 1)
-
     if (this.props.answerCount == this.props.players.length - 1) {
       this.selectAnswer(event)
       socket.emit('reset answer count', this.props.teamName)
@@ -85,7 +82,6 @@ class Game extends React.Component {
     let q = this.props.questions
     return (
       <div>
-        <h1>Game Component</h1>
         {q.trivias && <h2>{q.trivias[this.props.player.index].question}</h2>}
 
         {!this.state.submittedAnswer && q.jumbledTrivias && (
