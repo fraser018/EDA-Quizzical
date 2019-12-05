@@ -1,4 +1,5 @@
 const request = require('superagent')
+const he = require('he')
 
 function getQuestions(qAmount) {
   console.log('teamnumber', qAmount)
@@ -9,8 +10,7 @@ function getQuestions(qAmount) {
     request
       .get(gameApi)
       .then(res => processApiQuestions(res.body.results))
-  )
-  
+  )  
 
 }
 
@@ -18,21 +18,10 @@ function processApiQuestions(apiResponse) {
   console.log(apiResponse)
   let trivias = apiResponse.map(trivia => {
       return {
-          question: trivia.question
-            .replace(/&quot;/g, '"')
-            .replace(/&#039;/g, "'"),
-          correctAnswer: trivia.correct_answer
-            .replace(/&quot;/g, '"')
-            .replace(/&#039;/g, "'"),
-          incorrectAnswer1: trivia.incorrect_answers[0]
-            .replace(/&quot;/g, '"')
-            .replace(/&#039;/g, "'"),
-          incorrectAnswer2: trivia.incorrect_answers[1]
-            .replace(/&quot;/g, '"')
-            .replace(/&#039;/g, "'"),
-          incorrectAnswer3: trivia.incorrect_answers[2]
-            .replace(/&quot;/g, '"')
-            .replace(/&#039;/g, "'")
+          question: he.decode(trivia.question),
+          correctAnswer: he.decode(trivia.correct_answer),
+          incorrectAnswer2: he.decode(trivia.incorrect_answers[1]),
+          incorrectAnswer3: he.decode(trivia.incorrect_answers[2])
         }
       })
   return {
