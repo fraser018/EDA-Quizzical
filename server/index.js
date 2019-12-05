@@ -19,12 +19,16 @@ io.on('connection', function(socket){
   socket.on('all players in', teamData=>{
     io.to(teamData.teamName).emit('all players in')
     questions.getQuestions(teamData.numOfPlayers)
-      .then(questions => {
-        io.to(teamData.teamName).emit('receive questions', questions)
-      })
+    .then(questions => {
+      io.to(teamData.teamName).emit('receive questions', questions)
+    })
   })
   socket.on('new question', teamData=>{
     io.to(teamData.teamName).emit('new question')
+    questions.getQuestions(teamData.numOfPlayers)
+    .then(questions => {
+      io.to(teamData.teamName).emit('receive questions', questions)
+    })
   })
   socket.on('end game', teamData=>{
     io.to(teamData.teamName).emit('end game')

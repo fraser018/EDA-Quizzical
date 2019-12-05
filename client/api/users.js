@@ -1,6 +1,5 @@
 import request from 'superagent'
 
-
 export function addPlayerToTeam(user, team, captain){
   return request
     .post('/api/v1/users')
@@ -10,4 +9,8 @@ export function addPlayerToTeam(user, team, captain){
 
 export function getTeams(){
   return request.get('/api/v1/teams')
+}
+
+export function getPlayersByTeam(team){
+  return request.get('/api/v1/users?team=' + team)
 }
