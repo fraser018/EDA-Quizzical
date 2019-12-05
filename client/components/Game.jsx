@@ -5,6 +5,8 @@ import socket from '../api/socket'
 
 import QuestionSplash from './QuestionSplash'
 
+const timeOut = setTimeout(() => this.finishRound(), 10000)
+
 // import { getQuestions } from '../../server/routes/questions'
 class Game extends React.Component {
   constructor(props) {
@@ -21,7 +23,7 @@ class Game extends React.Component {
   componentDidMount() {
     socket.on('receive questions', ()=>{
       if(this.props.player.captain){
-        setTimeout(() => this.finishRound(), 10000)
+        timeOut()
       }
         setInterval(() => {
           this.setState({
@@ -60,6 +62,7 @@ class Game extends React.Component {
   finishRound = () => {
     socket.emit('reset answer count', this.props.teamName)
     socket.emit('increment pages', this.props.teamName)
+    clearTimeout(timeOut)
   }
 
   handleClick = event => {
