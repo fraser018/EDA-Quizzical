@@ -88,28 +88,46 @@ class SetupGame extends React.Component {
 
   render() {
     return (
-      <>
-        <h1>Create A Game</h1>
-        <form>
-          <section>
-            Team Name:
-            <input type='text' name='team' onChange={this.handleChange} />
-          </section>
-          <section>
-            User Name:
-            <input type='text' name='player' onChange={this.handleChange} />
-          </section>
+      <main>
+        <section className='setup'>
+          <h1 className='setup-gameTitle'>Quizzical</h1>
+          <h1 className='setup-create'>Create A Game</h1>
+          <form>
+            <section className='setup-team'>
+              Team Name:
+              <input
+                className='setup-team__fields'
+                type='text'
+                name='team'
+                onChange={this.handleChange}
+              />
+            </section>
+            <section className='setup-user'>
+              User Name:
+              <input
+                className='setup-user__fields'
+                type='text'
+                name='player'
+                onChange={this.handleChange}
+              />
+            </section>
 
-          <section>
-            <button onClick={this.createTeam}>Create Team</button>
-          </section>
-          <section>
-            <button onClick={this.joinTeam}>Join Team</button>
-          </section>
-          {this.state.message != "" && <h2>{this.state.message}</h2>}
-
-        </form>
-      </>
+            <div className='setup-btns'>
+              <section>
+                <div className='setup-btns__btn' onClick={this.createTeam}>
+                  Create Team
+                </div>
+              </section>
+              <section>
+                <div className='setup-btns__btn' onClick={this.joinTeam}>
+                  Join Team
+                </div>
+              </section>
+            </div>
+            {this.state.message != '' && <h2>{this.state.message}</h2>}
+          </form>
+        </section>
+      </main>
     )
   }
 }
