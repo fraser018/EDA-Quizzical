@@ -3,6 +3,9 @@ const reducer = (state = {}, action) => {
     case 'ADD_QUESTIONS':{
       return action.questions
     }
+    case 'RESET_QUESTIONS':{
+      return {}
+    }
 
     default: return state
   }

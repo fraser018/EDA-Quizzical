@@ -28,6 +28,9 @@ class App extends React.Component {
     // Get new question (from Results and GameEnd)
     socket.on('new question', () => {
       this.props.dispatch({
+        type: 'RESET_QUESTIONS'
+      })
+      this.props.dispatch({
         type: 'START_GAME'
       })
       this.props.dispatch({
