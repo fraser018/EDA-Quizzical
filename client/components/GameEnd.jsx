@@ -21,18 +21,18 @@ class GameEnd extends React.Component {
 
   render(){
     let options ={
-      labelInterpolationFnc: function(value) {
-        return Math.round(value / data.series.reduce(sum) * 100) + '%';
+      labelInterpolationFnc: function(value, index) {
+        return Math.round(value / data.series.reduce(sum) * 100) + '% ' + data.label[index];
       }}
     let sum = function(a, b) { return a + b }
-    let data = {labels:['correct', 'incorrect'],series:[7, 10, 11]}
+    let data = {label: ['Right','Wrong'], series:[this.props.score.correct, this.props.score.total-this.props.score.correct]}
     return(
       <>
+      <h1>Congrats Team {this.props.teamName}, you played our game and survived!</h1>
       <ChartistGraph className='ct-chart' data={data} options={options} type={'Pie'} />
-      {/* <h1>Congrats Team {this.props.teamName}, you played our game and survived!</h1>
       <p>Your team got {this.props.score.correct} out of {this.props.score.total} answers correct!</p>
       {this.props.player.captain && <button onClick={this.playAgain}>Play again!!</button>}     
-      {this.props.player.captain && <button onClick={this.mainMenu}>Main Menu</button>}           */}
+      {this.props.player.captain && <button onClick={this.mainMenu}>Main Menu</button>}          
       </>
     )
   }
