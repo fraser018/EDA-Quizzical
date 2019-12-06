@@ -1,10 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Instructions from './Instructions'
+import Create from './Create'
+import Join from './Join'
 // import socket from 'socket.io'
 
 class Welcome extends React.Component {
     constructor(props) {
         super(props)
+        this.state={
+          display: "main"
+        }
     }
 
     startClick = (e) => {
@@ -14,17 +20,42 @@ class Welcome extends React.Component {
         })
     }
 
+    createClick = (e) => {
+      e.preventDefault()
+      this.setState({
+        display: 'create'
+      })
+    }
+    
+    joinClick = (e) => {
+      e.preventDefault()
+      this.setState({
+        display: 'join'
+      })
+    }
     instructClick = (e) => {
         e.preventDefault()
-        this.props.dispatch({
-            type: 'INSTRUCT'
+        this.setState({
+          display: "instructions"
         })
+        // this.props.dispatch({
+        //     type: 'INSTRUCT'
+        // })
     }
+
+    welcomePage = (event) => {
+      event.preventDefault();
+      this.setState({
+          display: 'main'
+      })
+      // console.log('word');
+      
+  }
 
     render() {
         return (
           <>
-            <main>
+            {this.state.display == "main" && <main>
               <section className='home'>
                 <h1 className='home-gameTitle'>Quizzical</h1>
                 <div className='home-logo'>
@@ -34,8 +65,11 @@ class Welcome extends React.Component {
                   />
                 </div>
                 <div className='home-btns'>
-                  <div className='home-btns__btn' onClick={this.startClick}>
-                    GET STARTED
+                  <div className='home-btns__btn' onClick={this.createClick}>
+                    CREATE TEAM
+                  </div>
+                  <div className='home-btns__btn' onClick={this.joinClick}>
+                    JOIN TEAM
                   </div>
                   <div
                     className='home-btns__btn'
@@ -45,7 +79,11 @@ class Welcome extends React.Component {
                   </div>
                 </div>
               </section>
-            </main>
+            </main>}
+            {this.state.display == "instructions" && <Instructions welcomePage={this.welcomePage}/>}
+            {this.state.display == "create" && <Create />}
+            {this.state.display == "join" && <Join />}
+
           </>
         )
     }
