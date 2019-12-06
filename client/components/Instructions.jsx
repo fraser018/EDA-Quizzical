@@ -47,7 +47,7 @@ class Instructions extends React.Component {
                     it thought - and answer before the time runs out!
                   </p>
                 </div>
-                <div className='home-btns__btn' onClick={this.props.welcomePage}>
+                <div className='home-btns__btn' onClick={(e)=>this.props.changePage(e, 'main')}>
                   Go Back
                 </div>
               </div>

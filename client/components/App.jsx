@@ -93,7 +93,7 @@ class App extends React.Component {
     return (
       <>
 
-        {this.props.pageNumber == -1 && <Instructions />}
+        {/* {this.props.pageNumber == -1 && <Instructions />} */}
         {this.props.pageNumber == 1 && <Welcome />}
         {/* {this.props.pageNumber == 1 && <SetupGame />} */}
         {this.props.pageNumber == 2 && <Lobby />}

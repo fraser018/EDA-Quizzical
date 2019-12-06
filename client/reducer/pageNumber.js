@@ -13,7 +13,7 @@ const reducer = (state = 1, action) => {
         return 3
     }
     case 'MAIN_MENU': {
-      return 0
+      return 1
     }
       default: return state
     }

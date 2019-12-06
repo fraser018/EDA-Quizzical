@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { addPlayerToTeam, getTeams, getPlayersByTeam } from '../api/users'
+import { addPlayerToTeam, getTeams} from '../api/users'
 import socket from '../api/socket'
 
 class Create extends React.Component {
@@ -13,7 +13,7 @@ class Create extends React.Component {
 
   handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value.toUpperCase()
     })
   }
 
@@ -48,34 +48,6 @@ class Create extends React.Component {
       }
       else {
         this.addPlayerToTeam(true)
-      }
-    })
-  }
-
-  joinTeam = (event) => {
-    event.preventDefault()
-    getTeams().then(res => {
-      this.setState({
-        message: ''
-      })
-      if (!res.text.includes(this.state.team)) {
-        this.setState({
-          message: 'This team does not exist, maybe you would like to create one?'
-        })
-      }
-      else {
-        getPlayersByTeam(this.state.team).then(res => {
-          if (!JSON.parse(res.text).find(player => {
-            return player.name == this.state.player
-          })) {
-            this.addPlayerToTeam(false)
-          }
-          else {
-            this.setState({
-              message: 'This username is taken - please pick a new one.'
-            })
-          }
-        })
       }
     })
   }
@@ -120,7 +92,9 @@ class Create extends React.Component {
                 </div>
                 </section>
                 <section>
-                  <button onClick={this.generateCode}>Generate Team</button>
+                  <div className='setup-btns__btn' onClick={this.generateCode}>
+                    Generate Team
+                </div>
                 </section>
                 <h1>{this.state.team}</h1>
             </div>
