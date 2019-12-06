@@ -25,14 +25,21 @@ class App extends React.Component {
 
   componentDidMount() {
     // Page Changes
-    socket.on('all players in', () => {
-      this.props.dispatch(goToGame())
-    })
     socket.on('increment pages', () => {
       this.props.dispatch(incrementPage())
     })
+
+    // Reset Game - back to main menu
     socket.on('main menu', () => {
+      this.props.dispatch(resetQuestions())
+      this.props.dispatch(resetPlayerResponses())
       this.props.dispatch(goToMainMenu())
+    })
+
+    // Start Game
+    // When back-end receives 'all players in', it makes the api call to get new questions
+    socket.on('all players in', () => {
+      this.props.dispatch(goToGame())
     })
 
     // Prepare game to start new round
