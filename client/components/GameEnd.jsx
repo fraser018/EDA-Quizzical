@@ -19,13 +19,29 @@ class GameEnd extends React.Component {
   }
 
   render(){
-    return(
-      <>
-      <h1>Congrats Team {this.props.teamName}, you played our game and survived!</h1>
-      <p>Your team got {this.props.score.correct} out of {this.props.score.total} answers correct!</p>
-      {this.props.player.captain && <button onClick={this.playAgain}>Play again!!</button>}     
-      {this.props.player.captain && <button onClick={this.mainMenu}>Main Menu</button>}          
-      </>
+    return (
+      <div className='end'>
+        <h1 className='end-gameTitle'>Quizzical</h1>
+        <h1 className='end-title'>
+          Congrats Team {this.props.teamName}, you played our game and survived!
+        </h1>
+        <h3>
+          Your team got {this.props.score.correct} out of{' '}
+          {this.props.score.total} answers correct!
+        </h3>
+        <div className='end-btns'>
+          {this.props.player.captain && (
+            <div className='end-btns__btn' onClick={this.playAgain}>
+              Play again!!
+            </div>
+          )}
+          {this.props.player.captain && (
+            <div className='end-btns__btn' onClick={this.mainMenu}>
+              Main Menu
+            </div>
+          )}
+        </div>
+      </div>
     )
   }
 }

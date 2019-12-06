@@ -113,6 +113,7 @@ class App extends React.Component {
   render() {
     return (
       <>
+
         {this.props.pageNumber == -1 && <Instructions />}
         {this.props.pageNumber == 0 && <Welcome />}
         {this.props.pageNumber == 1 && <SetupGame />}
