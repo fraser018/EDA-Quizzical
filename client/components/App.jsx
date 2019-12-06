@@ -6,6 +6,7 @@ import Game from './Game'
 import Results from './Results'
 import GameEnd from './GameEnd'
 import Lobby from './Lobby'
+import Leaderboard from './Leaderboard'
 
 import socket from '../api/socket'
 
@@ -90,12 +91,14 @@ class App extends React.Component {
   render() {
     return (
       <>
+      {/* <GameEnd /> */}
 
         {this.props.pageNumber == 1 && <Welcome />}
         {this.props.pageNumber == 2 && <Lobby />}
         {this.props.pageNumber == 3 && <Game />}
         {this.props.pageNumber == 4 && <Results />}
         {this.props.pageNumber == 5 && <GameEnd />}
+        {this.props.pageNumber == 6 && <Leaderboard />}
       </>
     )
   }

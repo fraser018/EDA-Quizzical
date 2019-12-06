@@ -54,7 +54,6 @@ export function resetAnswerCount() {
 // CLOCK
 
 export function resetClock(playerCount) {
-    console.log(playerCount)
     return {
         type: 'RESET_CLOCK',
         playerCount
