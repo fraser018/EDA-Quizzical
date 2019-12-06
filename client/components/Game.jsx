@@ -96,52 +96,55 @@ class Game extends React.Component {
     }
     else {
 
-    return (      
-      <div>
-        {q.trivias && <h2>{q.trivias[this.props.player.index].question}</h2>}
-        <p>{this.props.clock}</p>
+    return (
+      <div className='questions'>
+        <h1 className="questions-gameTitle">Quizzical</h1>
+        {q.trivias && <h2 className='questions-title'>{q.trivias[this.props.player.index].question}</h2>}
+        <p className='questions-clock'>{this.props.clock}</p>
         {!this.state.submittedAnswer && q.jumbledTrivias && (
-          <div className='btn-group'>
-            <button
+          <div className='questions-btns'>
+            <div
+              className='questions-btns__btn'
               id={
                 q.jumbledTrivias[this.props.player.index][this.state.display1]
               }
               onClick={this.handleClick}
             >
               {q.jumbledTrivias[this.props.player.index][this.state.display1]}
-            </button>
-            <button
+            </div>
+            <div
+              className='questions-btns__btn'
               id={
                 q.jumbledTrivias[this.props.player.index][this.state.display2]
               }
               onClick={this.handleClick}
             >
               {q.jumbledTrivias[this.props.player.index][this.state.display2]}
-            </button>
-            <button
+            </div>
+            <div
+              className='questions-btns__btn'
               id={
                 q.jumbledTrivias[this.props.player.index][this.state.display3]
               }
               onClick={this.handleClick}
             >
               {q.jumbledTrivias[this.props.player.index][this.state.display3]}
-            </button>
-            <button
+            </div>
+            <div
+              className='questions-btns__btn'
               id={
                 q.jumbledTrivias[this.props.player.index][this.state.display4]
               }
               onClick={this.handleClick}
             >
               {q.jumbledTrivias[this.props.player.index][this.state.display4]}
-            </button>
+            </div>
           </div>
         )}
 
         {this.state.submittedAnswer && (
           <div className='btn-group'>
-            <button>
-              {this.props.playerResponses[0].selectedAnswer}
-            </button>
+            <button>{this.props.playerResponses[0].selectedAnswer}</button>
           </div>
         )}
       </div>
