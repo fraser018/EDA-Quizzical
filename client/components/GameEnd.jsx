@@ -16,6 +16,7 @@ class GameEnd extends React.Component {
 
   mainMenu = (e) => {
     e.preventDefault()
+    socket.emit('reset score', this.props.teamName)
     socket.emit('main menu', this.props.teamName)
   }
 
