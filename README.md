@@ -37,13 +37,16 @@
 * [ ] I want to be able to play multiple rounds
 * [ ] I want to see what round we are on during each round of the game
 * [x] I want the captain of the team to be able to start a new round when everyone is ready
+* [ ] I want time to depend on the number of players
 
 ### Stretch
-* [ ] Lobby: can only start game when more than 1 person has joined
-* [ ] Results shown in pie chart
+* [x] Results shown in pie chart
 * [ ] Delete user after two days(e.g. function happening on create team name)
-* [ ] Randomly generate team names
+* [x] Randomly generate team names
 * [ ] Timer is represented by colour/shape change
+* [ ] I want to be able to play against another team
+* [ ] I want to see a leaderboard
+* [ ] I want to chose the difficulty of the game
 ---
 
 ## Views (Client Side)
