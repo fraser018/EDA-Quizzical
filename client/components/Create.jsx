@@ -8,7 +8,12 @@ class Create extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      captainName:''
     }
+  }
+  
+  componentDidMount() {
+    this.generateCode()
   }
 
   handleChange = (event) => {
@@ -16,15 +21,15 @@ class Create extends React.Component {
       [event.target.name]: event.target.value.toUpperCase()
     })
   }
-
+  
   getRandomUppercaseChar = () => {
     let r = Math.floor(Math.random() * 26);
     return String.fromCharCode(65 + r);
   }
-
+  
   generateCode = () => {
     let prefix = new Array(2).fill().map(() => this.getRandomUppercaseChar()).join(""),
-      integer = Math.floor((Math.random() * 999) * 7);
+      integer = Math.floor((Math.random() * 9999));
     let code = prefix + integer
     getTeams().then(teams => {
       if (teams.text.includes(code)) {
@@ -39,8 +44,7 @@ class Create extends React.Component {
     })
   }
 
-
-  createTeam = (event) => {
+  createTeam = () => {
     this.addPlayerToTeam(true)
   }
 
@@ -58,7 +62,6 @@ class Create extends React.Component {
           }
         })
       })
-
     this.props.dispatch({
       type: 'SAVE_TEAM_NAME',
       teamName: this.state.team
@@ -68,9 +71,6 @@ class Create extends React.Component {
     })
   }
 
-  componentDidMount() {
-    this.generateCode()
-  }
 
   render() {
     return (
