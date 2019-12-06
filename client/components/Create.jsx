@@ -98,7 +98,7 @@ class Create extends React.Component {
             </div>
             <section>
               <p>Or click below to join another team:</p>
-              <div className='setup-btns__btn' onClick={this.joinTeam}>
+              <div className='setup-btns__btn' onClick={(e) => this.props.changePage(e, 'join')}>
                 Join Team
                 </div>
             </section>

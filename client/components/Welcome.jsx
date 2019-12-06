@@ -76,9 +76,8 @@ class Welcome extends React.Component {
           </section>
         </main>}
         {this.state.display == "instructions" && <Instructions changePage={this.changePage} />}
-        {this.state.display == "create" && <Create />}
-        {this.state.display == "join" && <Join />}
-
+        {this.state.display == "create" && <Create changePage={this.changePage}/>}
+        {this.state.display == "join" && <Join changePage={this.changePage}/>}
       </>
     )
   }

@@ -118,6 +118,9 @@ class Join extends React.Component {
                 Join Team
                 </div>
             </section>
+            <div className='setup-btns__btn' onClick={(e) => this.props.changePage(e, 'create')}>
+                Create Team
+                </div>
             {this.state.message != '' && <h2>{this.state.message}</h2>}
           </form>
         </section>
