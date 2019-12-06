@@ -143,8 +143,8 @@ class Game extends React.Component {
         )}
 
         {this.state.submittedAnswer && (
-          <div className='btn-group'>
-            <button>{this.props.playerResponses[0].selectedAnswer}</button>
+          <div className='questions-btns__btn'>
+            <div>{this.props.playerResponses[0].selectedAnswer}</div>
           </div>
         )}
       </div>
