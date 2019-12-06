@@ -34,19 +34,19 @@
 * [x] I want there to be a timer that limits how long I have to answer the question
 * [x] Wait for timer or all player answers to be in before displaying results
 * [x] Splash screens: Question and Result
-* [ ] I want to be able to play multiple rounds
-* [ ] I want to see what round we are on during each round of the game
+* [x] I want to be able to play multiple rounds
+* [x] I want to see what round we are on during each round of the game
 * [x] I want the captain of the team to be able to start a new round when everyone is ready
-* [ ] I want time to depend on the number of players
+* [x] I want time to depend on the number of players
 
 ### Stretch
 * [x] Results shown in pie chart
-* [ ] Delete user after two days(e.g. function happening on create team name)
 * [x] Randomly generate team names
 * [ ] Timer is represented by colour/shape change
-* [ ] I want to be able to play against another team
 * [ ] I want to see a leaderboard
-* [ ] I want to chose the difficulty of the game
+* [ ] I want to choose the difficulty of the game
+* [ ] I want to choose how many round I can play
+* [ ] Delete users after a certain time. See docs [Cron](https://scotch.io/tutorials/nodejs-cron-jobs-by-examples)
 ---
 
 ## Views (Client Side)
