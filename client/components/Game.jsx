@@ -4,7 +4,6 @@ import socket from '../api/socket'
 
 import QuestionSplash from './QuestionSplash'
 
-
 class Game extends React.Component {
   constructor(props) {
     super(props)
@@ -18,7 +17,7 @@ class Game extends React.Component {
     }
     this.interval
   }
-  
+
   componentDidMount() {
     const answerArr = ['correctAnswer', 'incorrectAnswer1', 'incorrectAnswer2', 'incorrectAnswer3']
     function randomAnswer(answerArr) {
@@ -81,7 +80,7 @@ class Game extends React.Component {
   }
 
   render() {
-    if(this.props.clock == 0 && this.props.player.captain && this.state.finishedRound == false){
+    if (this.props.clock == 0 && this.props.player.captain && this.state.finishedRound == false) {
       this.finishRound()
       this.setState({
         finishedRound: true
@@ -89,7 +88,7 @@ class Game extends React.Component {
     }
     let q = this.props.questions
 
-    if (!q.trivias){
+    if (!q.trivias) {
       return < QuestionSplash />
     }
     else {

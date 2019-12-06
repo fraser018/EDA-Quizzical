@@ -25,7 +25,7 @@ class QuestionSplash extends React.Component {
               <div></div>
               <div></div>
             </div>
-            <h1 className='loading-text'>Loading...</h1>
+            <h1 className='loading-text'>Loading Question {this.props.roundCount}...</h1>
           </div>
         </div>
       </main>
@@ -33,4 +33,10 @@ class QuestionSplash extends React.Component {
   }
 }
 
-export default connect()(QuestionSplash)
+function mapStateToProps(state) {
+  return {
+    roundCount: state.roundCount
+  }
+}
+
+export default connect(mapStateToProps)(QuestionSplash)
