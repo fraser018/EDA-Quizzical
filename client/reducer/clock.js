@@ -1,10 +1,12 @@
-const reducer = (state = 10, action) => {
+const timePerPlayer = 30
+
+const reducer = (state = timePerPlayer, action) => {
   switch (action.type){
     case 'DECREMENT_CLOCK':{
       return state -1
     }
     case 'RESET_CLOCK':{
-      return 10
+      return timePerPlayer * action.playerCount
     }
     default: return state
   }

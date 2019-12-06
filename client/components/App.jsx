@@ -41,13 +41,13 @@ class App extends React.Component {
     // When back-end receives 'all players in', it makes the api call to get new questions
     socket.on('all players in', () => {
       this.props.dispatch(resetQuestions())
-      this.props.dispatch(resetPlayerResponses())
+      this.props.dispatch(resetPlayerResponses())      
       this.props.dispatch(goToGame())
     })
 
     // Prepare game to start new round
     // When back-end receives 'new question', it makes the api call to get new questions
-    socket.on('new question', () => {
+    socket.on('new question', () => {      
       this.props.dispatch(resetQuestions())
       this.props.dispatch(resetPlayerResponses())
       this.props.dispatch(incrementRound())
@@ -56,12 +56,13 @@ class App extends React.Component {
 
     // Receives and sets questions array from API call, and starts the timer
     socket.on('receive questions', questions => {
+      this.props.dispatch(resetClock(this.props.players.length))
       this.props.dispatch(addQuestions(questions))
 
       this.interval = setInterval(() => {
         if (this.props.clock == 0 || this.props.pageNumber != 3) {
           clearInterval(this.interval)
-          this.props.dispatch(resetClock())
+          this.props.dispatch(resetClock(this.props.players.length))
         }
         else { this.props.dispatch(decrementClock()) }
       }, 1000)
@@ -109,6 +110,7 @@ function mapStateToProps(state) {
   return {
     pageNumber: state.pageNumber,
     clock: state.clock,
+    players: state.players
   }
 }
 

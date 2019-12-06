@@ -52,9 +52,12 @@ export function resetAnswerCount() {
 }
 
 // CLOCK
-export function resetClock() {
+
+export function resetClock(playerCount) {
+    console.log(playerCount)
     return {
-        type: 'RESET_CLOCK'
+        type: 'RESET_CLOCK',
+        playerCount
     }
 }
 
