@@ -91,7 +91,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-      {/* <GameEnd /> */}
+      {/* <Leaderboard /> */}
 
         {this.props.pageNumber == 1 && <Welcome />}
         {this.props.pageNumber == 2 && <Lobby />}
