@@ -45,33 +45,52 @@ class Results extends React.Component {
         }
         else {
             return (
-                <div>
+              <div className='results'>
+                <h1 className='results-gameTitle'>Quizzical</h1>
 
-                    {response != undefined ? <div>
-                        <h2>{response.question}</h2>
-                        
-                        {response.correctAnswer == response.selectedAnswer ?
-                            <div>
-                                <h3>Correct: {response.correctAnswer}</h3></div> :
-                            <div>
-                                <h3>Incorrect: {response.selectedAnswer}</h3>
-                                <h3>Correct: {response.correctAnswer}</h3>
-                            </div>
-                        }
-    
-                    </div>:
-                    <div>
-                        <h3>Be quicker next time!</h3>  
-                    </div>}
+                {response != undefined ? (
+                  <div>
+                    <h2 className='results-question'>{response.question}</h2>
 
+                    {response.correctAnswer == response.selectedAnswer ? (
+                      <div className='results-answers'>
+                        <h3>Correct: {response.correctAnswer}</h3>
+                      </div>
+                    ) : (
+                      <div className='results-answers'>
+                        <h3>Incorrect: {response.selectedAnswer}</h3>
+                        <h3>Correct: {response.correctAnswer}</h3>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div>
+                    <h3>Be quicker next time!</h3>
+                  </div>
+                )}
+                  <div className='results-btns'>
 
-                    {this.props.player.captain && this.props.roundCount < 5 && <button onClick={this.nextQuestion}>Next Question</button>}
-                    {this.props.player.captain && this.props.roundCount == 5 && <button onClick={this.endGame}>End Game</button>}
+                {this.props.player.captain && this.props.roundCount < 5 &&(
+                    <div
+                      className='results-btns__btn'
+                      onClick={this.nextQuestion}
+                    >
+                      Next Question
+                    </div>
+                )}
+                {this.props.player.captain && this.props.roundCount == 5 && (
+                    <div
+                      className='results-btns__btn'
+                      onClick={this.endGame}
+                    >
+                      End Game
+                  </div>
+                )}
+              </div>
+              </div>
 
-
-    
-                </div>
             )
+            
         }        
     }
 }
