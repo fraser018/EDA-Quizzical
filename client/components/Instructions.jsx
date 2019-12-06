@@ -8,12 +8,6 @@ class Instructions extends React.Component {
         }
     }
 
-    startGame = (event) => {
-        event.preventDefault();
-        this.props.dispatch({
-            type: 'CREATE_GAME'
-        })
-    }
 
     render() {
         return (
@@ -53,8 +47,8 @@ class Instructions extends React.Component {
                     it thought - and answer before the time runs out!
                   </p>
                 </div>
-                <div className='home-btns__btn' onClick={this.startGame}>
-                  Start Game
+                <div className='home-btns__btn' onClick={(e)=>this.props.changePage(e, 'main')}>
+                  Go Back
                 </div>
               </div>
             </section>

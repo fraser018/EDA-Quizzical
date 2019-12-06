@@ -94,9 +94,9 @@ class App extends React.Component {
     return (
       <>
 
-        {this.props.pageNumber == -1 && <Instructions />}
-        {this.props.pageNumber == 0 && <Welcome />}
-        {this.props.pageNumber == 1 && <SetupGame />}
+        {/* {this.props.pageNumber == -1 && <Instructions />} */}
+        {this.props.pageNumber == 1 && <Welcome />}
+        {/* {this.props.pageNumber == 1 && <SetupGame />} */}
         {this.props.pageNumber == 2 && <Lobby />}
         {this.props.pageNumber == 3 && <Game />}
         {this.props.pageNumber == 4 && <Results />}
