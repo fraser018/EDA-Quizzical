@@ -77,3 +77,16 @@ export function resetScore() {
         type: 'RESET_SCORE'
     }
 }
+
+// ROUNDS
+export function incrementRound() {
+    return {
+        type: 'INCREMENT_ROUND'
+    }
+}
+
+export function resetRound() {
+    return {
+        type: 'RESET_ROUND'
+    }
+}

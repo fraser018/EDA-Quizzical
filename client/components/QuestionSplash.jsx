@@ -25,7 +25,7 @@ class QuestionSplash extends React.Component {
               <div></div>
               <div></div>
             </div>
-            <h1 className='loading-text'>Loading {this.props.roundCount}...</h1>
+            <h1 className='loading-text'>Loading Question {this.props.roundCount}...</h1>
           </div>
         </div>
       </main>
