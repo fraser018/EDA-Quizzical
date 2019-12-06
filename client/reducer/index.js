@@ -11,6 +11,7 @@ import answerCount from './answerCount'
 import score from './score'
 import clock from './clock'
 import roundCount from './roundCount'
+import totalRounds from './totalRounds'
 
 export default combineReducers({
     pageNumber,
@@ -22,5 +23,6 @@ export default combineReducers({
     answerCount,
     score,
     clock, 
-    roundCount
+    roundCount,
+    totalRounds
 })
