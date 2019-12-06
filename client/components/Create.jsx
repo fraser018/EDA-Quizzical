@@ -23,33 +23,26 @@ class Create extends React.Component {
   }
 
   generateCode = (e) => {
-    e.preventDefault()
     let prefix = new Array(2).fill().map(() => this.getRandomUppercaseChar()).join(""),
       integer = Math.floor((Math.random() * 999) * 7);
-    let newCode = prefix + integer
+    let code = prefix + integer
     this.setState({
-      team: newCode
+      team: code
     })
-
-    return prefix + integer;
+    getTeams().then(teams=>{
+      if(teams.text.includes(code)){
+        console.log('hi')
+        this.generateCode()
+      }
+      else{
+        return code
+      }
+    })
   }
 
 
   createTeam = (event) => {
-    event.preventDefault()
-    getTeams().then((res) => {
-      this.setState({
-        message: ''
-      })
-      if (res.text.includes(this.state.team)) {
-        this.setState({
-          message: 'This team name is taken, please choose a different one.'
-        })
-      }
-      else {
-        this.addPlayerToTeam(true)
-      }
-    })
+    this.addPlayerToTeam(true)
   }
 
   addPlayerToTeam = (captain) => {
