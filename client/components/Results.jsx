@@ -11,7 +11,6 @@ class Results extends React.Component {
         }
     }
 
-
     componentDidMount(){
         if(this.props.playerResponses[0]){
             if (this.props.playerResponses[0].selectedAnswer == this.props.playerResponses[0].correctAnswer) {
@@ -88,6 +87,7 @@ class Results extends React.Component {
                 )}
               </div>
               </div>
+
             )
             
         }        
