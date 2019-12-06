@@ -2,8 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Welcome from './Welcome'
-import Instructions from './Instructions'
-import SetupGame from './SetupGame'
 import Game from './Game'
 import Results from './Results'
 import GameEnd from './GameEnd'
@@ -58,7 +56,6 @@ class App extends React.Component {
     socket.on('receive questions', questions => {
       this.props.dispatch(resetClock(this.props.players.length))
       this.props.dispatch(addQuestions(questions))
-
       this.interval = setInterval(() => {
         if (this.props.clock == 0 || this.props.pageNumber != 3) {
           clearInterval(this.interval)
@@ -94,9 +91,7 @@ class App extends React.Component {
     return (
       <>
 
-        {/* {this.props.pageNumber == -1 && <Instructions />} */}
         {this.props.pageNumber == 1 && <Welcome />}
-        {/* {this.props.pageNumber == 1 && <SetupGame />} */}
         {this.props.pageNumber == 2 && <Lobby />}
         {this.props.pageNumber == 3 && <Game />}
         {this.props.pageNumber == 4 && <Results />}
