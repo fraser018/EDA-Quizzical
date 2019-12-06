@@ -25,7 +25,7 @@ class QuestionSplash extends React.Component {
               <div></div>
               <div></div>
             </div>
-            <h1 className='loading-text'>Loading Question {this.props.roundCount}...</h1>
+            <h1 className='loading-text'>Loading Question {this.props.roundCount} out of {this.props.totalRounds}...</h1>
           </div>
         </div>
       </main>
@@ -35,7 +35,8 @@ class QuestionSplash extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    roundCount: state.roundCount
+    roundCount: state.roundCount,
+    totalRounds: state.totalRounds
   }
 }
 

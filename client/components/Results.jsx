@@ -70,7 +70,7 @@ class Results extends React.Component {
                 )}
                   <div className='results-btns'>
 
-                {this.props.player.captain && this.props.roundCount < 5 &&(
+                {this.props.player.captain && this.props.roundCount < this.props.totalRounds &&(
                     <div
                       className='results-btns__btn'
                       onClick={this.nextQuestion}
@@ -78,7 +78,7 @@ class Results extends React.Component {
                       Next Question
                     </div>
                 )}
-                {this.props.player.captain && this.props.roundCount == 5 && (
+                {this.props.player.captain && this.props.roundCount == this.props.totalRounds && (
                     <div
                       className='results-btns__btn'
                       onClick={this.endGame}
@@ -101,7 +101,8 @@ function mapStateToProps(state) {
         playerResponses: state.playerResponses,
         player: state.player,
         players: state.players,
-        roundCount: state.roundCount
+        roundCount: state.roundCount,
+        totalRounds: state.totalRounds
     }
 }
 
