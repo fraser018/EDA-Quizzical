@@ -17,8 +17,15 @@ function getTeams(db = connection){
   .then(teams => teams)
 }
 
+function userInGame(team, db = connection){
+  return db('users').where('team', team)
+   .update({'game_started': true})
+   .then(()=>res.send(200))
+}
+
 module.exports = {
   addPlayerToTeam,
   getPlayersFromTeam,
-  getTeams
+  getTeams,
+  userInGame
 }

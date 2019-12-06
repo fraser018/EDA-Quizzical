@@ -2,6 +2,7 @@ const server = require('./server')
 const http = require('http').createServer(server)
 const io = require('socket.io')(http)
 const questions = require('./routes/questions')
+const users = require('./db/users')
 
 const port = process.env.PORT || 3000
 
@@ -25,6 +26,7 @@ io.on('connection', function(socket){
     .then(questions => {
       io.to(teamData.teamName).emit('receive questions', questions)
     })
+    users.userInGame(teamData.teamName)
   })
 
   socket.on('reset round count', teamName => {
