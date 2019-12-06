@@ -9,11 +9,26 @@ class ResultSplash extends React.Component {
   }
 
   render() {
-    return (      
-      <div>
-        <h1>Checking Results...</h1>
-        <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-      </div>
+    return (
+      <main>
+        <div className='loading'>
+          <h1 className='loading-gameTitle'>Quizzical</h1>
+          <div className='loading-art'>
+            <div className='lds-grid'>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+        <h1 className='loading-text'>Checking Results...</h1>
+          </div>
+        </div>
+      </main>
     )
   }
 }

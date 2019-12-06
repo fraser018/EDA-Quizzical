@@ -1,0 +1,19 @@
+.loading {
+  height: 100%;
+  padding: 5vh 20vw;
+  align-items: center;
+  text-align: center;
+
+  &-gameTitle {
+    font-size: 1.8rem;
+        padding-bottom: 1rem;
+          margin-bottom: 2rem;
+          border-bottom: 3px solid set-text-color($primary-color);
+  }
+
+  &-art {
+    padding-top: 30vh;
+  }
+}
+
+

@@ -9,11 +9,26 @@ class QuestionSplash extends React.Component {
   }
 
   render() {
-    return (      
-      <div>
-        <h1>Loading Question {this.props.roundCount} ...</h1>
-        <div className="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-      </div>
+    return (
+      <main>
+        <div className='loading'>
+          <h1 className='loading-gameTitle'>Quizzical</h1>
+          <div className='loading-art'>
+            <div className='lds-grid'>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <h1 className='loading-text'>Loading {this.props.roundCount}...</h1>
+          </div>
+        </div>
+      </main>
     )
   }
 }

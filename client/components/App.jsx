@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import Welcome from './Welcome'
 import Instructions from './Instructions'
@@ -10,9 +11,12 @@ import Lobby from './Lobby'
 
 import socket from '../api/socket'
 
-import { connect } from 'react-redux'
-
-
+import { goToGame, goToMainMenu, incrementPage } from '../actions/index'
+import { addQuestions, resetQuestions } from '../actions/index'
+import { resetPlayerResponses } from '../actions/index'
+import { incrementAnswerCount, resetAnswerCount } from '../actions/index'
+import { resetClock, decrementClock } from '../actions/index'
+import { incrementScore, resetScore } from '../actions/index'
 
 class App extends React.Component {
   constructor(props) {
@@ -20,106 +24,71 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // Start game from Lobby
-    socket.on('all players in', () => {
-      this.props.dispatch({
-        type: 'START_GAME'
-      })
-    })
-
-    // Get new question (from Results and GameEnd)
-    socket.on('new question', () => {
-      this.props.dispatch({
-        type: 'RESET_QUESTIONS'
-      })
-      this.props.dispatch({
-        type: 'START_GAME'
-      })
-      this.props.dispatch({
-        type: 'CLEAR_PR_STATE'
-      })
-      this.props.dispatch({
-        type: 'INCREMENT_ROUND'
-      })
-    })
-
-    // Listen for submitted answers
-    socket.on('submitted answer', () => {
-      this.props.dispatch({
-        type: 'INCREMENT_ANSWER_COUNT',
-      })
-    })
-
-    // Listen for submitted answers
-    socket.on('reset answer count', () => {
-      this.props.dispatch({
-        type: 'RESET_ANSWER_COUNT',
-      })
-    })
-
-    // Get questions arrays from API, when questions are received start timer
-    socket.on('receive questions', questions => {
-      this.props.dispatch({
-        type: 'ADD_QUESTIONS',
-        questions: questions
-      })
-      // this.interval = setInterval(() => {
-      //   if(this.props.clock == 0){
-      //     clearInterval(this.interval)
-      //     this.props.dispatch({
-      //       type: 'RESET_CLOCK'
-      //     })
-      //   }
-      //   else{
-      //     this.props.dispatch({
-      //       type: 'DECREMENT_CLOCK'
-      //     })      
-      //   }
-      // }, 1000)
-    })
-
-    // Get final results (from Results to GameEnd)
-    socket.on('score', score=>{
-      this.props.dispatch({
-        type: 'INCREMENT_SCORE',
-        score: score
-      })
-    })
-
-    // Reset scores
-    socket.on('reset score', ()=>{
-      this.props.dispatch({
-        type: 'RESET_SCORE'
-      })
-    })
-
-    // factor this out
-    socket.on('end game', () => {
-      this.props.dispatch({
-        type: 'INCREMENT_PAGE'
-      })
-    })
-
-    socket.on('reset round count', () => {
-      this.props.dispatch({
-        type: 'RESET_ROUND'
-      })
-    })
-
-    // Return to main menu page (from GameEnd to Welcome)
-    socket.on('main menu', () => {
-      this.props.dispatch({
-        type: 'MAIN_MENU',
-      })
-    })
-
-    // Get final results (from Results to GameEnd)
+    // Page Changes
     socket.on('increment pages', () => {
-      this.props.dispatch({
-        type: 'INCREMENT_PAGE'
-      })
+      this.props.dispatch(incrementPage())
+    })
+
+    // Reset Game - back to main menu
+    socket.on('main menu', () => {
+      this.props.dispatch(resetQuestions())
+      this.props.dispatch(resetPlayerResponses())
+      this.props.dispatch(goToMainMenu())
+    })
+
+    // Start Game
+    // When back-end receives 'all players in', it makes the api call to get new questions
+    socket.on('all players in', () => {
+      this.props.dispatch(goToGame())
+    })
+
+    // Prepare game to start new round
+    // When back-end receives 'new question', it makes the api call to get new questions
+    socket.on('new question', () => {
+      this.props.dispatch(resetQuestions())
+      this.props.dispatch(resetPlayerResponses())
+      this.props.dispatch(goToGame())      
+      // this.props.dispatch({
+      //   type: 'INCREMENT_ROUND'
+      // })
+    })
+
+    // Receives and sets questions array from API call, and starts the timer
+    socket.on('receive questions', questions => {
+      this.props.dispatch(addQuestions(questions))
+
+      this.interval = setInterval(() => {
+        if (this.props.clock == 0 || this.props.pageNumber != 3) {
+          clearInterval(this.interval)
+          this.props.dispatch(resetClock())
+        }
+        else { this.props.dispatch(decrementClock()) }
+      }, 1000)
+    })
+
+    // Handle answer count
+    socket.on('submitted answer', () => {
+      this.props.dispatch(incrementAnswerCount())
+    })
+    socket.on('reset answer count', () => {
+      this.props.dispatch(resetAnswerCount())
+    })
+
+    // socket.on('reset round count', () => {
+    //   this.props.dispatch({
+    //     type: 'RESET_ROUND'
+    //   })
+    // })
+
+    // Handle score count
+    socket.on('score', score => {
+      this.props.dispatch(incrementScore(score))
+    })
+    socket.on('reset score', () => {
+      this.props.dispatch(resetScore())
     })
   }
+  
   render() {
     return (
       <>
@@ -133,14 +102,12 @@ class App extends React.Component {
       </>
     )
   }
-
-
 }
 
 function mapStateToProps(state) {
   return {
     pageNumber: state.pageNumber,
-    clock: state.clock
+    clock: state.clock,
   }
 }
 

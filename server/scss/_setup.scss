@@ -1,0 +1,57 @@
+.setup {
+  height: 100%;
+  padding: 5vh 20vw;
+  align-items: center;
+  text-align: center;
+
+    &-gameTitle {
+      font-size: 1.8rem;
+      padding-bottom: 1rem;
+        margin-bottom: 2rem;
+        border-bottom: 3px solid set-text-color($primary-color);
+    }
+
+    &-create {
+      font-size: 2rem;
+      padding-bottom: 1rem;
+    }
+
+    &-team {
+      font-weight: 700;
+      position: relative;
+      text-align: left;
+
+        &__fields {
+          width: 100%;
+        }
+    }
+
+    &-user {
+      font-weight: 700;
+      text-align: left;
+      
+      
+        &__fields {
+        width: 100%;
+      }
+    }
+
+    &-btns {
+      display: flex;
+      justify-content: center;
+      margin: 1rem;
+
+
+        &__btn {
+           font-family: 'Varela Round', sans-serif;
+          margin: 0.5rem;
+          background-color: $secondary-color;
+          text-decoration: none;
+          padding: 8px 10px;
+          border-radius: 7px;
+          border: solid 2px rgb(142, 150, 153) ;
+        }
+
+    }
+
+}

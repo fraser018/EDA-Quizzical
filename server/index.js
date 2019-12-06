@@ -27,25 +27,9 @@ io.on('connection', function(socket){
     })
   })
 
-  socket.on('reset round count', teamName => {
-    io.to(teamName).emit('reset round count')
-  })
-
-  socket.on('submitted answer', teamName=>{
-    io.to(teamName).emit('submitted answer')
-  })
-
-  socket.on('reset answer count', teamName=>{
-    io.to(teamName).emit('reset answer count')
-  })
-
-  socket.on('score', response=>{
-    io.to(response.teamName).emit('score', response.score)
-  })
-
-  socket.on('reset score', teamName=>{
-    io.to(teamName).emit('reset score')
-  })
+  // socket.on('reset round count', teamName => {
+  //   io.to(teamName).emit('reset round count')
+  // })
 
   socket.on('new question', teamData=>{
     io.to(teamData.teamName).emit('new question')
@@ -55,6 +39,25 @@ io.on('connection', function(socket){
     })
   })
 
+  // HANDLE ANSWER SUBMISSION
+  socket.on('submitted answer', teamName=>{
+    io.to(teamName).emit('submitted answer')
+  })
+
+  socket.on('reset answer count', teamName=>{
+    io.to(teamName).emit('reset answer count')
+  })
+
+  // HANDLE SCORE
+  socket.on('score', response=>{
+    io.to(response.teamName).emit('score', response.score)
+  })
+
+  socket.on('reset score', teamName=>{
+    io.to(teamName).emit('reset score')
+  })
+
+  // HANDLE PAGE CHANGES
   socket.on('main menu', teamName=>{
     io.to(teamName).emit('main menu')
   }) 

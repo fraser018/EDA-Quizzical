@@ -4,7 +4,6 @@ import socket from '../api/socket'
 
 import QuestionSplash from './QuestionSplash'
 
-
 class Game extends React.Component {
   constructor(props) {
     super(props)
@@ -81,7 +80,7 @@ class Game extends React.Component {
   }
 
   render() {
-    if(this.props.clock == 0 && this.props.player.captain && this.state.finishedRound == false){
+    if (this.props.clock == 0 && this.props.player.captain && this.state.finishedRound == false) {
       this.finishRound()
       this.setState({
         finishedRound: true
@@ -89,61 +88,62 @@ class Game extends React.Component {
     }
     let q = this.props.questions
 
-    if (!q.trivias){
+    if (!q.trivias) {
       return < QuestionSplash />
     }
     else {
 
-    return (      
-      <div>
-        {q.trivias && <h2>{q.trivias[this.props.player.index].question}</h2>}
-        <p>{this.props.clock}</p>
-        {!this.state.submittedAnswer && q.jumbledTrivias && (
-          <div className='btn-group'>
-            <button
-              id={
-                q.jumbledTrivias[this.props.player.index][this.state.display1]
-              }
-              onClick={this.handleClick}
-            >
-              {q.jumbledTrivias[this.props.player.index][this.state.display1]}
-            </button>
-            <button
-              id={
-                q.jumbledTrivias[this.props.player.index][this.state.display2]
-              }
-              onClick={this.handleClick}
-            >
-              {q.jumbledTrivias[this.props.player.index][this.state.display2]}
-            </button>
-            <button
-              id={
-                q.jumbledTrivias[this.props.player.index][this.state.display3]
-              }
-              onClick={this.handleClick}
-            >
-              {q.jumbledTrivias[this.props.player.index][this.state.display3]}
-            </button>
-            <button
-              id={
-                q.jumbledTrivias[this.props.player.index][this.state.display4]
-              }
-              onClick={this.handleClick}
-            >
-              {q.jumbledTrivias[this.props.player.index][this.state.display4]}
-            </button>
-          </div>
-        )}
+      return (
+        <div>
+          {q.trivias && <h2>{q.trivias[this.props.player.index].question}</h2>}
+          <p>{this.props.clock}</p>
+          {!this.state.submittedAnswer && q.jumbledTrivias && (
+            <div className='btn-group'>
+              <button
+                id={
+                  q.jumbledTrivias[this.props.player.index][this.state.display1]
+                }
+                onClick={this.handleClick}
+              >
+                {q.jumbledTrivias[this.props.player.index][this.state.display1]}
+              </button>
+              <button
+                id={
+                  q.jumbledTrivias[this.props.player.index][this.state.display2]
+                }
+                onClick={this.handleClick}
+              >
+                {q.jumbledTrivias[this.props.player.index][this.state.display2]}
+              </button>
+              <button
+                id={
+                  q.jumbledTrivias[this.props.player.index][this.state.display3]
+                }
+                onClick={this.handleClick}
+              >
+                {q.jumbledTrivias[this.props.player.index][this.state.display3]}
+              </button>
+              <button
+                id={
+                  q.jumbledTrivias[this.props.player.index][this.state.display4]
+                }
+                onClick={this.handleClick}
+              >
+                {q.jumbledTrivias[this.props.player.index][this.state.display4]}
+              </button>
+            </div>
+          )}
 
-        {this.state.submittedAnswer && (
-          <div className='btn-group'>
-            <button>
-              {this.props.playerResponses[0].selectedAnswer}
-            </button>
-          </div>
-        )}
-      </div>
-    )}
+          {this.state.submittedAnswer && (
+            <div className='btn-group'>
+              <button>
+                {this.props.playerResponses[0].selectedAnswer}
+              </button>
+            </div>
+          )}
+        </div>
+      )
+    }
   }
 }
 
