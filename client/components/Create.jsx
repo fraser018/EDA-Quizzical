@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { addPlayerToTeam, getTeams} from '../api/users'
+import { addPlayerToTeam, getTeams } from '../api/users'
 import socket from '../api/socket'
 
 class Create extends React.Component {
@@ -23,33 +23,25 @@ class Create extends React.Component {
   }
 
   generateCode = () => {
-    // e.preventDefault()
     let prefix = new Array(2).fill().map(() => this.getRandomUppercaseChar()).join(""),
       integer = Math.floor((Math.random() * 999) * 7);
-    let newCode = prefix + integer
-    this.setState({
-      team: newCode
+    let code = prefix + integer
+    getTeams().then(teams => {
+      if (teams.text.includes(code)) {
+        this.generateCode()
+      }
+      else {
+        this.setState({
+          team: code
+        })
+        return code
+      }
     })
-
-    return prefix + integer;
   }
 
 
   createTeam = (event) => {
-    event.preventDefault()
-    getTeams().then((res) => {
-      this.setState({
-        message: ''
-      })
-      if (res.text.includes(this.state.team)) {
-        this.setState({
-          message: 'This team name is taken, please choose a different one.'
-        })
-      }
-      else {
-        this.addPlayerToTeam(true)
-      }
-    })
+    this.addPlayerToTeam(true)
   }
 
   addPlayerToTeam = (captain) => {
@@ -76,7 +68,7 @@ class Create extends React.Component {
     })
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.generateCode()
   }
 
@@ -87,36 +79,36 @@ class Create extends React.Component {
         <section className='setup'>
           <h1 className='setup-gameTitle'>Quizzical</h1>
           <h1 className='setup-create'>Game Created</h1>
-                <h1>Team Code:</h1>
-                <h1>{this.state.team}</h1>
-                <p>Give this code to your team</p>
+          <h1>Team Code:</h1>
+          <h1>{this.state.team}</h1>
+          <p>Give this code to your team</p>
         </section>
 
         <section className='setup'>
           <p>Enter your player name below:</p>
-              <input name="captainName" onChange={this.handleChange} value={this.state.captainName}/>
-                
+          <input name="captainName" onChange={this.handleChange} value={this.state.captainName} />
+
           <form>
             <div className='setup-btns'>
-                <section>
-                  <div className='setup-btns__btn' onClick={this.createTeam}>
-                    Create Team
+              <section>
+                <div className='setup-btns__btn' onClick={this.createTeam}>
+                  Create Team
                 </div>
-                </section>
+              </section>
             </div>
             <section>
               <p>Or click below to join another team:</p>
-                  <div className='setup-btns__btn' onClick={this.joinTeam}>
-                    Join Team
+              <div className='setup-btns__btn' onClick={this.joinTeam}>
+                Join Team
                 </div>
-                </section>
-              {this.state.message != '' && <h2>{this.state.message}</h2>}
+            </section>
+            {this.state.message != '' && <h2>{this.state.message}</h2>}
           </form>
         </section>
       </main>
 
-        )
-      }
-    }
-    
+    )
+  }
+}
+
 export default connect()(Create)
