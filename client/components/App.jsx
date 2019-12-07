@@ -86,6 +86,11 @@ class App extends React.Component {
     socket.on('reset score', () => {
       this.props.dispatch(resetScore())
     })
+
+    // Leaderboard
+    socket.on('receive leaderboard', leaderboard => {
+      
+    })
   }
   
   render() {

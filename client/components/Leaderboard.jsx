@@ -36,7 +36,6 @@ class Leaderboard extends React.Component {
     // }
 
     submitScore = () => {
-        // this will actually need to emit a 'get leaderboard data' signal
         // in index.js backend, this will need to make a database query and then send a 'receive leader board data'
         // App.jsx will need to listen to 'receive leader board data' and set it into state
 
@@ -138,7 +137,8 @@ class Leaderboard extends React.Component {
 function mapStateToProps(state) {
     return {
         player: state.player,
-        players: state.players
+        players: state.players,
+        teamName: state.teamName
     }
 }
 
