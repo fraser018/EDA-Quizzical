@@ -98,6 +98,9 @@ class Game extends React.Component {
         <h1 className="questions-gameTitle">Quizzical</h1>
         {q.trivias && <h2 className='questions-title'>{q.trivias[this.props.player.index].question}</h2>}
         <p className='questions-clock'>{this.props.clock}</p>
+        <div className="questions-clock__meter">
+          <span className="questions-clock__meter--count"></span>
+        </div> 
         {!this.state.submittedAnswer && q.jumbledTrivias && (
           <div className='questions-btns'>
             <div
