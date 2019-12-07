@@ -211,45 +211,9 @@ h1, h2 {
 }
 
 .questions-clock {
-  padding: .5rem;
-  background: red;
+  padding-top: .2rem;
+  font-size: 2rem;
   margin: 1rem;
-}
-
-.questions-clock__countdown {
-  position: relative;
-  margin: auto;
-  margin-top: 100px;
-  height: 40px;
-  width: 40px;
-  text-align: center;
-}
-
-.questions-clock__countdown--number {
-  color: white;
-  display: inline-block;
-  line-height: 40px;
-}
-
-.questions-clock__svg {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  -webkit-transform: rotateY(-180deg) rotateZ(-90deg);
-          transform: rotateY(-180deg) rotateZ(-90deg);
-}
-
-.questions-clock__svg--circle {
-  stroke-dasharray: 113px;
-  stroke-dashoffset: 0px;
-  stroke-linecap: round;
-  stroke-width: 2px;
-  stroke: white;
-  fill: none;
-  -webkit-animation: countdown 10s linear infinite forwards;
-          animation: countdown 10s linear infinite forwards;
 }
 
 .questions-btns {
@@ -269,22 +233,20 @@ h1, h2 {
   border: solid 2px #8e9699;
 }
 
-@-webkit-keyframes questions-clock__countdown {
-  from {
-    stroke-dashoffset: 0px;
-  }
-  to {
-    stroke-dashoffset: 113px;
-  }
+.progress-bar {
+  position: relative;
+  height: 20px;
+  width: inherit;
+  border-radius: 50px;
+  border: 1px solid #333;
 }
 
-@keyframes questions-clock__countdown {
-  from {
-    stroke-dashoffset: 0px;
-  }
-  to {
-    stroke-dashoffset: 113px;
-  }
+.filler {
+  background: #1da598;
+  height: 100%;
+  border-radius: inherit;
+  -webkit-transition: width 1s ease-in-out;
+  transition: width 1s ease-in-out;
 }
 
 .results {
