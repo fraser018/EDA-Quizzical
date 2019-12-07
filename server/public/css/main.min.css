@@ -216,48 +216,40 @@ h1, h2 {
   margin: 1rem;
 }
 
-.questions-clock__meter {
-  height: 20px;
+.questions-clock__countdown {
   position: relative;
-  background: #555;
-  border-radius: 25px;
-  padding: 10px;
-  -webkit-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
-          box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+  margin: auto;
+  margin-top: 100px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
 }
 
-@-webkit-keyframes expandWidth {
-  100% {
-    width: 100%;
-  }
-  0% {
-    width: auto;
-  }
+.questions-clock__countdown--number {
+  color: white;
+  display: inline-block;
+  line-height: 40px;
 }
 
-@keyframes expandWidth {
-  100% {
-    width: 100%;
-  }
-  0% {
-    width: auto;
-  }
+.questions-clock__svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  -webkit-transform: rotateY(-180deg) rotateZ(-90deg);
+          transform: rotateY(-180deg) rotateZ(-90deg);
 }
 
-.questions-clock__meter--count {
-  display: block;
-  height: 100%;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  background-color: #2bc253;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(bottom, center), color-stop(37%, #2bc253), color-stop(69%, #2bc253));
-  background-image: linear-gradient(center bottom, #2bc253 37%, #2bc253 69%);
-  -webkit-box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
-          box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
-  position: relative;
-  overflow: hidden;
+.questions-clock__svg--circle {
+  stroke-dasharray: 113px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 2px;
+  stroke: white;
+  fill: none;
+  -webkit-animation: countdown 10s linear infinite forwards;
+          animation: countdown 10s linear infinite forwards;
 }
 
 .questions-btns {
@@ -275,6 +267,24 @@ h1, h2 {
   padding: 8px 10px;
   border-radius: 7px;
   border: solid 2px #8e9699;
+}
+
+@-webkit-keyframes questions-clock__countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 113px;
+  }
+}
+
+@keyframes questions-clock__countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 113px;
+  }
 }
 
 .results {
