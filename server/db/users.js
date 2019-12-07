@@ -28,10 +28,16 @@ function getTeamBySocketId(id, db = connection){
     .then(res=>res)
 }
 
+function removePlayer(id, db = connection){
+  return db('users').where('id', id)
+  .del().then(hu=> console.log(hu))
+}
+
 module.exports = {
   addPlayerToTeam,
   getPlayersFromTeam,
   getTeams,
   userInGame,
-  getTeamBySocketId
+  getTeamBySocketId,
+  removePlayer
 }

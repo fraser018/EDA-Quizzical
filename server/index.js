@@ -18,6 +18,7 @@ io.on('connection', function(socket){
       else{
         console.log(player.name + ' disconnected')
         io.to(player.team).emit('user has left team', player)
+        users.removePlayer(player.id)
       }
     })
   })
