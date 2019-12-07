@@ -10,6 +10,7 @@ import Leaderboard from './Leaderboard'
 
 import socket from '../api/socket'
 
+import { saveSocketId } from '../actions/index'
 import { goToGame, goToMainMenu, incrementPage } from '../actions/index'
 import { addQuestions, resetQuestions } from '../actions/index'
 import { resetPlayerResponses } from '../actions/index'
@@ -25,6 +26,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    // receives socket id from back end, adds to state
+    socket.on('send id', id=>{
+      this.props.dispatch(saveSocketId(id))
+    })
+
     // Reset game
     socket.on('reset game', () => {
       this.props.dispatch(resetQuestions())

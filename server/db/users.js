@@ -2,8 +2,8 @@ const environment = process.env.NODE_ENV || 'development'
 const config = require('../../knexfile')[environment]
 const connection = require('knex')(config)
 
-function addPlayerToTeam(user, team, captain, db = connection){
-  return db('users').insert({'name': user, 'team': team, 'captain': captain})
+function addPlayerToTeam(user, team, captain, socket, db = connection){
+  return db('users').insert({'name': user, 'team': team, 'captain': captain, 'socket_id': socket})
 }
 
 function getPlayersFromTeam(team, db = connection){

@@ -1,3 +1,22 @@
+// SAVE PLAYER DETAILS
+export function savePlayerDetails(name, captain, index){
+    return {
+        type: 'SAVE_PLAYER_DETAILS',
+        playerInfo: {
+          name,
+          captain,
+          index
+        }
+    }
+}
+
+export function saveSocketId(id){
+    return{
+        type: 'ADD_SOCKET_ID',
+        socketId: id
+    }
+}
+
 // CHANGE ROOM NUMBERS
 export function goToGame() {
     return {

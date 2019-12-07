@@ -8,8 +8,10 @@ const leaderboard = require('./db/leaderboard')
 const port = process.env.PORT || 3000
 
 io.on('connection', function(socket){
+  socket.emit('send id', socket.id)
   console.log('a user has connected')
   socket.on('disconnect', function(){
+    console.log(socket.id)
     console.log('user disconnected')
   })
 
