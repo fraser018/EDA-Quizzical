@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import socket from '../api/socket'
 
 import LeaderboardSplash from './LeaderboardSplash'
+import AddScore from './AddScore'
 
 let colors = ['#FFB900', '#69797E', '#847545', '#E74856', '#0078D7', '#0099BC', '#7A7574', '#767676', '#FF8C00',
     '#E81123', '#0063B1', '#2D7D9A', '#5D5A58', '#4C4A48', '#F7630C', '#EA005E', '#8E8CD8', '#00B7C3', '#68768A',
@@ -16,91 +17,49 @@ class Leaderboard extends React.Component {
         this.state = {
             leaders: [],
             maxScore: 100,
-            team: ''
         };
-    }
-
-    handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
-
-    submitScore = () => {
-        let teamScore = this.props.score.correct / this.props.score.total * 100
-        socket.emit('add to leaderboard', { teamName: this.state.team, teamCode: this.props.teamName, teamSize: this.props.players.length, teamScore: teamScore })
     }
 
     playAgain = () => {
         socket.emit('reset round count', this.props.teamName)
         socket.emit('reset score', this.props.teamName)
         socket.emit('all players in', { teamName: this.props.teamName, numOfPlayers: this.props.players.length })
-      }
-    
-      mainMenu = () => {
+    }
+
+    mainMenu = () => {
         socket.emit('reset round count', this.props.teamName)
         socket.emit('reset score', this.props.teamName)
         socket.emit('main menu', this.props.teamName)
-      }
+    }
 
     render() {
-        if (this.props.leaders.length == 0) {
-            if (this.props.player.captain) {
-                return (
-                    <div>
+        return (
+            <>
+                {this.props.leaders.length == 0 ? 
+                    (<>{this.props.player.captain ? < AddScore /> : < LeaderboardSplash />}</>)
+                    : 
+                    (<div className="Leaderboard">
+
                         <h1>Quizzical</h1>
-                        <h1>Add to Leaderboard</h1>
-
-                        <p>Enter your team name below:</p>
-                        <input name="team" onChange={this.handleChange} />
-                        <p>{this.props.score.correct / this.props.score.total * 100}%</p>
-
-                        <button onClick={this.submitScore}>Submit Score</button>
 
                         <div className='end-btns'>
-                            <div className='end-btns__btn' onClick={this.playAgain}>
-                                Play again!!
-                            </div>
-
-                            <div className='end-btns__btn' onClick={this.mainMenu}>
-                                Main Menu
-                            </div>
+                            {this.props.player.captain && (
+                                <div className='end-btns__btn' onClick={this.playAgain}>
+                                    Play again!!
                         </div>
-                    </div>
-                )
-            }
-            else {
-                return (
-                    < LeaderboardSplash />
-                )
-            }
-        }
+                            )}
+                            {this.props.player.captain && (
+                                <div className='end-btns__btn' onClick={this.mainMenu}>
+                                    Main Menu
+                        </div>
+                            )}
+                        </div>
 
-        else {
-            return (
-                <div className="Leaderboard">
+                        <h1>Leaderboard</h1>
+                        <h3>{this.props.players.length} Person Teams</h3>
+                        <div className="leaders">
 
-                    <h1>Quizzical</h1>
-
-                    <div className='end-btns'>
-                        {this.props.player.captain && (
-                            <div className='end-btns__btn' onClick={this.playAgain}>
-                                Play again!!
-                            </div>
-                        )}
-                        {this.props.player.captain && (
-                            <div className='end-btns__btn' onClick={this.mainMenu}>
-                                Main Menu
-                            </div>
-                        )}
-                    </div>
-
-
-                    <h1>Leaderboard</h1>
-                    <h3>{this.props.players.length} Person Teams</h3>
-                    <div className="leaders">
-                        {this.props.leaders ? (
-                            this.props.leaders.map((leader, i) => (
+                            {this.props.leaders.map((leader, i) => (
                                 <div
                                     key={leader.id}
                                     style={{
@@ -144,12 +103,12 @@ class Leaderboard extends React.Component {
                                         />
                                     </div>
                                 </div>
-                            ))
-                        ) : null}
-                    </div>
-                </div>
-            )
-        }
+                            ))}
+                        </div>
+                    </div>)
+                }
+            </>
+        )
     }
 }
 
