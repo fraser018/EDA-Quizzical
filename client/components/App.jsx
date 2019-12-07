@@ -7,10 +7,11 @@ import Results from './Results'
 import GameEnd from './GameEnd'
 import Lobby from './Lobby'
 import Leaderboard from './Leaderboard'
+import StopGame from './StopGame'
 
 import socket from '../api/socket'
 
-import { saveSocketId } from '../actions/index'
+import { saveSocketId, goToStopGame } from '../actions/index'
 import { goToGame, goToMainMenu, incrementPage } from '../actions/index'
 import { addQuestions, resetQuestions } from '../actions/index'
 import { resetPlayerResponses } from '../actions/index'
@@ -23,12 +24,23 @@ import { addLeaderboard, resetLeaderboard} from '../actions/index'
 class App extends React.Component {
   constructor(props) {
     super(props)
+    this.state={
+      missingPlayers:[]
+    }
   }
 
   componentDidMount() {
-    // receives socket id from back end, adds to state
+    // Receives socket id from server, adds to state
     socket.on('send id', id=>{
       this.props.dispatch(saveSocketId(id))
+    })
+
+    // Stops game when another player leaves the team
+    socket.on('user has left team', player=>{
+      this.props.dispatch(goToStopGame())
+      this.setState({
+        missingPlayers:[...this.state.missingPlayers, player.name]
+      })
     })
 
     // Reset game
@@ -104,6 +116,7 @@ class App extends React.Component {
         {this.props.pageNumber == 4 && <Results />}
         {this.props.pageNumber == 5 && <GameEnd />}
         {this.props.pageNumber == 6 && <Leaderboard />}
+        {this.props.pageNumber == 7 && <StopGame players={this.state.missingPlayers} />}
       </>
     )
   }

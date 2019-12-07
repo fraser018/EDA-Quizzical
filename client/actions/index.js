@@ -44,6 +44,12 @@ export function incrementPage() {
     }
 }
 
+export function goToStopGame() {
+    return {
+        type: 'STOP_GAME'
+    }
+}
+
 // QUESTIONS
 export function addQuestions(questions) {
     return {

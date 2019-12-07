@@ -23,9 +23,15 @@ function userInGame(team, db = connection){
    .then(res=>res)
 }
 
+function getTeamBySocketId(id, db = connection){
+  return db('users').where('socket_id', id).first()
+    .then(res=>res)
+}
+
 module.exports = {
   addPlayerToTeam,
   getPlayersFromTeam,
   getTeams,
-  userInGame
+  userInGame,
+  getTeamBySocketId
 }

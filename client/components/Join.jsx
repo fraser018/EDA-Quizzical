@@ -49,7 +49,7 @@ class Join extends React.Component {
       }
       else {
         getPlayersByTeam(this.state.team).then(res => {
-          console.log(JSON.parse(res.text)[0].game_started)
+          // console.log(JSON.parse(res.text)[0].game_started)
           if(JSON.parse(res.text)[0].game_started){
             this.setState({
               message: 'This team has started playing without you!'

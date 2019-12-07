@@ -11,8 +11,10 @@ io.on('connection', function(socket){
   socket.emit('send id', socket.id)
   console.log('a user has connected')
   socket.on('disconnect', function(){
-    console.log(socket.id)
     console.log('user disconnected')
+    users.getTeamBySocketId(socket.id).then(player => {
+      io.to(player.team).emit('user has left team', player)
+    })
   })
 
   socket.on('join team', teamName =>{

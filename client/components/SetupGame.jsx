@@ -26,7 +26,6 @@ class SetupGame extends React.Component {
       e.preventDefault()
     let prefix = new Array(2).fill().map(() => this.getRandomUppercaseChar()).join(""),
         integer = Math.floor((Math.random() * 999) * 7);
-        // console.log(prefix + integer);
         let newCode = prefix + integer
         this.setState({
           code: newCode
