@@ -6,7 +6,7 @@ const reducer = (state = timePerPlayer, action) => {
       return state -1
     }
     case 'RESET_CLOCK':{
-      return timePerPlayer * action.playerCount
+      return timePerPlayer * action.playerCount + 3
     }
     default: return state
   }

@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import Countdown from './Countdown'
+
 class QuestionSplash extends React.Component {
   constructor(props) {
     super(props)
@@ -10,25 +12,30 @@ class QuestionSplash extends React.Component {
 
   render() {
     return (
-      <main>
-        <div className='loading'>
-          <h1 className='loading-gameTitle'>Quizzical</h1>
-          <div className='loading-art'>
-            <div className='lds-grid'>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
+      <>
+        <main>
+          <div className='loading'>
+            <h1 className='loading-gameTitle'>Quizzical</h1>
+            <div className='loading-art'>
+              <div className='lds-grid'>
+                {this.props.questions.trivias ? <Countdown /> :
+                  <>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </>}
+              </div>
+              <h1 className='loading-text'>Loading Question {this.props.roundCount} out of {this.props.totalRounds}...</h1>
             </div>
-            <h1 className='loading-text'>Loading Question {this.props.roundCount} out of {this.props.totalRounds}...</h1>
           </div>
-        </div>
-      </main>
+        </main>
+      </>
     )
   }
 }
@@ -36,7 +43,8 @@ class QuestionSplash extends React.Component {
 function mapStateToProps(state) {
   return {
     roundCount: state.roundCount,
-    totalRounds: state.totalRounds
+    totalRounds: state.totalRounds,
+    questions: state.questions
   }
 }
 
