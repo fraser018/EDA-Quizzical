@@ -6,6 +6,7 @@ import Game from './Game'
 import Results from './Results'
 import GameEnd from './GameEnd'
 import Lobby from './Lobby'
+import Countdown from './Countdown'
 
 import socket from '../api/socket'
 
@@ -90,7 +91,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-
+        <Countdown/>
         {this.props.pageNumber == 1 && <Welcome />}
         {this.props.pageNumber == 2 && <Lobby />}
         {this.props.pageNumber == 3 && <Game />}
