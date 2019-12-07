@@ -3,6 +3,7 @@ const http = require('http').createServer(server)
 const io = require('socket.io')(http)
 const questions = require('./routes/questions')
 const users = require('./db/users')
+const leaderboard = require('./db/leaderboard')
 
 const port = process.env.PORT || 3000
 
@@ -67,6 +68,16 @@ io.on('connection', function(socket){
   socket.on('increment pages', teamName=>{
     io.to(teamName).emit('increment pages')
   }) 
+
+  // LEADERBOARD
+  socket.on('add to leaderboard', teamData => {
+    leaderboard.addToLeaderboard(teamData).then(() => {
+      leaderboard.getLeaderboard(teamData.teamSize).then(leaders => {
+        console.log(leaders)
+        io.to(teamData.teamName).emit('receive leaderboard', leaderboard)
+      })
+    })
+  })
 
 })
 
