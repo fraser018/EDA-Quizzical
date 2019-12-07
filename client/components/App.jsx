@@ -17,6 +17,7 @@ import { incrementAnswerCount, resetAnswerCount } from '../actions/index'
 import { resetClock, decrementClock } from '../actions/index'
 import { incrementScore, resetScore } from '../actions/index'
 import { incrementRound, resetRound} from '../actions/index'
+import { addLeaderboard, resetLeaderboard} from '../actions/index'
 
 class App extends React.Component {
   constructor(props) {
@@ -24,6 +25,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    // Reset game
+    socket.on('reset game', () => {
+      this.props.dispatch(resetQuestions())
+      this.props.dispatch(resetPlayerResponses())
+      this.props.dispatch(resetAnswerCount())
+      this.props.dispatch(resetRound())
+      this.props.dispatch(resetScore())
+      this.props.dispatch(resetLeaderboard())
+    })
+
     // Page Changes
     socket.on('increment pages', () => {
       this.props.dispatch(incrementPage())
@@ -31,22 +42,18 @@ class App extends React.Component {
 
     // Reset Game - back to main menu
     socket.on('main menu', () => {
-      this.props.dispatch(resetQuestions())
-      this.props.dispatch(resetPlayerResponses())
       this.props.dispatch(goToMainMenu())
     })
 
-    // Start Game
     // When back-end receives 'all players in', it makes the api call to get new questions
-    socket.on('all players in', () => {
-      this.props.dispatch(resetQuestions())
-      this.props.dispatch(resetPlayerResponses())      
+    socket.on('all players in', () => { 
       this.props.dispatch(goToGame())
     })
 
     // Prepare game to start new round
     // When back-end receives 'new question', it makes the api call to get new questions
     socket.on('new question', () => {      
+      this.props.dispatch(resetAnswerCount())
       this.props.dispatch(resetQuestions())
       this.props.dispatch(resetPlayerResponses())
       this.props.dispatch(incrementRound())
@@ -70,34 +77,21 @@ class App extends React.Component {
     socket.on('submitted answer', () => {
       this.props.dispatch(incrementAnswerCount())
     })
-    socket.on('reset answer count', () => {
-      this.props.dispatch(resetAnswerCount())
-    })
-
-    // Reset round count
-    socket.on('reset round count', () => {
-      this.props.dispatch(resetRound())
-    })
 
     // Handle score count
     socket.on('score', score => {
       this.props.dispatch(incrementScore(score))
     })
-    socket.on('reset score', () => {
-      this.props.dispatch(resetScore())
-    })
 
     // Leaderboard
     socket.on('receive leaderboard', leaderboard => {
-      
+      this.props.dispatch(addLeaderboard(leaderboard))
     })
   }
   
   render() {
     return (
       <>
-      {/* <Leaderboard /> */}
-
         {this.props.pageNumber == 1 && <Welcome />}
         {this.props.pageNumber == 2 && <Lobby />}
         {this.props.pageNumber == 3 && <Game />}

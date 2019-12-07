@@ -46,7 +46,6 @@ class Game extends React.Component {
   }
 
   finishRound = () => {
-    socket.emit('reset answer count', this.props.teamName)
     socket.emit('increment pages', this.props.teamName)
   }
 

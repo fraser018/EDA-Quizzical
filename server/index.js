@@ -30,10 +30,6 @@ io.on('connection', function(socket){
     users.userInGame(teamData.teamName)
   })
 
-  socket.on('reset round count', teamName => {
-    io.to(teamName).emit('reset round count')
-  })
-
   socket.on('new question', teamData=>{
     io.to(teamData.teamName).emit('new question')
     questions.getQuestions(teamData.numOfPlayers)
@@ -47,17 +43,9 @@ io.on('connection', function(socket){
     io.to(teamName).emit('submitted answer')
   })
 
-  socket.on('reset answer count', teamName=>{
-    io.to(teamName).emit('reset answer count')
-  })
-
   // HANDLE SCORE
   socket.on('score', response=>{
     io.to(response.teamName).emit('score', response.score)
-  })
-
-  socket.on('reset score', teamName=>{
-    io.to(teamName).emit('reset score')
   })
 
   // HANDLE PAGE CHANGES
@@ -71,12 +59,17 @@ io.on('connection', function(socket){
 
   // LEADERBOARD
   socket.on('add to leaderboard', teamData => {
+    //console.log('received request in server')
     leaderboard.addToLeaderboard(teamData).then(() => {
       leaderboard.getLeaderboard(teamData.teamSize).then(leaders => {
-        console.log(leaders)
-        io.to(teamData.teamName).emit('receive leaderboard', leaderboard)
+        io.to(teamData.teamCode).emit('receive leaderboard', leaders)
       })
     })
+  })
+
+  // RESET GAME
+  socket.on('reset game', teamName => {
+    io.to(teamName).emit('reset game')
   })
 
 })

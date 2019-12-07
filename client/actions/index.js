@@ -92,3 +92,17 @@ export function resetRound() {
         type: 'RESET_ROUND'
     }
 }
+
+// Leaderboard
+export function addLeaderboard(leaderboard) {
+    return {
+        type: 'ADD_LEADERBOARD',
+        leaderboard
+    }
+}
+
+export function resetLeaderboard() {
+    return {
+        type: 'RESET_LEADERBOARD',
+    }
+}
