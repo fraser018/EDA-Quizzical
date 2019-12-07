@@ -45,7 +45,14 @@ class Create extends React.Component {
   }
 
   createTeam = () => {
-    this.addPlayerToTeam(true)
+    if(this.state.captainName == ''){
+      this.setState({
+        message:'Please enter a username'
+      })
+    }
+    else{
+      this.addPlayerToTeam(true)
+    }
   }
 
   addPlayerToTeam = (captain) => {

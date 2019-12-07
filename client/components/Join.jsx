@@ -25,14 +25,23 @@ class Join extends React.Component {
   }
 
 
-  joinTeam = (event) => {
-    event.preventDefault()
+  joinTeam = () => {
     getTeams().then(res => {
       
       this.setState({
         message: ''
       })
-      if (!res.text.includes(this.state.team)) {
+      if(this.state.team == ''){
+        this.setState({
+          message:'Please enter a valid team code'
+        })
+      }
+      else if(this.state.player == ''){
+        this.setState({
+          message:'Please enter a username'
+        })
+      }
+      else if (!res.text.includes(this.state.team)) {
         this.setState({
           message: 'This team does not exist, maybe you would like to create one?'
         })
