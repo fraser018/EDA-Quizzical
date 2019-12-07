@@ -19,54 +19,61 @@ class Leaderboard extends React.Component {
         };
     }
 
-    getLeaderboardData = () => {
-        /* Here you can implement data fetching */
-        let data = {
-            leaders: [
-                { id: 1, name: 'Uenify', score: 35 },
-                { id: 3, name: 'Kekland', score: 27 },
-                { id: 2, name: 'Madopew', score: 22 },
-                { id: 4, name: 'Yussend', score: 20 },
-                { id: 5, name: 'Admin', score: 17 }
-            ],
-        };
-        this.setState({
-            leaders: data.leaders,
-        })
-    }
+    // addToLeaderboard = () => {
+    //     /* Here you can implement data fetching */
+    //     let data = {
+    //         leaders: [
+    //             { id: 1, name: 'Uenify', score: 35 },
+    //             { id: 3, name: 'Kekland', score: 27 },
+    //             { id: 2, name: 'Madopew', score: 22 },
+    //             { id: 4, name: 'Yussend', score: 20 },
+    //             { id: 5, name: 'Admin', score: 17 }
+    //         ],
+    //     };
+    //     this.setState({
+    //         leaders: data.leaders,
+    //     })
+    // }
 
     submitScore = () => {
         // this will actually need to emit a 'get leaderboard data' signal
         // in index.js backend, this will need to make a database query and then send a 'receive leader board data'
         // App.jsx will need to listen to 'receive leader board data' and set it into state
-        this.getLeaderboardData()
+
+
+        socket.emit('add to leaderboard', { teamName: 'Meow', teamSize: 2, teamScore: 40 })
+        //socket.emit('get questions', {teamName: this.props.teamName, teamSize: this.props.players.length})
+
+
+        //this.addToLeaderboard()
     }
 
     render() {
         if (this.state.leaders.length == 0) {
-            if (this.props.player.captain) {
-                return (
-                    <div>
-                        <h1>Quizzical</h1>
-                        <h1>Add to Leaderboard</h1>
+            return (
+                <button onClick={this.submitScore}>Submit Score</button>
+            )
+            //     if (this.props.player.captain) {
+            //         return (
+            //             <div>
+            //                 <h1>Quizzical</h1>
+            //                 <h1>Add to Leaderboard</h1>
 
-                        <p>Enter your team name below:</p>
-                        <input onChange={this.handleChange} />
+            //                 <p>Enter your team name below:</p>
+            //                 <input onChange={this.handleChange} />
+            //                 <p>3 players - 70%</p>
 
-                        <p>3 players - 70%</p>
-                        <button onClick={this.submitScore}>
-                            Submit Score
-                </button>
-                    </div>
-                )
+            //                 <button onClick={this.submitScore}>Submit Score</button>
+            //             </div>
+            //         )
 
-            }
-            else {
-                return (
-                    < LeaderboardSplash />
-                )
+            //     }
+            //     else {
+            //         return (
+            //             < LeaderboardSplash />
+            //         )
 
-            }
+            //     }
         }
 
         else {
@@ -75,9 +82,9 @@ class Leaderboard extends React.Component {
                     <h1>Leaderboard</h1>
                     <div className="leaders">
                         {this.state.leaders ? (
-                            this.state.leaders.map((el, i) => (
+                            this.state.leaders.map((leader, i) => (
                                 <div
-                                    key={el.id}
+                                    key={leader.id}
                                     style={{
                                         animationDelay: i * 0.1 + 's'
                                     }}
@@ -103,18 +110,9 @@ class Leaderboard extends React.Component {
                                             </div>
                                         ) : null}
                                         <div className="leader-content">
-                                            <div className="leader-name">{i + 1 + '. ' + el.name}</div>
+                                            <div className="leader-name">{i + 1 + '. ' + leader.name}</div>
                                             <div className="leader-score">
-                                                <svg
-                                                    fill="currentColor"
-                                                    height="20"
-                                                    viewBox="0 0 493 493"
-                                                    version="1.1"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <path d="M247,468 C369.05493,468 468,369.05493 468,247 C468,124.94507 369.05493,26 247,26 C124.94507,26 26,124.94507 26,247 C26,369.05493 124.94507,468 247,468 Z M236.497159,231.653661 L333.872526,231.653661 L333.872526,358.913192 C318.090922,364.0618 303.232933,367.671368 289.298112,369.742004 C275.363292,371.81264 261.120888,372.847943 246.570473,372.847943 C209.522878,372.847943 181.233938,361.963276 161.702804,340.193617 C142.17167,318.423958 132.40625,287.169016 132.40625,246.427855 C132.40625,206.805956 143.738615,175.914769 166.403684,153.753368 C189.068753,131.591967 220.491582,120.511432 260.673112,120.511432 C285.856523,120.511432 310.144158,125.548039 333.536749,135.621403 L316.244227,177.257767 C298.336024,168.303665 279.700579,163.826682 260.337335,163.826682 C237.840155,163.826682 219.820296,171.381591 206.277218,186.491638 C192.734139,201.601684 185.962702,221.915997 185.962702,247.435186 C185.962702,274.073638 191.419025,294.415932 202.331837,308.462679 C213.244648,322.509425 229.109958,329.532693 249.928244,329.532693 C260.785092,329.532693 271.809664,328.413447 283.002291,326.174922 L283.002291,274.96891 L236.497159,274.96891 L236.497159,231.653661 Z"></path>
-                                                </svg>
-                                                <div className="leader-score_title">{el.score}</div>
+                                                <div className="leader-score_title">{leader.score}%</div>
                                             </div>
                                         </div>
                                     </div>
@@ -122,28 +120,25 @@ class Leaderboard extends React.Component {
                                         <div
                                             style={{
                                                 backgroundColor: colors[i],
-                                                width: el.score / this.state.maxScore * 100 + '%'
+                                                width: leader.score / this.state.maxScore * 100 + '%'
                                             }}
                                             className="bar"
                                         />
                                     </div>
                                 </div>
                             ))
-                        ) : (
-                                <div className="empty">Пусто</div>
-                            )}
+                        ) : null}
                     </div>
                 </div>
             );
         }
-
-
     }
 }
 
 function mapStateToProps(state) {
     return {
         player: state.player,
+        players: state.players
     }
 }
 
