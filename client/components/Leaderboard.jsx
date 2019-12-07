@@ -31,6 +31,18 @@ class Leaderboard extends React.Component {
         socket.emit('add to leaderboard', { teamName: this.state.team, teamCode: this.props.teamName, teamSize: this.props.players.length, teamScore: teamScore })
     }
 
+    playAgain = () => {
+        socket.emit('reset round count', this.props.teamName)
+        socket.emit('reset score', this.props.teamName)
+        socket.emit('all players in', { teamName: this.props.teamName, numOfPlayers: this.props.players.length })
+      }
+    
+      mainMenu = () => {
+        socket.emit('reset round count', this.props.teamName)
+        socket.emit('reset score', this.props.teamName)
+        socket.emit('main menu', this.props.teamName)
+      }
+
     render() {
         if (this.props.leaders.length == 0) {
             if (this.props.player.captain) {
@@ -44,6 +56,16 @@ class Leaderboard extends React.Component {
                         <p>{this.props.score.correct / this.props.score.total * 100}%</p>
 
                         <button onClick={this.submitScore}>Submit Score</button>
+
+                        <div className='end-btns'>
+                            <div className='end-btns__btn' onClick={this.playAgain}>
+                                Play again!!
+                            </div>
+
+                            <div className='end-btns__btn' onClick={this.mainMenu}>
+                                Main Menu
+                            </div>
+                        </div>
                     </div>
                 )
             }
@@ -59,8 +81,19 @@ class Leaderboard extends React.Component {
                 <div className="Leaderboard">
 
                     <h1>Quizzical</h1>
-                    
 
+                    <div className='end-btns'>
+                        {this.props.player.captain && (
+                            <div className='end-btns__btn' onClick={this.playAgain}>
+                                Play again!!
+                            </div>
+                        )}
+                        {this.props.player.captain && (
+                            <div className='end-btns__btn' onClick={this.mainMenu}>
+                                Main Menu
+                            </div>
+                        )}
+                    </div>
 
 
                     <h1>Leaderboard</h1>
