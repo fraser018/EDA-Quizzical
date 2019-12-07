@@ -96,14 +96,14 @@ class App extends React.Component {
   render() {
     return (
       <>
-      <Leaderboard />
-{/* 
+      {/* <Leaderboard /> */}
+
         {this.props.pageNumber == 1 && <Welcome />}
         {this.props.pageNumber == 2 && <Lobby />}
         {this.props.pageNumber == 3 && <Game />}
         {this.props.pageNumber == 4 && <Results />}
         {this.props.pageNumber == 5 && <GameEnd />}
-        {this.props.pageNumber == 6 && <Leaderboard />} */}
+        {this.props.pageNumber == 6 && <Leaderboard />}
       </>
     )
   }
