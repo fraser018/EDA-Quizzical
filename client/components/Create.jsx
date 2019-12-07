@@ -57,11 +57,8 @@ class Create extends React.Component {
 
   addPlayerToTeam = (captain) => {
     socket.emit('join team', this.state.team)
-    console.log('Create component: adding player to team')
     addPlayerToTeam(this.state.captainName, this.state.team, captain)
       .then(players => {
-        console.log('Create component: called add player to team function')
-        console.log(players)
         socket.emit('show players in lobby', players)
         this.props.dispatch({
           type: 'SAVE_PLAYER_DETAILS',
