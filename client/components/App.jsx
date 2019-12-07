@@ -17,6 +17,7 @@ import { incrementAnswerCount, resetAnswerCount } from '../actions/index'
 import { resetClock, decrementClock } from '../actions/index'
 import { incrementScore, resetScore } from '../actions/index'
 import { incrementRound, resetRound} from '../actions/index'
+import { addLeaderboard} from '../actions/index'
 
 class App extends React.Component {
   constructor(props) {
@@ -89,7 +90,7 @@ class App extends React.Component {
 
     // Leaderboard
     socket.on('receive leaderboard', leaderboard => {
-      
+      this.props.dispatch(addLeaderboard(leaderboard))
     })
   }
   

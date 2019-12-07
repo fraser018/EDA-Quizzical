@@ -15,64 +15,39 @@ class Leaderboard extends React.Component {
         super(props);
         this.state = {
             leaders: [],
-            maxScore: 100
+            maxScore: 100,
+            team: 'Meow'
         };
     }
 
-    // addToLeaderboard = () => {
-    //     /* Here you can implement data fetching */
-    //     let data = {
-    //         leaders: [
-    //             { id: 1, name: 'Uenify', score: 35 },
-    //             { id: 3, name: 'Kekland', score: 27 },
-    //             { id: 2, name: 'Madopew', score: 22 },
-    //             { id: 4, name: 'Yussend', score: 20 },
-    //             { id: 5, name: 'Admin', score: 17 }
-    //         ],
-    //     };
-    //     this.setState({
-    //         leaders: data.leaders,
-    //     })
-    // }
+    
 
     submitScore = () => {
-        // in index.js backend, this will need to make a database query and then send a 'receive leader board data'
-        // App.jsx will need to listen to 'receive leader board data' and set it into state
-
-
-        socket.emit('add to leaderboard', { teamName: 'Meow', teamSize: 2, teamScore: 40 })
-        //socket.emit('get questions', {teamName: this.props.teamName, teamSize: this.props.players.length})
-
-
-        //this.addToLeaderboard()
+        let teamScore = this.props.score.correct / this.props.score.total * 100
+        socket.emit('add to leaderboard', {teamName: this.state.team, teamCode: this.props.teamName, teamSize: this.props.players.length, teamScore: teamScore})
     }
 
     render() {
-        if (this.state.leaders.length == 0) {
-            return (
-                <button onClick={this.submitScore}>Submit Score</button>
-            )
-            //     if (this.props.player.captain) {
-            //         return (
-            //             <div>
-            //                 <h1>Quizzical</h1>
-            //                 <h1>Add to Leaderboard</h1>
+        if (this.props.leaders.length == 0) {
+                if (this.props.player.captain) {
+                    return (
+                        <div>
+                            <h1>Quizzical</h1>
+                            <h1>Add to Leaderboard</h1>
 
-            //                 <p>Enter your team name below:</p>
-            //                 <input onChange={this.handleChange} />
-            //                 <p>3 players - 70%</p>
+                            <p>Enter your team name below:</p>
+                            <input onChange={this.handleChange} />
+                            <p>{this.props.score.correct / this.props.score.total * 100}%</p>
 
-            //                 <button onClick={this.submitScore}>Submit Score</button>
-            //             </div>
-            //         )
-
-            //     }
-            //     else {
-            //         return (
-            //             < LeaderboardSplash />
-            //         )
-
-            //     }
+                            <button onClick={this.submitScore}>Submit Score</button>
+                        </div>
+                    )
+                }
+                else {
+                    return (
+                        < LeaderboardSplash />
+                    )
+                }
         }
 
         else {
@@ -80,8 +55,8 @@ class Leaderboard extends React.Component {
                 <div className="Leaderboard">
                     <h1>Leaderboard</h1>
                     <div className="leaders">
-                        {this.state.leaders ? (
-                            this.state.leaders.map((leader, i) => (
+                        {this.props.leaders ? (
+                            this.props.leaders.map((leader, i) => (
                                 <div
                                     key={leader.id}
                                     style={{
@@ -109,9 +84,9 @@ class Leaderboard extends React.Component {
                                             </div>
                                         ) : null}
                                         <div className="leader-content">
-                                            <div className="leader-name">{i + 1 + '. ' + leader.name}</div>
+                                            <div className="leader-name">{i + 1 + '. ' + leader.teamName}</div>
                                             <div className="leader-score">
-                                                <div className="leader-score_title">{leader.score}%</div>
+                                                <div className="leader-score_title">{leader.teamScore}%</div>
                                             </div>
                                         </div>
                                     </div>
@@ -119,7 +94,7 @@ class Leaderboard extends React.Component {
                                         <div
                                             style={{
                                                 backgroundColor: colors[i],
-                                                width: leader.score / this.state.maxScore * 100 + '%'
+                                                width: leader.teamScore + '%'
                                             }}
                                             className="bar"
                                         />
@@ -129,7 +104,7 @@ class Leaderboard extends React.Component {
                         ) : null}
                     </div>
                 </div>
-            );
+            )
         }
     }
 }
@@ -138,7 +113,9 @@ function mapStateToProps(state) {
     return {
         player: state.player,
         players: state.players,
-        teamName: state.teamName
+        teamName: state.teamName,
+        leaders: state.leaderboard,
+        score: state.score
     }
 }
 

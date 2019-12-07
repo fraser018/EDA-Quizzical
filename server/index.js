@@ -71,13 +71,16 @@ io.on('connection', function(socket){
 
   // LEADERBOARD
   socket.on('add to leaderboard', teamData => {
+    //console.log('received request in server')
     leaderboard.addToLeaderboard(teamData).then(() => {
       leaderboard.getLeaderboard(teamData.teamSize).then(leaders => {
-        console.log(leaders)
-        io.to(teamData.teamName).emit('receive leaderboard', leaderboard)
+        io.to(teamData.teamCode).emit('receive leaderboard', leaders)
       })
     })
   })
+
+
+
 
 })
 
