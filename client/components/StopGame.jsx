@@ -1,11 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { goToMainMenu } from '../actions'
+import { goToMainMenu, resetQuestions } from '../actions'
 
 class StopGame extends React.Component {
   constructor(props) {
     super(props)
   }
+
   render() {
     return (
       <>
@@ -17,7 +18,7 @@ class StopGame extends React.Component {
             )
           })}
         <section>
-          <div className='setup-btns__btn' onClick={()=>this.props.dispatch(goToMainMenu())}>
+          <div className='setup-btns__btn' onClick={()=>window.location.reload()}>
             Go back to main screen
                 </div>
         </section>
