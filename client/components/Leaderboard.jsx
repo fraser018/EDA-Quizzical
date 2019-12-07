@@ -21,14 +21,12 @@ class Leaderboard extends React.Component {
     }
 
     playAgain = () => {
-        socket.emit('reset round count', this.props.teamName)
-        socket.emit('reset score', this.props.teamName)
+        socket.emit('reset game', this.props.teamName)
         socket.emit('all players in', { teamName: this.props.teamName, numOfPlayers: this.props.players.length })
     }
 
     mainMenu = () => {
-        socket.emit('reset round count', this.props.teamName)
-        socket.emit('reset score', this.props.teamName)
+        socket.emit('reset game', this.props.teamName)
         socket.emit('main menu', this.props.teamName)
     }
 

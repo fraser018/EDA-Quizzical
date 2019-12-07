@@ -100,3 +100,9 @@ export function addLeaderboard(leaderboard) {
         leaderboard
     }
 }
+
+export function resetLeaderboard() {
+    return {
+        type: 'RESET_LEADERBOARD',
+    }
+}
