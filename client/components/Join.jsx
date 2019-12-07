@@ -8,6 +8,8 @@ class Join extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      player:'',
+      team:''
     }
   }
 
@@ -21,18 +23,6 @@ class Join extends React.Component {
     let r = Math.floor(Math.random() * 26);
     return String.fromCharCode(65 + r);
   }
-
-  // generateCode = (e) => {
-  //   e.preventDefault()
-  //   let prefix = new Array(2).fill().map(() => this.getRandomUppercaseChar()).join(""),
-  //     integer = Math.floor((Math.random() * 999) * 7);
-  //   let newCode = prefix + integer
-  //   this.setState({
-  //     code: newCode
-  //   })
-
-  //   return prefix + integer;
-  // }
 
 
   joinTeam = (event) => {
