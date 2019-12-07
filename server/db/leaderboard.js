@@ -6,8 +6,8 @@ function addToLeaderboard(teamData, db = connection){
     return db('leaderboard').insert({'teamName': teamData.teamName, 'teamScore': teamData.teamScore, 'teamSize': teamData.teamSize})
   }
 
-  function getLeaderboard(db = connection){
-    return db('leaderboard').select()
+  function getLeaderboard(teamSize, db = connection){
+    return db('leaderboard').where('teamSize', teamSize).select()
   }
 
 module.exports = {

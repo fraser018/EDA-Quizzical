@@ -71,8 +71,9 @@ io.on('connection', function(socket){
 
   // LEADERBOARD
   socket.on('add to leaderboard', teamData => {
+    let teamSize = teamData.teamSize
     leaderboard.addToLeaderboard(teamData).then(id => {
-      leaderboard.getLeaderboard().then(leaders => {
+      leaderboard.getLeaderboard(teamSize).then(leaders => {
         console.log(leaders)
       })
     })
