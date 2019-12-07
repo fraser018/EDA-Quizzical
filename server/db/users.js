@@ -30,7 +30,7 @@ function getTeamBySocketId(id, db = connection){
 
 function removePlayer(id, db = connection){
   return db('users').where('id', id)
-  .del().then(hu=> console.log(hu))
+  .del().then(res=>res)
 }
 
 module.exports = {
