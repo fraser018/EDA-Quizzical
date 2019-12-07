@@ -16,44 +16,55 @@ class Leaderboard extends React.Component {
         this.state = {
             leaders: [],
             maxScore: 100,
-            team: 'Meow'
+            team: ''
         };
     }
 
-    
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
 
     submitScore = () => {
         let teamScore = this.props.score.correct / this.props.score.total * 100
-        socket.emit('add to leaderboard', {teamName: this.state.team, teamCode: this.props.teamName, teamSize: this.props.players.length, teamScore: teamScore})
+        socket.emit('add to leaderboard', { teamName: this.state.team, teamCode: this.props.teamName, teamSize: this.props.players.length, teamScore: teamScore })
     }
 
     render() {
         if (this.props.leaders.length == 0) {
-                if (this.props.player.captain) {
-                    return (
-                        <div>
-                            <h1>Quizzical</h1>
-                            <h1>Add to Leaderboard</h1>
+            if (this.props.player.captain) {
+                return (
+                    <div>
+                        <h1>Quizzical</h1>
+                        <h1>Add to Leaderboard</h1>
 
-                            <p>Enter your team name below:</p>
-                            <input onChange={this.handleChange} />
-                            <p>{this.props.score.correct / this.props.score.total * 100}%</p>
+                        <p>Enter your team name below:</p>
+                        <input name="team" onChange={this.handleChange} />
+                        <p>{this.props.score.correct / this.props.score.total * 100}%</p>
 
-                            <button onClick={this.submitScore}>Submit Score</button>
-                        </div>
-                    )
-                }
-                else {
-                    return (
-                        < LeaderboardSplash />
-                    )
-                }
+                        <button onClick={this.submitScore}>Submit Score</button>
+                    </div>
+                )
+            }
+            else {
+                return (
+                    < LeaderboardSplash />
+                )
+            }
         }
 
         else {
             return (
                 <div className="Leaderboard">
+
+                    <h1>Quizzical</h1>
+                    
+
+
+
                     <h1>Leaderboard</h1>
+                    <h3>{this.props.players.length} Person Teams</h3>
                     <div className="leaders">
                         {this.props.leaders ? (
                             this.props.leaders.map((leader, i) => (
