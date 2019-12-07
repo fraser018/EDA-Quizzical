@@ -13,7 +13,7 @@ beforeAll(()=> {
 
 test('addPlayerToTeam returns an array with the id of inserted player', ()=>{
   const expected = typeof 1
-  return db.addPlayerToTeam('bob', 'winners', true, database)
+  return db.addPlayerToTeam('bob', 'winners', true, '000', database)
   .then(id=>{
     const actual = typeof id[0]
     expect(actual).toEqual(expected)
@@ -26,19 +26,22 @@ test('getPlayersFromTeam returns all the players in one team', ()=>{
     team: 'hello',
     captain: 1,
     game_started: 0,
-    date_created: '' },
+    socket_id: null
+  },
   { id: 3,
     name: 'han',
     team: 'hello',
     captain: 0,
     game_started: 0,
-    date_created: '' },
+    socket_id: null
+  },
   { id: 4,
     name: 'ollie',
     team: 'hello',
     captain: 0,
     game_started: 0,
-    date_created: '' } ]
+    socket_id: null
+  } ]
   return db.getPlayersFromTeam('hello')
   .then(players=>{
     const actual = players
@@ -64,19 +67,22 @@ test('user in game updates game_started to true', ()=>{
     team: 'hello',
     captain: 1,
     game_started: 1,
-    date_created: '' },
+    socket_id: null
+  },
   { id: 3,
     name: 'han',
     team: 'hello',
     captain: 0,
     game_started: 1,
-    date_created: '' },
+    socket_id: null
+  },
   { id: 4,
     name: 'ollie',
     team: 'hello',
     captain: 0,
     game_started: 1,
-    date_created: '' } 
+    socket_id: null
+  } 
   ]
   return db.userInGame('hello', database)
   .then(()=>{
