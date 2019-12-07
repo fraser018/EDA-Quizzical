@@ -25,6 +25,12 @@ export function saveTeamName(team) {
     }
 }
 
+export function clearPlayers(){
+    return{
+        type: 'CLEAR_PLAYERS'
+    }
+}
+
 // CHANGE PAGE NUMBERS
 export function goToGame() {
     return {
