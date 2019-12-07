@@ -6,7 +6,7 @@ exports.up = (knex, promise) => {
       table.string('team')
       table.boolean('captain')
       table.boolean('game_started')
-      table.date('date_created')
+      // table.date('date_created')
   })
 };
 
