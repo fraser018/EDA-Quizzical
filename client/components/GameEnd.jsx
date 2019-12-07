@@ -4,31 +4,33 @@ import { connect } from 'react-redux'
 import socket from '../api/socket'
 
 class GameEnd extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
   }
 
-  playAgain = (e) => {
-    e.preventDefault()
-    socket.emit('reset round count', this.props.teamName)
-    socket.emit('reset score', this.props.teamName)    
-    socket.emit('all players in', {teamName:this.props.teamName, numOfPlayers: this.props.players.length})
+  playAgain = () => {
+    socket.emit('reset game', this.props.teamName)
+    socket.emit('all players in', { teamName: this.props.teamName, numOfPlayers: this.props.players.length })
   }
 
-  mainMenu = (e) => {
-    e.preventDefault()
-    socket.emit('reset round count', this.props.teamName)
-    socket.emit('reset score', this.props.teamName)
+  mainMenu = () => {
+    socket.emit('reset game', this.props.teamName)
     socket.emit('main menu', this.props.teamName)
   }
 
-  render(){
-     let options ={
-      labelInterpolationFnc: function(value, index) {
+  leaderboard = () => {
+    socket.emit('increment pages', this.props.teamName)
+  }
+
+  render() {
+    let options = {
+      labelInterpolationFnc: function (value, index) {
         return Math.round(value / data.series.reduce(sum) * 100) + '% ' + data.label[index];
-      }}
-    let sum = function(a, b) { return a + b }
-    let data = {label: ['Right','Wrong'], series:[this.props.score.correct, this.props.score.total-this.props.score.correct]}
+      }
+    }
+    let sum = function (a, b) { return a + b }
+    let data = { label: ['Right', 'Wrong'], series: [this.props.score.correct, this.props.score.total - this.props.score.correct] }
+
 
     return (
       <div className='end'>
@@ -53,18 +55,23 @@ class GameEnd extends React.Component {
             </div>
           )}
         </div>
+        {this.props.player.captain && (
+          <div className='end-btns'>
+            <h3>Keen to see how you measured up?</h3>
+            <div className='end-btns__btn' onClick={this.leaderboard}>
+              Leaderboard
+            </div>
+          </div>
+         )} 
       </div>
-
-   
-
     )
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
     teamName: state.teamName,
-    player : state.player,
+    player: state.player,
     players: state.players,
     score: state.score
   }

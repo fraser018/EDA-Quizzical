@@ -8,6 +8,8 @@ class Join extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      player:'',
+      team:''
     }
   }
 
@@ -22,27 +24,24 @@ class Join extends React.Component {
     return String.fromCharCode(65 + r);
   }
 
-  // generateCode = (e) => {
-  //   e.preventDefault()
-  //   let prefix = new Array(2).fill().map(() => this.getRandomUppercaseChar()).join(""),
-  //     integer = Math.floor((Math.random() * 999) * 7);
-  //   let newCode = prefix + integer
-  //   this.setState({
-  //     code: newCode
-  //   })
 
-  //   return prefix + integer;
-  // }
-
-
-  joinTeam = (event) => {
-    event.preventDefault()
+  joinTeam = () => {
     getTeams().then(res => {
       
       this.setState({
         message: ''
       })
-      if (!res.text.includes(this.state.team)) {
+      if(this.state.team == ''){
+        this.setState({
+          message:'Please enter a valid team code'
+        })
+      }
+      else if(this.state.player == ''){
+        this.setState({
+          message:'Please enter a username'
+        })
+      }
+      else if (!res.text.includes(this.state.team)) {
         this.setState({
           message: 'This team does not exist, maybe you would like to create one?'
         })

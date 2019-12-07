@@ -54,7 +54,6 @@ export function resetAnswerCount() {
 // CLOCK
 
 export function resetClock(playerCount) {
-    console.log(playerCount)
     return {
         type: 'RESET_CLOCK',
         playerCount
@@ -91,5 +90,19 @@ export function incrementRound() {
 export function resetRound() {
     return {
         type: 'RESET_ROUND'
+    }
+}
+
+// Leaderboard
+export function addLeaderboard(leaderboard) {
+    return {
+        type: 'ADD_LEADERBOARD',
+        leaderboard
+    }
+}
+
+export function resetLeaderboard() {
+    return {
+        type: 'RESET_LEADERBOARD',
     }
 }

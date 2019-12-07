@@ -46,7 +46,6 @@ class Game extends React.Component {
   }
 
   finishRound = () => {
-    socket.emit('reset answer count', this.props.teamName)
     socket.emit('increment pages', this.props.teamName)
   }
 
@@ -87,13 +86,11 @@ class Game extends React.Component {
       })
     }
     let q = this.props.questions
-
-    if (!q.trivias) {
-      return < QuestionSplash />
-    }
-    else {
+// this.props.clock > this.props.players.length*30 ? <><Countdown/>< QuestionSplash /></> :
 
     return (
+    !q.trivias ?< QuestionSplash />:
+    this.props.clock > this.props.players.length*30 ? <QuestionSplash/> :
       <div className='questions'>
         <h1 className="questions-gameTitle">Quizzical</h1>
         {q.trivias && <h2 className='questions-title'>{q.trivias[this.props.player.index].question}</h2>}
@@ -150,7 +147,7 @@ class Game extends React.Component {
       </div>
     )}
   }
-}
+// }
 
 function mapStateToProps(state) {
   return {
