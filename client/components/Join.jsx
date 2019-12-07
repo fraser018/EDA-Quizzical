@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import {savePlayerDetails} from '../actions'
+import {savePlayerDetails, incrementPage, saveTeamName} from '../actions'
 import { addPlayerToTeam, getTeams, getPlayersByTeam } from '../api/users'
 import socket from '../api/socket'
 
@@ -78,14 +78,8 @@ class Join extends React.Component {
         this.props.dispatch(savePlayerDetails(this.state.player, captain, players.length-1)
         )
       })
-
-    this.props.dispatch({
-      type: 'SAVE_TEAM_NAME',
-      teamName: this.state.team
-    })
-    this.props.dispatch({
-      type: 'INCREMENT_PAGE',
-    })
+    this.props.dispatch(saveTeamName(this.state.team))
+    this.props.dispatch(incrementPage())
   }
 
   render() {

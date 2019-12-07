@@ -17,7 +17,15 @@ export function saveSocketId(id){
     }
 }
 
-// CHANGE ROOM NUMBERS
+// SAVE TEAM DEATAILS
+export function saveTeamName(team) {
+    return{
+        type: 'SAVE_TEAM_NAME',
+        teamName: team
+    }
+}
+
+// CHANGE PAGE NUMBERS
 export function goToGame() {
     return {
         type: 'START_GAME'

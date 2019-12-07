@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import {savePlayerDetails} from '../actions'
+import {savePlayerDetails, saveTeamName, incrementPage} from '../actions'
 import { addPlayerToTeam, getTeams } from '../api/users'
 import socket from '../api/socket'
 
@@ -63,13 +63,9 @@ class Create extends React.Component {
         socket.emit('show players in lobby', players)
         this.props.dispatch(savePlayerDetails(this.state.player, captain, players.length-1))
       })
-    this.props.dispatch({
-      type: 'SAVE_TEAM_NAME',
-      teamName: this.state.team
-    })
-    this.props.dispatch({
-      type: 'INCREMENT_PAGE',
-    })
+    this.props.dispatch(saveTeamName(this.state.team))
+
+    this.props.dispatch(incrementPage())
   }
 
 
