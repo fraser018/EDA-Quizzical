@@ -76,8 +76,8 @@ class Create extends React.Component {
         <section className='setup'>
           <h1 className='setup-gameTitle'>Quizzical</h1>
           {/* <h2 className='setup-create'>Game Created</h2> */}
-          <h1>Team Code:</h1>
-          <h1>{this.state.team}</h1>
+          <h1 className='setup-welcomeCaptain'>Welcome Captain!</h1>
+          {/* <h1>{this.state.team}</h1> */}
         </section>
 
         <section className='setup'>
@@ -104,7 +104,7 @@ class Create extends React.Component {
                   Main menu
                 </div>
             </section>
-            {this.state.message != '' && <h2>{this.state.message}</h2>}
+            {this.state.message != '' && <h2 className='setup-errorMessage'>{this.state.message}</h2>}
           </form>
         </section>
       </main>

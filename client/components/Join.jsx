@@ -124,7 +124,7 @@ class Join extends React.Component {
                   Main menu
                 </div>
             </section>
-            {this.state.message != '' && <h2>{this.state.message}</h2>}
+            {this.state.message != '' && <h2 className='setup-errorMessage'>{this.state.message}</h2>}
           </form>
         </section>
       </main>
