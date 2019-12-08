@@ -22,7 +22,7 @@ import { incrementScore, resetScore } from '../actions/index'
 import { incrementRound, resetRound} from '../actions/index'
 import { addLeaderboard, resetLeaderboard} from '../actions/index'
 
-class App extends React.Component {
+export class App extends React.Component {
   constructor(props) {
     super(props)
     this.state={
