@@ -3,14 +3,21 @@ import { connect } from 'react-redux'
 import Instructions from './Instructions'
 import Create from './Create'
 import Join from './Join'
-// import socket from 'socket.io'
 
 class Welcome extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      display: "main"
+      display: "main",
+      history: ["main"],
+      historyIndex: 0
     }
+  }
+
+  componentDidMount(){
+    window.addEventListener('popstate', () => {
+      window.onpopstate = this.handleHistory
+    })
   }
 
   startClick = (e) => {
@@ -20,31 +27,27 @@ class Welcome extends React.Component {
     })
   }
 
-  // createClick = (e) => {
-  //   e.preventDefault()
-  //   this.setState({
-  //     display: 'create'
-  //   })
-  // }
-
-  // joinClick = (e) => {
-  //   e.preventDefault()
-  //   this.setState({
-  //     display: 'join'
-  //   })
-  // }
-  // instructClick = (e) => {
-  //   e.preventDefault()
-  //   this.setState({
-  //     display: "instructions"
-  //   })
-  // }
-
   changePage = (event, page) => {
     event.preventDefault();
     this.setState({
-      display: page
+      display: page,
+      history: [...this.state.history, page],
+      historyIndex: this.state.historyIndex + 1
     })
+  }
+
+  handleHistory = () => {
+    let historyState = this.state.history
+    let historyIndex = this.state.historyIndex
+    
+    if (historyIndex > 0)
+    {
+      this.state.history.pop()
+      this.setState({
+        display: historyState[historyIndex - 1],
+        historyIndex: this.state.historyIndex - 1
+      })
+    }
   }
 
   render() {

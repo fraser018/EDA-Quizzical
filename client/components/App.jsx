@@ -14,7 +14,7 @@ import StopGame from './StopGame'
 import socket from '../api/socket'
 
 import { saveSocketId } from '../actions/index'
-import { goToGame, goToMainMenu, incrementPage, goToStopGame } from '../actions/index'
+import { goToGame, goToMainMenu, incrementPage, goToStopGame} from '../actions/index'
 import { addQuestions, resetQuestions } from '../actions/index'
 import { resetPlayerResponses } from '../actions/index'
 import { clearPlayers } from '../actions/index'
@@ -32,25 +32,12 @@ export class App extends React.Component {
     }
   }
 
-  // browserClick = (event) => {
-  //   event.preventDefault()
-  //   console.log(event)
-  // }
-
-
-  componentDidMount(){
-    console.log('componentmounted')
-    window.addEventListener('popstate', event => {
+  componentDidMount(){ 
+    // Handle browser navigation
+    window.addEventListener('popstate', () => {
       history.pushState(null, null, location.href)
-      window.onpopstate = function(event) {
-        history.go(1)
-      }
-      console.log(event)
+      history.go(1)
     })
-  
-
-
-
 
 
     // Receives socket id from server, adds to state
@@ -150,7 +137,7 @@ function mapStateToProps(state) {
   return {
     pageNumber: state.pageNumber,
     clock: state.clock,
-    players: state.players
+    players: state.players,
   }
 }
 
