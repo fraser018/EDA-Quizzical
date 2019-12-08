@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { HashRouter as Router, Route } from 'react-router-dom'
+
 
 import Welcome from './Welcome'
 import Game from './Game'
@@ -30,7 +32,27 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount() {
+  // browserClick = (event) => {
+  //   event.preventDefault()
+  //   console.log(event)
+  // }
+
+
+  componentDidMount(){
+    console.log('componentmounted')
+    window.addEventListener('popstate', event => {
+      history.pushState(null, null, location.href)
+      window.onpopstate = function(event) {
+        history.go(1)
+      }
+      console.log(event)
+    })
+  
+
+
+
+
+
     // Receives socket id from server, adds to state
     socket.on('send id', id=>{
       this.props.dispatch(saveSocketId(id))
@@ -111,7 +133,7 @@ class App extends React.Component {
   
   render() {
     return (
-      <>
+      <Router>
         {this.props.pageNumber == 1 && <Welcome />}
         {this.props.pageNumber == 2 && <Lobby />}
         {this.props.pageNumber == 3 && <Game />}
@@ -119,7 +141,7 @@ class App extends React.Component {
         {this.props.pageNumber == 5 && <GameEnd />}
         {this.props.pageNumber == 6 && <Leaderboard />}
         {this.props.pageNumber == 7 && <StopGame players={this.state.missingPlayers} />}
-      </>
+      </Router>
     )
   }
 }
