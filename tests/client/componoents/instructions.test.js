@@ -7,7 +7,7 @@ describe('Inscructions Component', () => {
 
     test('Back button renders without errors', () => {
         const component = shallow(<Instructions/>);
-        console.log(component.debug());
+        // console.log(component.debug());
         const button = component.find('.home-btns__btn')
         expect(button.length).toBe(1)
         

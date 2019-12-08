@@ -5,7 +5,7 @@ import Create from './Create'
 import Join from './Join'
 // import socket from 'socket.io'
 
-class Welcome extends React.Component {
+export class Welcome extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -54,7 +54,7 @@ class Welcome extends React.Component {
           <section className='home'>
             <h1 className='home-gameTitle'>Quizzical</h1>
             <div className='home-logo'>
-              <img className='home-logo__pic'
+              <img className='home-logo__pic' data-test="home-logo"
                 src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ2O1b8CY6ZxPzZQP84Wxau5ZDFTdYiWS9EfknQHxCqSp4TX2iO'
                 alt='logo'
               />
