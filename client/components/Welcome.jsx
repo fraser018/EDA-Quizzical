@@ -54,8 +54,8 @@ export class Welcome extends React.Component {
           <section className='home'>
             <h1 className='home-gameTitle'>Quizzical</h1>
             <div className='home-logo'>
-              <img className='home-logo__pic' data-test="home-logo"
-                src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ2O1b8CY6ZxPzZQP84Wxau5ZDFTdYiWS9EfknQHxCqSp4TX2iO'
+              <img className='home-logo__pic'
+                src='./imgs/img-2.png'
                 alt='logo'
               />
             </div>

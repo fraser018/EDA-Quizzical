@@ -33,16 +33,18 @@ class AddScore extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Quizzical</h1>
-                <h1>Add to Leaderboard</h1>
+            <div className="leaderboard">
+                <h1 className="leaderboard-gameTitle">Quizzical</h1>
+                <h1 className="leaderboard-title">Add to Leaderboard</h1>
 
-                <p>Enter your team name below:</p>
-                <input name="team" onChange={this.handleChange} />
-                <p>{this.props.score.correct / this.props.score.total * 100}%</p>
+                <p className="leaderboard-team">Enter your team name below:</p>
+                <input className="leaderboard-team__field" name="team" onChange={this.handleChange} />
+                <h3 className="leaderboard-team__score">{this.props.score.correct / this.props.score.total * 100}%</h3>
 
-                <button onClick={this.submitScore}>Submit Score</button>
-
+                <div className="end-btns">
+                <div className="end-btn" onClick={this.submitScore}>Submit Score</div>
+                </div>
+                
                 <div className='end-btns'>
                     <div className='end-btns__btn' onClick={this.playAgain}>
                         Play again!!

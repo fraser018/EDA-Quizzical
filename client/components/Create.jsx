@@ -75,14 +75,14 @@ class Create extends React.Component {
       <main>
         <section className='setup'>
           <h1 className='setup-gameTitle'>Quizzical</h1>
-          <h1 className='setup-create'>Game Created</h1>
+          <h2 className='setup-create'>Game Created</h2>
           <h1>Team Code:</h1>
           <h1>{this.state.team}</h1>
           <p>Give this code to your team</p>
         </section>
 
         <section className='setup'>
-          <p>Enter your player name below:</p>
+          <p className='setup-form'>Enter your player name below:</p>
           <input name="captainName" onChange={this.handleChange} value={this.state.captainName} />
 
           <form>
@@ -94,7 +94,7 @@ class Create extends React.Component {
               </section>
             </div>
             <section>
-              <p>Or click below to join another team:</p>
+              <p className='setup-join'>Or click below to join another team:</p>
               <div className='setup-btns__btn' onClick={(e) => this.props.changePage(e, 'join')}>
                 Join Team
                 </div>
