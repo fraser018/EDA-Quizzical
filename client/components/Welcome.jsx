@@ -14,9 +14,18 @@ export class Welcome extends React.Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     window.addEventListener('popstate', () => {
-      window.onpopstate = this.handleHistory
+      let historyState = this.state.history
+      let historyIndex = this.state.historyIndex
+
+      if (historyIndex > 0) {
+        this.state.history.pop()
+        this.setState({
+          display: historyState[historyIndex - 1],
+          historyIndex: this.state.historyIndex - 1
+        })
+      }
     })
   }
 
@@ -36,20 +45,6 @@ export class Welcome extends React.Component {
     })
   }
 
-  handleHistory = () => {
-    let historyState = this.state.history
-    let historyIndex = this.state.historyIndex
-    
-    if (historyIndex > 0)
-    {
-      this.state.history.pop()
-      this.setState({
-        display: historyState[historyIndex - 1],
-        historyIndex: this.state.historyIndex - 1
-      })
-    }
-  }
-
   render() {
     return (
       <>
@@ -63,15 +58,15 @@ export class Welcome extends React.Component {
               />
             </div>
             <div className='home-btns'>
-              <div className='home-btns__btn' id="create-btn" onClick={(e)=>this.changePage(e, 'create')}>
+              <div className='home-btns__btn' id="create-btn" onClick={(e) => this.changePage(e, 'create')}>
                 CREATE TEAM
                   </div>
-              <div className='home-btns__btn' id="join-btn" onClick={(e)=>this.changePage(e, 'join')}>
+              <div className='home-btns__btn' id="join-btn" onClick={(e) => this.changePage(e, 'join')}>
                 JOIN TEAM
                   </div>
               <div
                 className='home-btns__btn' id="instruct-btn"
-                onClick={(e)=>this.changePage(e, 'instructions')}
+                onClick={(e) => this.changePage(e, 'instructions')}
               >
                 INSTRUCTIONS
                   </div>
@@ -79,8 +74,8 @@ export class Welcome extends React.Component {
           </section>
         </main>}
         {this.state.display == "instructions" && <Instructions changePage={this.changePage} />}
-        {this.state.display == "create" && <Create changePage={this.changePage}/>}
-        {this.state.display == "join" && <Join changePage={this.changePage}/>}
+        {this.state.display == "create" && <Create changePage={this.changePage} />}
+        {this.state.display == "join" && <Join changePage={this.changePage} />}
       </>
     )
   }
