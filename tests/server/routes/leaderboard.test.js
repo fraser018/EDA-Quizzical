@@ -13,7 +13,11 @@ beforeAll(() => {
 
 test('addToLeaderboard returns stuff', () => {
     const expected = typeof 1
-    return db.addToLeaderboard('Blue')
+    return db.addToLeaderboard({
+        teamName: 'hello',
+        teamScore: 50,
+        teamSize: 6
+    })
     .then(id => {
         const actual = typeof id[0]
         expect(actual).toEqual(expected)
