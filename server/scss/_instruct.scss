@@ -7,13 +7,18 @@
     margin-top: .2rem;
   }
 }
+
 .instruct-info {
   p {
     margin-bottom: .4rem;
   }
 
+  .final-step{
+    padding-bottom: 1rem;
+  } 
+
   &__step {
-    margin-top: .4rem;
+    margin-top: 1rem;
     font-weight: 700;
   }
 }

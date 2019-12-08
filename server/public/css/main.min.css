@@ -60,8 +60,12 @@ h1, h2 {
   margin-bottom: .4rem;
 }
 
+.instruct-info .final-step {
+  padding-bottom: 1rem;
+}
+
 .instruct-info__step {
-  margin-top: .4rem;
+  margin-top: 1rem;
   font-weight: 700;
 }
 
