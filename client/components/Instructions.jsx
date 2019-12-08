@@ -12,7 +12,7 @@ export class Instructions extends React.Component {
     render() {
         return (
           <main>
-            <section className='home'>
+            <section className='home instruct'>
               <h1 className='home-gameTitle'>Quizzical</h1>
               <div className='instruct'>
                 <h3 className='instruct-subTitle'>Instructions:</h3>
@@ -41,14 +41,14 @@ export class Instructions extends React.Component {
                     Time to get answering questions. Each user will be able to
                     see one question, and a list of four potential answers. But
                     here's the catch... your question does not match the answers
-                    you can see (or maybe it does... who knows?!)! Your task -
+                    you can see! Your task -
                     find the player whose answers match your question, and
                     figure out the correct answer! You'll need to be quick about
                     it thought - and answer before the time runs out!
                   </p>
                 </div>
                 <div className='home-btns__btn' onClick={(e)=>this.props.changePage(e, 'main')}>
-                  Go Back
+                  Main menu
                 </div>
               </div>
             </section>

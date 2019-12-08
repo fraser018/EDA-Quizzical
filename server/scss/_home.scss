@@ -3,6 +3,7 @@
   padding: 5vh 20vw;
   align-items: center;
   text-align: center;
+  overflow: hidden;
  
 
       &-gameTitle {
@@ -13,7 +14,7 @@
       }
 
       &-logo {
-        padding-top: 2rem;
+        padding-top: 3rem;
 
         &__pic{
           height: 16rem;
@@ -22,7 +23,7 @@
       }
 
       &-btns {
-        padding-top: 9vh;
+        padding-top: 1vh;
         // padding: .1rem .3rem;
 
         &__btn {
@@ -32,7 +33,7 @@
           text-decoration: none;
           padding: 8px 10px;
           border-radius: 7px;
-          border: solid 2px rgb(142, 150, 153) ;
+          border: solid 2px rgb(39, 8, 110) ;
         }
       }
       

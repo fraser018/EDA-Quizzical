@@ -35,7 +35,7 @@ class Lobby extends React.Component{
         <section className='lobby'>
           <h1 className='lobby-gameTitle'>Quizzical</h1>
           <h2 className='lobby-title'>
-            Welcome {this.props.player.name} you are in team{' '}
+            Welcome {this.props.player.name} your team code is {' '}
             {this.props.teamName}
           </h2>
           {this.props.player.captain && (

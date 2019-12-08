@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import Instructions from './Instructions'
 import Create from './Create'
 import Join from './Join'
-// import socket from 'socket.io'
 
 class Welcome extends React.Component {
   constructor(props) {
@@ -20,25 +19,6 @@ class Welcome extends React.Component {
     })
   }
 
-  // createClick = (e) => {
-  //   e.preventDefault()
-  //   this.setState({
-  //     display: 'create'
-  //   })
-  // }
-
-  // joinClick = (e) => {
-  //   e.preventDefault()
-  //   this.setState({
-  //     display: 'join'
-  //   })
-  // }
-  // instructClick = (e) => {
-  //   e.preventDefault()
-  //   this.setState({
-  //     display: "instructions"
-  //   })
-  // }
 
   changePage = (event, page) => {
     event.preventDefault();
@@ -61,16 +41,16 @@ class Welcome extends React.Component {
             </div>
             <div className='home-btns'>
               <div className='home-btns__btn' onClick={(e)=>this.changePage(e, 'create')}>
-                CREATE TEAM
+                Create team
                   </div>
               <div className='home-btns__btn' onClick={(e)=>this.changePage(e, 'join')}>
-                JOIN TEAM
+                Join team
                   </div>
               <div
                 className='home-btns__btn'
                 onClick={(e)=>this.changePage(e, 'instructions')}
               >
-                INSTRUCTIONS
+                How to play
                   </div>
             </div>
           </section>

@@ -112,9 +112,18 @@ class Join extends React.Component {
                 Join Team
                 </div>
             </section>
-            <div className='setup-btns__btn' onClick={(e) => this.props.changePage(e, 'create')}>
+            <section className='setup-join'>
+              <p>Not quite what you want?</p>
+              <div className='setup-btns__btn' onClick={(e) => this.props.changePage(e, 'create')}>
                 Create Team
                 </div>
+                <div className='setup-btns__btn' onClick={(e) => this.props.changePage(e, 'instructions')}>
+                Rules
+                </div>
+                <div className='setup-btns__btn' onClick={(e)=>this.props.changePage(e, 'main')}>
+                  Main menu
+                </div>
+            </section>
             {this.state.message != '' && <h2>{this.state.message}</h2>}
           </form>
         </section>
