@@ -8,9 +8,19 @@ const leaderboard = require('./db/leaderboard')
 const port = process.env.PORT || 3000
 
 io.on('connection', function(socket){
+  socket.emit('send id', socket.id)
   console.log('a user has connected')
   socket.on('disconnect', function(){
-    console.log('user disconnected')
+    users.getTeamBySocketId(socket.id).then(player => {
+      if(player == undefined){
+        console.log('user disconnected')
+      }
+      else{
+        console.log(player.name + ' disconnected')
+        io.to(player.team).emit('user has left team', player)
+        users.removePlayer(player.id)
+      }
+    })
   })
 
   socket.on('join team', teamName =>{
@@ -59,7 +69,6 @@ io.on('connection', function(socket){
 
   // LEADERBOARD
   socket.on('add to leaderboard', teamData => {
-    //console.log('received request in server')
     leaderboard.addToLeaderboard(teamData).then(() => {
       leaderboard.getLeaderboard(teamData.teamSize).then(leaders => {
         io.to(teamData.teamCode).emit('receive leaderboard', leaders)

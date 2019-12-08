@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import {savePlayerDetails, incrementPage, saveTeamName} from '../actions'
 import { addPlayerToTeam, getTeams, getPlayersByTeam } from '../api/users'
 import socket from '../api/socket'
 
@@ -48,7 +49,6 @@ class Join extends React.Component {
       }
       else {
         getPlayersByTeam(this.state.team).then(res => {
-          console.log(JSON.parse(res.text)[0].game_started)
           if(JSON.parse(res.text)[0].game_started){
             this.setState({
               message: 'This team has started playing without you!'
@@ -71,26 +71,14 @@ class Join extends React.Component {
 
   addPlayerToTeam = (captain) => {
     socket.emit('join team', this.state.team)
-    addPlayerToTeam(this.state.player, this.state.team, captain)
+    addPlayerToTeam(this.state.player, this.state.team, captain, this.props.player.socketId)
       .then(players => {
         socket.emit('show players in lobby', players)
-        this.props.dispatch({
-          type: 'SAVE_PLAYER_DETAILS',
-          playerInfo: {
-            name: this.state.player,
-            captain: captain,
-            index: players.length - 1
-          }
-        })
+        this.props.dispatch(savePlayerDetails(this.state.player, captain, players.length-1)
+        )
       })
-
-    this.props.dispatch({
-      type: 'SAVE_TEAM_NAME',
-      teamName: this.state.team
-    })
-    this.props.dispatch({
-      type: 'INCREMENT_PAGE',
-    })
+    this.props.dispatch(saveTeamName(this.state.team))
+    this.props.dispatch(incrementPage())
   }
 
   render() {
@@ -135,4 +123,10 @@ class Join extends React.Component {
   }
 }
 
-export default connect()(Join)
+function mapStateToProps(state){
+  return{
+    player: state.player
+  }
+}
+
+export default connect(mapStateToProps)(Join)

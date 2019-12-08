@@ -1,4 +1,37 @@
-// CHANGE ROOM NUMBERS
+// SAVE PLAYER DETAILS
+export function savePlayerDetails(name, captain, index){
+    return {
+        type: 'SAVE_PLAYER_DETAILS',
+        playerInfo: {
+          name,
+          captain,
+          index
+        }
+    }
+}
+
+export function saveSocketId(id){
+    return{
+        type: 'ADD_SOCKET_ID',
+        socketId: id
+    }
+}
+
+// SAVE TEAM DEATAILS
+export function saveTeamName(team) {
+    return{
+        type: 'SAVE_TEAM_NAME',
+        teamName: team
+    }
+}
+
+export function clearPlayers(){
+    return{
+        type: 'CLEAR_PLAYERS'
+    }
+}
+
+// CHANGE PAGE NUMBERS
 export function goToGame() {
     return {
         type: 'START_GAME'
@@ -14,6 +47,12 @@ export function goToMainMenu() {
 export function incrementPage() {
     return {
         type: 'INCREMENT_PAGE'
+    }
+}
+
+export function goToStopGame() {
+    return {
+        type: 'STOP_GAME'
     }
 }
 

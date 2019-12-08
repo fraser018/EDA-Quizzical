@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import {savePlayerDetails, saveTeamName, incrementPage} from '../actions'
 import { addPlayerToTeam, getTeams } from '../api/users'
 import socket from '../api/socket'
 
@@ -57,25 +58,14 @@ class Create extends React.Component {
 
   addPlayerToTeam = (captain) => {
     socket.emit('join team', this.state.team)
-    addPlayerToTeam(this.state.captainName, this.state.team, captain)
+    addPlayerToTeam(this.state.captainName, this.state.team, captain, this.props.player.socketId)
       .then(players => {
         socket.emit('show players in lobby', players)
-        this.props.dispatch({
-          type: 'SAVE_PLAYER_DETAILS',
-          playerInfo: {
-            name: this.state.captainName,
-            captain: captain,
-            index: players.length - 1
-          }
-        })
+        this.props.dispatch(savePlayerDetails(this.state.player, captain, players.length-1))
       })
-    this.props.dispatch({
-      type: 'SAVE_TEAM_NAME',
-      teamName: this.state.team
-    })
-    this.props.dispatch({
-      type: 'INCREMENT_PAGE',
-    })
+    this.props.dispatch(saveTeamName(this.state.team))
+
+    this.props.dispatch(incrementPage())
   }
 
 
@@ -118,4 +108,10 @@ class Create extends React.Component {
   }
 }
 
-export default connect()(Create)
+function mapStateToProps(state){
+  return{
+    player: state.player
+  }
+}
+
+export default connect(mapStateToProps)(Create)

@@ -7,12 +7,15 @@ import Results from './Results'
 import GameEnd from './GameEnd'
 import Lobby from './Lobby'
 import Leaderboard from './Leaderboard'
+import StopGame from './StopGame'
 
 import socket from '../api/socket'
 
-import { goToGame, goToMainMenu, incrementPage } from '../actions/index'
+import { saveSocketId } from '../actions/index'
+import { goToGame, goToMainMenu, incrementPage, goToStopGame } from '../actions/index'
 import { addQuestions, resetQuestions } from '../actions/index'
 import { resetPlayerResponses } from '../actions/index'
+import { clearPlayers } from '../actions/index'
 import { incrementAnswerCount, resetAnswerCount } from '../actions/index'
 import { resetClock, decrementClock } from '../actions/index'
 import { incrementScore, resetScore } from '../actions/index'
@@ -22,9 +25,26 @@ import { addLeaderboard, resetLeaderboard} from '../actions/index'
 class App extends React.Component {
   constructor(props) {
     super(props)
+    this.state={
+      missingPlayers:[]
+    }
   }
 
   componentDidMount() {
+    // Receives socket id from server, adds to state
+    socket.on('send id', id=>{
+      this.props.dispatch(saveSocketId(id))
+    })
+
+    // Stops game when another player leaves the team
+    socket.on('user has left team', player=>{
+      this.props.dispatch(goToStopGame())
+      this.props.dispatch(clearPlayers())
+      this.setState({
+        missingPlayers:[...this.state.missingPlayers, player.name]
+      })
+    })
+
     // Reset game
     socket.on('reset game', () => {
       this.props.dispatch(resetQuestions())
@@ -98,6 +118,7 @@ class App extends React.Component {
         {this.props.pageNumber == 4 && <Results />}
         {this.props.pageNumber == 5 && <GameEnd />}
         {this.props.pageNumber == 6 && <Leaderboard />}
+        {this.props.pageNumber == 7 && <StopGame players={this.state.missingPlayers} />}
       </>
     )
   }

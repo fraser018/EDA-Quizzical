@@ -2,8 +2,8 @@ const environment = process.env.NODE_ENV || 'development'
 const config = require('../../knexfile')[environment]
 const connection = require('knex')(config)
 
-function addPlayerToTeam(user, team, captain, db = connection){
-  return db('users').insert({'name': user, 'team': team, 'captain': captain})
+function addPlayerToTeam(user, team, captain, socket, db = connection){
+  return db('users').insert({'name': user, 'team': team, 'captain': captain, 'socket_id': socket})
 }
 
 function getPlayersFromTeam(team, db = connection){
@@ -23,9 +23,21 @@ function userInGame(team, db = connection){
    .then(res=>res)
 }
 
+function getTeamBySocketId(id, db = connection){
+  return db('users').where('socket_id', id).first()
+    .then(res=>res)
+}
+
+function removePlayer(id, db = connection){
+  return db('users').where('id', id)
+  .del().then(res=>res)
+}
+
 module.exports = {
   addPlayerToTeam,
   getPlayersFromTeam,
   getTeams,
-  userInGame
+  userInGame,
+  getTeamBySocketId,
+  removePlayer
 }
