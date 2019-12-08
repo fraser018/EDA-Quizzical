@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { HashRouter as Router, Route } from 'react-router-dom'
+
 
 import Welcome from './Welcome'
 import Game from './Game'
@@ -12,7 +14,7 @@ import StopGame from './StopGame'
 import socket from '../api/socket'
 
 import { saveSocketId } from '../actions/index'
-import { goToGame, goToMainMenu, incrementPage, goToStopGame } from '../actions/index'
+import { goToGame, goToMainMenu, incrementPage, goToStopGame} from '../actions/index'
 import { addQuestions, resetQuestions } from '../actions/index'
 import { resetPlayerResponses } from '../actions/index'
 import { clearPlayers } from '../actions/index'
@@ -30,7 +32,14 @@ export class App extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount(){ 
+    // Handle browser navigation
+    window.addEventListener('popstate', () => {
+      history.pushState(null, null, location.href)
+      history.go(1)
+    })
+
+
     // Receives socket id from server, adds to state
     socket.on('send id', id=>{
       this.props.dispatch(saveSocketId(id))
@@ -111,7 +120,7 @@ export class App extends React.Component {
   
   render() {
     return (
-      <>
+      <Router>
         {this.props.pageNumber == 1 && <Welcome />}
         {this.props.pageNumber == 2 && <Lobby />}
         {this.props.pageNumber == 3 && <Game />}
@@ -119,7 +128,7 @@ export class App extends React.Component {
         {this.props.pageNumber == 5 && <GameEnd />}
         {this.props.pageNumber == 6 && <Leaderboard />}
         {this.props.pageNumber == 7 && <StopGame players={this.state.missingPlayers} />}
-      </>
+      </Router>
     )
   }
 }
@@ -128,7 +137,7 @@ function mapStateToProps(state) {
   return {
     pageNumber: state.pageNumber,
     clock: state.clock,
-    players: state.players
+    players: state.players,
   }
 }
 
