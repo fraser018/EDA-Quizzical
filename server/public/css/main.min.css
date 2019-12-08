@@ -19,22 +19,22 @@ h1, h2 {
 }
 
 .home-gameTitle {
-  font-size: 3rem;
+  font-size: 2.8rem;
   padding-bottom: 3vh;
   margin-bottom: 1rem;
   border-bottom: 3px solid #000;
 }
 
 .home-logo {
-  padding-top: 7rem;
+  padding-top: 2rem;
 }
 
 .home-logo__pic {
-  height: 12rem;
+  height: 16rem;
 }
 
 .home-btns {
-  padding-top: 15vh;
+  padding-top: 9vh;
 }
 
 .home-btns__btn {
@@ -62,7 +62,10 @@ h1, h2 {
 
 .setup {
   height: 100%;
-  padding: 5vh 20vw;
+  padding-top: 5vh;
+  padding-bottom: 1vh;
+  padding-left: 10vh;
+  padding-right: 10vh;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -77,14 +80,27 @@ h1, h2 {
 }
 
 .setup-create {
-  font-size: 2rem;
-  padding-bottom: 1rem;
+  font-size: 1.5rem;
+  padding-bottom: 4rem;
+}
+
+.setup-form {
+  padding: .3rem;
+}
+
+.setup-join {
+  padding-top: 5rem;
 }
 
 .setup-team {
   font-weight: 700;
   position: relative;
   text-align: left;
+  padding: .3rem;
+}
+
+.setup-team__text {
+  padding-bottom: .5rem;
 }
 
 .setup-team__fields {
@@ -94,6 +110,11 @@ h1, h2 {
 .setup-user {
   font-weight: 700;
   text-align: left;
+  padding: .3rem;
+}
+
+.setup-user__text {
+  padding-bottom: .5rem;
 }
 
 .setup-user__fields {
@@ -184,7 +205,7 @@ h1, h2 {
 }
 
 .loading-art {
-  padding-top: 30vh;
+  padding-top: 25vh;
 }
 
 .questions {
@@ -204,8 +225,8 @@ h1, h2 {
 }
 
 .questions-title {
-  font-size: 2rem;
-  padding-top: 25vh;
+  font-size: 1.4rem;
+  padding-top: 12vh;
   padding-bottom: 8vh;
   margin-bottom: 1rem;
 }
@@ -266,7 +287,7 @@ h1, h2 {
 }
 
 .results-question {
-  font-size: 2rem;
+  font-size: 1.4rem;
   padding-top: 20vh;
   padding-bottom: 8vh;
   margin-bottom: 1rem;
@@ -310,8 +331,8 @@ h1, h2 {
 
 .end-title {
   font-size: 2rem;
-  padding-top: 20vh;
-  padding-bottom: 8vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
   margin-bottom: 1rem;
 }
 
@@ -333,6 +354,45 @@ h1, h2 {
   padding: 8px 10px;
   border-radius: 7px;
   border: solid 2px #8e9699;
+}
+
+.leaderboard {
+  height: 100%;
+  padding: 5vh 20vw;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.leaderboard-gameTitle {
+  font-size: 1.8rem;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid #000;
+}
+
+.leaderboard-title {
+  font-size: 1.4rem;
+  padding-top: 12vh;
+  padding-bottom: 8vh;
+  margin-bottom: 1rem;
+}
+
+.leaderboard-team {
+  font-weight: 700;
+  position: relative;
+  text-align: left;
+  padding: .3rem;
+}
+
+.leaderboard-team__field {
+  width: 100%;
+}
+
+.leaderboard-team__score {
+  width: 100%;
+  font-family: 'Comfortaa', cursive;
 }
 
 body {

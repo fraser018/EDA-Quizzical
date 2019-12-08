@@ -55,7 +55,7 @@ class Welcome extends React.Component {
             <h1 className='home-gameTitle'>Quizzical</h1>
             <div className='home-logo'>
               <img className='home-logo__pic'
-                src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ2O1b8CY6ZxPzZQP84Wxau5ZDFTdYiWS9EfknQHxCqSp4TX2iO'
+                src='./imgs/img-2.png'
                 alt='logo'
               />
             </div>

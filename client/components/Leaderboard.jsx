@@ -36,9 +36,9 @@ class Leaderboard extends React.Component {
                 {this.props.leaders.length == 0 ? 
                     (<>{this.props.player.captain ? < AddScore /> : < LeaderboardSplash />}</>)
                     : 
-                    (<div className="Leaderboard">
+                    (<div className="leaderboard">
 
-                        <h1>Quizzical</h1>
+                        <h1 className="leaderboard-gameTitle">Quizzical</h1>
 
                         <div className='end-btns'>
                             {this.props.player.captain && (
