@@ -39,7 +39,6 @@ export class App extends React.Component {
       history.go(1)
     })
 
-
     // Receives socket id from server, adds to state
     socket.on('send id', id=>{
       this.props.dispatch(saveSocketId(id))

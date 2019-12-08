@@ -75,10 +75,9 @@ class Create extends React.Component {
       <main>
         <section className='setup'>
           <h1 className='setup-gameTitle'>Quizzical</h1>
-          <h2 className='setup-create'>Game Created</h2>
+          {/* <h2 className='setup-create'>Game Created</h2> */}
           <h1>Team Code:</h1>
           <h1>{this.state.team}</h1>
-          <p>Give this code to your team</p>
         </section>
 
         <section className='setup'>

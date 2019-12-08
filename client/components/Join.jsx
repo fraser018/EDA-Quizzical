@@ -88,7 +88,7 @@ class Join extends React.Component {
           <h1 className='setup-gameTitle'>Quizzical</h1>
           <form>
             <section className='setup-team'>
-              <p className="setup-team__text">Team Name:</p>
+              <p className="setup-team__text">Team Code:</p>
               <input
                 className='setup-team__fields'
                 type='text'
