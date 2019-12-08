@@ -40,7 +40,7 @@ export class Welcome extends React.Component {
   //   })
   // }
 
-  changePage = (event, page) => {
+  changePage = (event, page) => {    
     event.preventDefault();
     this.setState({
       display: page
@@ -54,20 +54,20 @@ export class Welcome extends React.Component {
           <section className='home'>
             <h1 className='home-gameTitle'>Quizzical</h1>
             <div className='home-logo'>
-              <img className='home-logo__pic'
+              <img className='home-logo__pic' id="home-logo"
                 src='./imgs/img-2.png'
                 alt='logo'
               />
             </div>
             <div className='home-btns'>
-              <div className='home-btns__btn' onClick={(e)=>this.changePage(e, 'create')}>
+              <div className='home-btns__btn' id="create-btn" onClick={(e)=>this.changePage(e, 'create')}>
                 CREATE TEAM
                   </div>
-              <div className='home-btns__btn' onClick={(e)=>this.changePage(e, 'join')}>
+              <div className='home-btns__btn' id="join-btn" onClick={(e)=>this.changePage(e, 'join')}>
                 JOIN TEAM
                   </div>
               <div
-                className='home-btns__btn'
+                className='home-btns__btn' id="instruct-btn"
                 onClick={(e)=>this.changePage(e, 'instructions')}
               >
                 INSTRUCTIONS
