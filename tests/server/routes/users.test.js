@@ -49,11 +49,10 @@ test('getPlayersFromTeam returns all the players in one team', ()=>{
 })
 
 test('getTeams returns an array', ()=> {
-  const expected = typeof []
+  const expected = [ 'hello', 'world', 'winners' ]
   return db.getTeams(database)
   .then(teams => {
-    
-    const actual = typeof teams
+    const actual = teams
     expect(actual).toEqual(expected)
   })
 })
