@@ -35,3 +35,16 @@ test('get leaderboard team based on 2 teamsize ', () => {
     })
 })
 
+test('get leaderboard team based on 4 teamsize ', () => {
+    const expected = [{
+             "id": 2,
+             "teamName": "Red",
+             "teamScore": 15,
+             "teamSize": 4
+           }]
+    return db.getLeaderboard('4', database)
+    .then(teams => {
+        const actual = teams
+        expect(actual).toEqual(expected)
+    })
+})
