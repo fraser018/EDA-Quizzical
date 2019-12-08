@@ -1,6 +1,10 @@
 .setup {
   height: 100%;
-  padding: 5vh 20vw;
+  // padding: 5vh 20vw;
+  padding-top: 5vh;
+  padding-bottom: 1vh;
+  padding-left: 10vh;
+  padding-right: 10vh;
   align-items: center;
   text-align: center;
 
@@ -12,14 +16,27 @@
     }
 
     &-create {
-      font-size: 2rem;
-      padding-bottom: 1rem;
+      font-size: 1.5rem;
+      padding-bottom: 4rem;
+    }
+
+    &-form {
+      padding: .3rem;
+    }
+
+    &-join {
+      padding-top: 5rem;
     }
 
     &-team {
       font-weight: 700;
       position: relative;
       text-align: left;
+      padding: .3rem;
+
+        &__text {
+          padding-bottom: .5rem;
+        }
 
         &__fields {
           width: 100%;
@@ -29,8 +46,12 @@
     &-user {
       font-weight: 700;
       text-align: left;
+      padding: .3rem;
       
-      
+      &__text {
+        padding-bottom: .5rem;
+      }
+
         &__fields {
         width: 100%;
       }

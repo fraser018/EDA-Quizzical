@@ -57,7 +57,7 @@ class GameEnd extends React.Component {
         </div>
         {this.props.player.captain && (
           <div className='end-btns'>
-            <h3>Keen to see how you measured up?</h3>
+            {/* <h3>Keen to see how you measured up?</h3> */}
             <div className='end-btns__btn' onClick={this.leaderboard}>
               Leaderboard
             </div>
