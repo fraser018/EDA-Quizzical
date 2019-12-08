@@ -1,4 +1,3 @@
-// const api = require('../../../client/api/users')
 const config = require('../../../knexfile').test
 const database = require('knex')(config)
 const request = require('supertest')
