@@ -58,27 +58,11 @@ export class Welcome extends React.Component {
               />
             </div>
             <div className='home-btns'>
-<<<<<<< HEAD
-              <div className='home-btns__btn' onClick={(e)=>this.changePage(e, 'create')}>
-                Create team
-||||||| merged common ancestors
-              <div className='home-btns__btn' onClick={(e)=>this.changePage(e, 'create')}>
-                CREATE TEAM
-=======
               <div className='home-btns__btn' id="create-btn" onClick={(e) => this.changePage(e, 'create')}>
                 CREATE TEAM
->>>>>>> 534cf88935aa648b7323fb2fbccd3db922356065
                   </div>
-<<<<<<< HEAD
-              <div className='home-btns__btn' onClick={(e)=>this.changePage(e, 'join')}>
-                Join team
-||||||| merged common ancestors
-              <div className='home-btns__btn' onClick={(e)=>this.changePage(e, 'join')}>
-                JOIN TEAM
-=======
               <div className='home-btns__btn' id="join-btn" onClick={(e) => this.changePage(e, 'join')}>
                 JOIN TEAM
->>>>>>> 534cf88935aa648b7323fb2fbccd3db922356065
                   </div>
               <div
                 className='home-btns__btn' id="instruct-btn"
