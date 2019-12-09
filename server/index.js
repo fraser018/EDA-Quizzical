@@ -58,6 +58,10 @@ io.on('connection', function(socket){
     io.to(response.teamName).emit('score', response.score)
   })
 
+  socket.on('check for strike', team=>{
+    io.to(team).emit('check for strike')
+  })
+
   // HANDLE PAGE CHANGES
   socket.on('main menu', teamName=>{
     io.to(teamName).emit('main menu')

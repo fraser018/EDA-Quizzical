@@ -14,7 +14,7 @@ class Results extends React.Component {
   componentDidMount() {
     if (this.props.playerResponses[0]) {
       if (this.props.playerResponses[0].selectedAnswer == this.props.playerResponses[0].correctAnswer) {
-        socket.emit('score', { score: 1, teamName: this.props.teamName })
+        socket.emit('score', { score: 1, teamName: this.props.teamName})
       }
       else {
         socket.emit('score', { score: 0, teamName: this.props.teamName })
@@ -34,16 +34,17 @@ class Results extends React.Component {
   nextQuestion = (event) => {
     event.preventDefault()
     socket.emit('new question', { teamName: this.props.teamName, numOfPlayers: this.props.players.length })
+    socket.emit('check for strike', this.props.teamName)
   }
 
   endGame = (event) => {
     event.preventDefault()
+    socket.emit('check for strike', this.props.teamName)
     socket.emit('increment pages', this.props.teamName)
   }
 
   render() {
     let response = this.props.playerResponses[0]
-
     if (!this.state.showResults) {
       return < ResultSplash />
     }
@@ -51,8 +52,9 @@ class Results extends React.Component {
       return (
         <div className='results'>
           <h1 className='results-gameTitle'>Quizzical</h1>
-
+           {this.props.strike && <h2>Strike!! +50 pts</h2>}
           {response != undefined ? (
+            
             <div>
               <h2 className='results-question'>{response.question}</h2>
 
@@ -92,9 +94,7 @@ class Results extends React.Component {
             )}
           </div>
         </div>
-
       )
-
     }
   }
 }

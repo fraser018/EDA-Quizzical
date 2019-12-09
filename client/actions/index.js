@@ -119,6 +119,13 @@ export function resetScore() {
     }
 }
 
+export function saveStrike(strike) {
+    return {
+        type: 'SAVE_STRIKE',
+        strike
+    }
+}
+
 // ROUNDS
 export function incrementRound() {
     return {
