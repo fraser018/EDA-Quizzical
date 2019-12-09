@@ -45,7 +45,6 @@ class Results extends React.Component {
 
   render() {
     let response = this.props.playerResponses[0]
-
     if (!this.state.showResults) {
       return < ResultSplash />
     }
@@ -53,8 +52,9 @@ class Results extends React.Component {
       return (
         <div className='results'>
           <h1 className='results-gameTitle'>Quizzical</h1>
-
+           {this.props.strike && <h2>Strike!! +50 pts</h2>}
           {response != undefined ? (
+            
             <div>
               <h2 className='results-question'>{response.question}</h2>
 
@@ -94,9 +94,7 @@ class Results extends React.Component {
             )}
           </div>
         </div>
-
       )
-
     }
   }
 }

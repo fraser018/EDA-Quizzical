@@ -139,7 +139,7 @@ export class App extends React.Component {
         {this.props.pageNumber == 1 && <Welcome />}
         {this.props.pageNumber == 2 && <Lobby />}
         {this.props.pageNumber == 3 && <Game />}
-        {this.props.pageNumber == 4 && <Results />}
+        {this.props.pageNumber == 4 && <Results strike={!this.state.roundScores.includes(0)} />}
         {this.props.pageNumber == 5 && <GameEnd />}
         {this.props.pageNumber == 6 && <Leaderboard />}
         {this.props.pageNumber == 7 && <StopGame players={this.state.missingPlayers} />}
