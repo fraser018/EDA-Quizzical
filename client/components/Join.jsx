@@ -88,7 +88,7 @@ class Join extends React.Component {
           <h1 className='setup-gameTitle'>Quizzical</h1>
           <form>
             <section className='setup-team'>
-              <p className="setup-team__text">Team Name:</p>
+              <p className="setup-team__text">Team Code:</p>
               <input
                 className='setup-team__fields'
                 type='text'
@@ -112,10 +112,19 @@ class Join extends React.Component {
                 Join Team
                 </div>
             </section>
-            <div className='setup-btns__btn' onClick={(e) => this.props.changePage(e, 'create')}>
+            <section className='setup-join'>
+              <p>Not quite what you want?</p>
+              <div className='setup-btns__btn' onClick={(e) => this.props.changePage(e, 'create')}>
                 Create Team
                 </div>
-            {this.state.message != '' && <h2>{this.state.message}</h2>}
+                <div className='setup-btns__btn' onClick={(e) => this.props.changePage(e, 'instructions')}>
+                Rules
+                </div>
+                <div className='setup-btns__btn' onClick={(e)=>this.props.changePage(e, 'main')}>
+                  Main menu
+                </div>
+            </section>
+            {this.state.message != '' && <h2 className='setup-errorMessage'>{this.state.message}</h2>}
           </form>
         </section>
       </main>

@@ -16,17 +16,18 @@ h1, h2 {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
+  overflow: hidden;
 }
 
 .home-gameTitle {
   font-size: 2.8rem;
   padding-bottom: 3vh;
   margin-bottom: 1rem;
-  border-bottom: 3px solid #000;
+  border-bottom: 3px solid #1c084d;
 }
 
 .home-logo {
-  padding-top: 2rem;
+  padding-top: 3rem;
 }
 
 .home-logo__pic {
@@ -34,17 +35,21 @@ h1, h2 {
 }
 
 .home-btns {
-  padding-top: 9vh;
+  padding-top: 1vh;
 }
 
 .home-btns__btn {
   font-family: 'Varela Round', sans-serif;
   margin: 0.5rem;
-  background-color: #d3f3eb;
+  background-color: #91e4e7;
   text-decoration: none;
   padding: 8px 10px;
   border-radius: 7px;
-  border: solid 2px #8e9699;
+  border: solid 2px #27086e;
+}
+
+.instruct {
+  overflow: visible;
 }
 
 .instruct-subTitle h3 {
@@ -55,14 +60,18 @@ h1, h2 {
   margin-bottom: .4rem;
 }
 
+.instruct-info .final-step {
+  padding-bottom: 1rem;
+}
+
 .instruct-info__step {
-  margin-top: .4rem;
+  margin-top: 1rem;
   font-weight: 700;
 }
 
 .setup {
   height: 100%;
-  padding-top: 5vh;
+  padding-top: 3vh;
   padding-bottom: 1vh;
   padding-left: 10vh;
   padding-right: 10vh;
@@ -76,12 +85,16 @@ h1, h2 {
   font-size: 1.8rem;
   padding-bottom: 1rem;
   margin-bottom: 2rem;
-  border-bottom: 3px solid #000;
+  border-bottom: 3px solid #1c084d;
+}
+
+.setup-welcomeCaptain {
+  margin-top: 3rem;
 }
 
 .setup-create {
   font-size: 1.5rem;
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
 }
 
 .setup-form {
@@ -89,7 +102,10 @@ h1, h2 {
 }
 
 .setup-join {
-  padding-top: 5rem;
+  position: absolute;
+  bottom: 3vh;
+  left: 50%;
+  margin-left: -100px;
 }
 
 .setup-team {
@@ -105,6 +121,7 @@ h1, h2 {
 
 .setup-team__fields {
   width: 100%;
+  height: 2rem;
 }
 
 .setup-user {
@@ -119,6 +136,8 @@ h1, h2 {
 
 .setup-user__fields {
   width: 100%;
+  height: 2rem;
+  margin-bottom: 1rem;
 }
 
 .setup-btns {
@@ -134,11 +153,16 @@ h1, h2 {
 .setup-btns__btn {
   font-family: 'Varela Round', sans-serif;
   margin: 0.5rem;
-  background-color: #d3f3eb;
+  background-color: #91e4e7;
   text-decoration: none;
   padding: 8px 10px;
   border-radius: 7px;
-  border: solid 2px #8e9699;
+  border: solid 2px #27086e;
+}
+
+.setup-errorMessage {
+  margin-top: 2rem;
+  line-height: 1.5;
 }
 
 .lobby {
@@ -154,12 +178,20 @@ h1, h2 {
   font-size: 1.8rem;
   padding-bottom: 1rem;
   margin-bottom: 2rem;
-  border-bottom: 3px solid #000;
+  border-bottom: 3px solid #1c084d;
 }
 
 .lobby-title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+
+.lobby-instructions {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
 }
 
 .lobby-btn {
@@ -171,11 +203,12 @@ h1, h2 {
           justify-content: center;
   font-family: 'Varela Round', sans-serif;
   margin: 0.5rem;
-  background-color: #d3f3eb;
+  margin-top: 1.5rem;
+  background-color: #91e4e7;
   text-decoration: none;
   padding: 8px 10px;
   border-radius: 7px;
-  border: solid 2px #8e9699;
+  border: solid 2px #27086e;
 }
 
 .lobby-users {
@@ -183,9 +216,10 @@ h1, h2 {
 }
 
 .lobby-users__name {
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  border-bottom: solid 1px #83918c;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  line-height: 1.3;
+  border-bottom: solid 1px #27086e;
 }
 
 .loading {
@@ -201,11 +235,17 @@ h1, h2 {
   font-size: 1.8rem;
   padding-bottom: 1rem;
   margin-bottom: 2rem;
-  border-bottom: 3px solid #000;
+  border-bottom: 3px solid #1c084d;
+}
+
+.loading-text {
+  margin-top: 5rem;
+  line-height: 1.5;
+  font-size: 1.5rem;
 }
 
 .loading-art {
-  padding-top: 25vh;
+  padding-top: 10vh;
 }
 
 .questions {
@@ -221,7 +261,7 @@ h1, h2 {
   font-size: 1.8rem;
   padding-bottom: 1rem;
   margin-bottom: 2rem;
-  border-bottom: 3px solid #000;
+  border-bottom: 3px solid #1c084d;
 }
 
 .questions-title {
@@ -229,6 +269,7 @@ h1, h2 {
   padding-top: 12vh;
   padding-bottom: 8vh;
   margin-bottom: 1rem;
+  line-height: 1.3;
 }
 
 .questions-clock {
@@ -247,11 +288,11 @@ h1, h2 {
 .questions-btns__btn {
   font-family: 'Varela Round', sans-serif;
   margin: .2rem;
-  background-color: #d3f3eb;
+  background-color: #91e4e7;
   text-decoration: none;
   padding: 8px 10px;
   border-radius: 7px;
-  border: solid 2px #8e9699;
+  border: solid 2px #27086e;
 }
 
 .progress-bar {
@@ -259,7 +300,8 @@ h1, h2 {
   height: 20px;
   width: inherit;
   border-radius: 50px;
-  border: 1px solid #333;
+  border: 1px solid #27086e;
+  top: 1.5rem;
 }
 
 .filler {
@@ -283,14 +325,18 @@ h1, h2 {
   font-size: 1.8rem;
   padding-bottom: 1rem;
   margin-bottom: 2rem;
-  border-bottom: 3px solid #000;
+  border-bottom: 3px solid #1c084d;
 }
 
 .results-question {
   font-size: 1.4rem;
-  padding-top: 20vh;
+  padding-top: 3rem;
   padding-bottom: 8vh;
   margin-bottom: 1rem;
+}
+
+.results-answers {
+  margin-bottom: 3rem;
 }
 
 .results-btns {
@@ -306,11 +352,11 @@ h1, h2 {
 .results-btns__btn {
   font-family: 'Varela Round', sans-serif;
   margin: .2rem;
-  background-color: #d3f3eb;
+  background-color: #91e4e7;
   text-decoration: none;
   padding: 8px 10px;
   border-radius: 7px;
-  border: solid 2px #8e9699;
+  border: solid 2px #27086e;
 }
 
 .end {
@@ -326,7 +372,7 @@ h1, h2 {
   font-size: 1.8rem;
   padding-bottom: 1rem;
   margin-bottom: 2rem;
-  border-bottom: 3px solid #000;
+  border-bottom: 3px solid #1c084d;
 }
 
 .end-title {
@@ -349,7 +395,7 @@ h1, h2 {
 .end-btns__btn {
   font-family: 'Varela Round', sans-serif;
   margin: .2rem;
-  background-color: #d3f3eb;
+  background-color: #91e4e7;
   text-decoration: none;
   padding: 8px 10px;
   border-radius: 7px;
@@ -369,7 +415,7 @@ h1, h2 {
   font-size: 1.8rem;
   padding-bottom: 1rem;
   margin-bottom: 2rem;
-  border-bottom: 3px solid #000;
+  border-bottom: 3px solid #1c084d;
 }
 
 .leaderboard-title {
@@ -396,8 +442,8 @@ h1, h2 {
 }
 
 body {
-  background: #f0923b;
-  color: #000;
+  background: #f17c5e;
+  color: #1c084d;
   height: 100vh;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   line-height: 1;

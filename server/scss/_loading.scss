@@ -11,8 +11,14 @@
           border-bottom: 3px solid set-text-color($primary-color);
   }
 
+  &-text {
+    margin-top: 5rem;
+    line-height: 1.5;
+    font-size: 1.5rem;
+  }
+
   &-art {
-    padding-top: 25vh;
+    padding-top: 10vh;
   }
 }
 

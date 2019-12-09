@@ -1,4 +1,4 @@
-import { Welcome } from '../../../client/components/Welcome'
+import Welcome from '../../../client/components/Welcome'
 import Instructions from '../../../client/components/Instructions'
 import Join from '../../../client/components/Join'
 import Create from '../../../client/components/Create'
@@ -7,7 +7,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 const setUp = (props = {}) => {
-    const component = shallow(<Welcome {...props} />)
+    const component = shallow(<Welcome {...props} window={false} />)
     return component
 } 
 
@@ -30,12 +30,12 @@ describe('Welcome Component Tests', () => {
 
     it('Should change state to instructions', () => {
         // console.log(component.state());
-        const expected = {display: 'instructions'}
+        const expected = 'instructions'
         const event = { preventDefault: () => {} }
         component.find('#instruct-btn').simulate('click', event)
         // console.log(component.state());
-        const actual = component.state()
-        expect(actual).toEqual(expected)
+        const actual = component.state().display
+        expect(actual).toContain(expected)
         
     })
 
@@ -55,11 +55,11 @@ describe('Welcome Component Tests', () => {
      })
      
      it('Should change state to join', () => {
-         const expected = {display: 'join'}
+         const expected = 'join'
          const event = { preventDefault: () => {} }
          component.find('#join-btn').simulate('click', event)
-         const actual = component.state()
-         expect(actual).toEqual(expected)
+         const actual = component.state().display
+         expect(actual).toContain(expected)
      })
 
      it('Should render join component if state equals "join"', () => {
@@ -74,11 +74,11 @@ describe('Welcome Component Tests', () => {
      })
 
      it('Should change state to create', () => {
-         const expected = {display: 'create'}
+         const expected = 'create'
          const event = { preventDefault: () => {} }
          component.find('#create-btn').simulate('click', event)
-         const actual = component.state()
-         expect(actual).toEqual(expected)
+         const actual = component.state().display
+         expect(actual).toContain(expected)
      })
 
      it('Should render create component if state equals "create"', () => {

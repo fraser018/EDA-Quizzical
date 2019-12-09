@@ -87,65 +87,65 @@ class Game extends React.Component {
     }
     let q = this.props.questions
     return (
-    !q.trivias ?< QuestionSplash />:
-    this.props.clock > this.props.players.length*30 ? <QuestionSplash/> :
-      <div className='questions'>
-        <h1 className="questions-gameTitle">Quizzical</h1>
-        {q.trivias && <h2 className='questions-title'>{q.trivias[this.props.player.index].question}</h2>}
-              <p className='questions-clock'>{this.props.clock}</p>
-              <div className="progress-bar">
-                <div style={{ width: `${this.props.clock*100/(this.props.players.length*30)}%`}} className="filler"></div>
+      !q.trivias ? < QuestionSplash /> :
+        this.props.clock > this.props.players.length * 30 ? <QuestionSplash /> :
+          <div className='questions'>
+            <h1 className="questions-gameTitle">Quizzical</h1>
+            {/* <p className='questions-clock'>{this.props.clock}</p> */}
+            <div className="progress-bar">
+              <div style={{ width: `${this.props.clock * 100 / (this.props.players.length * 30)}%` }} className="filler"></div>
+            </div>
+            {q.trivias && <h2 className='questions-title'>{q.trivias[this.props.player.index].question}</h2>}
+            {!this.state.submittedAnswer && q.jumbledTrivias && (
+              <div className='questions-btns'>
+                <div
+                  className='questions-btns__btn'
+                  id={
+                    q.jumbledTrivias[this.props.player.index][this.state.display1]
+                  }
+                  onClick={this.handleClick}
+                >
+                  {q.jumbledTrivias[this.props.player.index][this.state.display1]}
+                </div>
+                <div
+                  className='questions-btns__btn'
+                  id={
+                    q.jumbledTrivias[this.props.player.index][this.state.display2]
+                  }
+                  onClick={this.handleClick}
+                >
+                  {q.jumbledTrivias[this.props.player.index][this.state.display2]}
+                </div>
+                <div
+                  className='questions-btns__btn'
+                  id={
+                    q.jumbledTrivias[this.props.player.index][this.state.display3]
+                  }
+                  onClick={this.handleClick}
+                >
+                  {q.jumbledTrivias[this.props.player.index][this.state.display3]}
+                </div>
+                <div
+                  className='questions-btns__btn'
+                  id={
+                    q.jumbledTrivias[this.props.player.index][this.state.display4]
+                  }
+                  onClick={this.handleClick}
+                >
+                  {q.jumbledTrivias[this.props.player.index][this.state.display4]}
+                </div>
               </div>
-        {!this.state.submittedAnswer && q.jumbledTrivias && (
-          <div className='questions-btns'>
-            <div
-              className='questions-btns__btn'
-              id={
-                q.jumbledTrivias[this.props.player.index][this.state.display1]
-              }
-              onClick={this.handleClick}
-            >
-              {q.jumbledTrivias[this.props.player.index][this.state.display1]}
-            </div>
-            <div
-              className='questions-btns__btn'
-              id={
-                q.jumbledTrivias[this.props.player.index][this.state.display2]
-              }
-              onClick={this.handleClick}
-            >
-              {q.jumbledTrivias[this.props.player.index][this.state.display2]}
-            </div>
-            <div
-              className='questions-btns__btn'
-              id={
-                q.jumbledTrivias[this.props.player.index][this.state.display3]
-              }
-              onClick={this.handleClick}
-            >
-              {q.jumbledTrivias[this.props.player.index][this.state.display3]}
-            </div>
-            <div
-              className='questions-btns__btn'
-              id={
-                q.jumbledTrivias[this.props.player.index][this.state.display4]
-              }
-              onClick={this.handleClick}
-            >
-              {q.jumbledTrivias[this.props.player.index][this.state.display4]}
-            </div>
-          </div>
-        )}
+            )}
 
-        {this.state.submittedAnswer && (
-          <div className='questions-btns__btn'>
-            <div>{this.props.playerResponses[0].selectedAnswer}</div>
+            {this.state.submittedAnswer && (
+              <div className='questions-btns__btn'>
+                <div>{this.props.playerResponses[0].selectedAnswer}</div>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    )}
+    )
   }
-// }
+}
 
 function mapStateToProps(state) {
   return {
