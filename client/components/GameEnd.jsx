@@ -36,10 +36,10 @@ class GameEnd extends React.Component {
       <div className='end'>
         <h1 className='end-gameTitle'>Quizzical</h1>
         <h1 className='end-title'>
-          Congrats Team {this.props.teamName}, you played our game and survived!
+          Congrats!
         </h1>
         <ChartistGraph className='ct-chart' data={data} options={options} type={'Pie'} />
-        <h3>
+        <h3 className='end-scoreText'>
           Your team got {this.props.score.correct} out of{' '}
           {this.props.score.total} answers correct!
         </h3>

@@ -185,6 +185,7 @@ h1, h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   margin-top: 3rem;
+  line-height: 1.3rem;
 }
 
 .lobby-instructions {
@@ -333,10 +334,22 @@ h1, h2 {
   padding-top: 3rem;
   padding-bottom: 8vh;
   margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
 .results-answers {
   margin-bottom: 3rem;
+  line-height: 1.2;
+}
+
+.results-incorrect {
+  margin-bottom: 0.8rem;
+}
+
+.results-noAnswer {
+  margin-top: 25vh;
+  margin-bottom: 10vh;
+  line-height: 1.5;
 }
 
 .results-btns {
@@ -379,7 +392,12 @@ h1, h2 {
   font-size: 2rem;
   padding-top: 1vh;
   padding-bottom: 1vh;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
+}
+
+.end-scoreText {
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
 }
 
 .end-btns {

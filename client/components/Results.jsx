@@ -62,14 +62,14 @@ class Results extends React.Component {
                 </div>
               ) : (
                   <div className='results-answers'>
-                    <h3>Incorrect: {response.selectedAnswer}</h3>
+                    <h3 className='results-incorrect'>Incorrect: {response.selectedAnswer}</h3>
                     <h3>Correct: {response.correctAnswer}</h3>
                   </div>
                 )}
             </div>
           ) : (
               <div>
-                <h3>Be quicker next time!</h3>
+                <h1 className='results-noAnswer'>Be quicker next time!</h1>
               </div>
             )}
           <div className='results-btns'>
