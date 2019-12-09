@@ -48,6 +48,11 @@ export class App extends React.Component {
       history.pushState(null, null, location.href)
       history.go(1)
     })
+    const noSleep = new NoSleep()
+      
+      document.addEventListener('touchstart', function() {
+        noSleep.enable()
+      })
 
       document.addEventListener('touchstart', function enableNoSleep() {
         document.removeEventListener('touchstart', enableNoSleep, false)
