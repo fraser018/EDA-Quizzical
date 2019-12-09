@@ -20,7 +20,7 @@ import { resetPlayerResponses } from '../actions/index'
 import { clearPlayers } from '../actions/index'
 import { incrementAnswerCount, resetAnswerCount } from '../actions/index'
 import { resetClock, decrementClock } from '../actions/index'
-import { incrementScore, resetScore, saveStrike, saveStreak } from '../actions/index'
+import { incrementScore, resetScore, saveStrike, resetStrike, saveStreak } from '../actions/index'
 import { incrementRound, resetRound, setTotalRounds} from '../actions/index'
 import { addLeaderboard, resetLeaderboard} from '../actions/index'
   
@@ -74,6 +74,7 @@ export class App extends React.Component {
       this.props.dispatch(resetRound())
       this.props.dispatch(resetScore())
       this.props.dispatch(resetLeaderboard())
+      this.props.dispatch(resetStrike())
     })
 
     // Page Changes
@@ -149,13 +150,10 @@ export class App extends React.Component {
     socket.on('receive leaderboard', leaderboard => {
       this.props.dispatch(addLeaderboard(leaderboard))
     })
-  }
-
-  
+  }  
   
   render() {
-    return (
-      
+    return (      
       <Router>
         {this.props.pageNumber == 1 && <Welcome />}
         {this.props.pageNumber == 2 && <Lobby />}
