@@ -36,15 +36,22 @@ class Lobby extends React.Component {
           <h1 className='lobby-gameTitle'>Quizzical</h1>
 
           {!this.props.player.captain &&
-            <h2 className='lobby-title'>
-              Hello {this.props.player.name} your team code is {' '}
-              {this.props.teamName}
-            </h2>}
+            <>
+              <h2 className='lobby-title'>
+                Welcome {this.props.player.name}!
+              </h2>
+              <h2 className='lobby-instructions'>Your team code is: {' '}
+                {this.props.teamName}</h2>
+            </>}
           {this.props.player.captain &&
-            <h2 className='lobby-title'>
-              Hello {this.props.player.name} give this code to your team {' '}
-              {this.props.teamName}
-            </h2>}
+            <>
+              <h2 className='lobby-title'>
+                Welcome {this.props.player.name}!
+              </h2>
+              <h2 className='lobby-instructions'>Give this code to your team: {' '}
+                {this.props.teamName}</h2>
+            </>}
+
           <div className='lobby-users'>
             {this.state.players.length > 0 &&
               this.state.players.map(player => {

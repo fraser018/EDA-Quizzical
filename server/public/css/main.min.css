@@ -184,6 +184,14 @@ h1, h2 {
 .lobby-title {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+
+.lobby-instructions {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
 }
 
 .lobby-btn {
@@ -195,11 +203,12 @@ h1, h2 {
           justify-content: center;
   font-family: 'Varela Round', sans-serif;
   margin: 0.5rem;
+  margin-top: 1.5rem;
   background-color: #91e4e7;
   text-decoration: none;
   padding: 8px 10px;
   border-radius: 7px;
-  border: solid 2px #8e9699;
+  border: solid 2px #27086e;
 }
 
 .lobby-users {
@@ -207,9 +216,10 @@ h1, h2 {
 }
 
 .lobby-users__name {
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  border-bottom: solid 1px #83918c;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  line-height: 1.3;
+  border-bottom: solid 1px #27086e;
 }
 
 .loading {
