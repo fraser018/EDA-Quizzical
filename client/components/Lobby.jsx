@@ -56,7 +56,7 @@ class Lobby extends React.Component {
             {this.state.players.length > 0 &&
               this.state.players.map(player => {
                 return (
-                  <h3 className='lobby-users__name' key={player.id}>{player.name} has joined the team!</h3>
+                  <h3 className='lobby-users__name' key={player.id}>{player.name} is in!</h3>
                 )
               })}
           </div>
