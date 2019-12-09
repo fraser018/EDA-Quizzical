@@ -6,7 +6,7 @@ import Create from '../../../client/components/Create'
 import React from 'react'
 import { shallow, mount } from 'enzyme'
 
-const setUp = (props = {}) => {
+const setUp = (props = {}) => {jest.fn()
   const component = shallow(<Join {...props} />)
   return component
 }
@@ -37,7 +37,7 @@ describe('Join Component Tests', () => {
     expect(field.length).toEqual(1)
   })
 
-  it('Should change state when, user types in input fields', () => {
+  it('Should change state when, user types in user field', () => {
     const expected = 'TEST'
     const event = { target: { name: 'player', value: 'test'} }
     
@@ -47,36 +47,42 @@ describe('Join Component Tests', () => {
     
     const actual = component.find('#user-text').props().value
     expect(actual).toBe(expected)
-
-    // component.find("#create-btn").simulate('click', event)
-    // console.log(component.state())
-    // const actual = component.state().display
-    // expect(actual).toContain(expected)
-
-    // const changePageMock = jest.fn()
-
-    // const component = shallow(<Join changePage={changePageMock}/>)
-
-    // expect(changePageMock.mock.calls.length).toEqual(1)
   })
+
+  it('Should change state when, user types in team field', () => {
+    const expected = 'TEST'
+    const event = { target: { name: 'team', value: 'test'} }
+
+    expect(component.find('#team-text').props().value).toBe('')
+
+    component.find('#team-text').simulate('change', event)
+
+    const actual = component.find('#team-text').props().value
+    expect(actual).toBe(expected)
+  })
+
+  it('Should run changepage func when "Create Team" is clicked', () => {
+    const changePageMock = jest.fn()
+
+    const component = shallow(<Join changePage={changePageMock}/>)
+    component.find('#create-btn').simulate('click', 'changePageMock')
+
+    expect(changePageMock.mock.calls.length).toEqual(1)
+
+  })
+
+  it('Should run joinTeam function when Join Team is clicked', () => {
+    
+    const spy = jest.spyOn(Join.prototype, 'joinTeam')
+    const component = shallow(<Join />)
+
+    component.find('#join-btn').simulate('click', 'joinTeam')
+   
+    expect(spy).toHaveBeenCalled()
+  })
+
+
 
 })
 
 
-// describe('Join Component Tests', () => {
-//   let component2
-//   beforeEach(() => {
-//     component2 = setUp2()
-//   })
-
-//   it('Should change state to create, when "Create Team" is clicked', () => {
-//     console.log(component2.state())
-//     const expected = 'create'
-//     const event = { preventDefault: () => {} }
-//     component2.find('#create-btn').simulate('click', event)
-//     console.log(component2.state())
-//     const actual = component2.state().display
-//     expect(actual).toContain(expected)
-//   })
-
-// })
