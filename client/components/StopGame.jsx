@@ -9,20 +9,21 @@ class StopGame extends React.Component {
 
   render() {
     return (
-      <>
-        <h2>Oops it looks like somebody has closed their page!</h2>
+      <div className="lobby">
+        <h1 className='lobby-gameTitle'>Quizzical</h1>
+        <h2 className='lobby-title'>Oops it looks like somebody has closed their page!</h2>
         {this.props.players &&
           this.props.players.map(player => {
             return (
-              <h3>{player} has left the game</h3>
+              <h3 className="lobby-users__name">{player} has left the game</h3>
             )
           })}
         <section>
-          <div className='setup-btns__btn' onClick={()=>window.location.reload()}>
+          <div className='lobby-btn' onClick={()=>window.location.reload()}>
             Go back to main screen
                 </div>
         </section>
-      </>
+      </div>
     )
   }
 }

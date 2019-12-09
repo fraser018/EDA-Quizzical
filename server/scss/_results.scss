@@ -16,10 +16,26 @@
     padding-top: 3rem;
     padding-bottom: 8vh;
     margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  &-points {
+    margin-top: 4rem;
   }
 
   &-answers {
     margin-bottom: 3rem;
+    line-height: 1.2;
+  }
+
+  &-incorrect {
+    margin-bottom: 0.8rem;
+  }
+
+  &-noAnswer {
+    margin-top:25vh;
+    margin-bottom: 10vh;
+    line-height: 1.5;
   }
 
   &-btns {

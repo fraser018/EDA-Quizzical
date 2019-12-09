@@ -17,7 +17,8 @@ class AddScore extends React.Component {
     }
 
     submitScore = () => {
-        let teamScore = this.props.score.correct / this.props.score.total * 100
+        // let teamScore = this.props.score.correct / this.props.score.total * 100
+        let teamScore = this.props.score.points
         socket.emit('add to leaderboard', { teamName: this.state.team, teamCode: this.props.teamName, teamSize: this.props.players.length, teamScore: teamScore })
     }
 
@@ -35,24 +36,20 @@ class AddScore extends React.Component {
         return (
             <div className="leaderboard">
                 <h1 className="leaderboard-gameTitle">Quizzical</h1>
-                <h1 className="leaderboard-title">Add to Leaderboard</h1>
+                <h1 className="leaderboard-title">Add Score to Leaderboard</h1>
 
-                <p className="leaderboard-team">Enter your team name below:</p>
+                <p className="leaderboard-team">Team name:</p>
                 <input className="leaderboard-team__field" name="team" onChange={this.handleChange} />
-                <h3 className="leaderboard-team__score">{this.props.score.correct / this.props.score.total * 100}%</h3>
+                <h3 className="leaderboard-team__score">Your Score: {this.props.score.correct / this.props.score.total * 100}%</h3>
 
-                <div className="end-btns">
-                <div className="end-btn" onClick={this.submitScore}>Submit Score</div>
+                <div className='home-btns'>
+                    <div className='home-btns__btn' onClick={this.submitScore}>Submit Score</div>
                 </div>
-                
-                <div className='end-btns'>
-                    <div className='end-btns__btn' onClick={this.playAgain}>
-                        Play again!!
-                    </div>
-                    <div className='end-btns__btn' onClick={this.mainMenu}>
-                        Main Menu
-                    </div>
-                </div>
+
+                <section className='leaderboard-btnSection'>
+                    <div className='setup-btns__btn' onClick={this.playAgain}>Play Again</div>
+                    <div className='home-btns__btn' onClick={this.mainMenu}>Main menu</div>
+                </section>
             </div>
         )
     }

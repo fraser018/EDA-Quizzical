@@ -5,19 +5,38 @@ import socket from '../api/socket'
 import LeaderboardSplash from './LeaderboardSplash'
 import AddScore from './AddScore'
 
-let colors = ['#FFB900', '#69797E', '#847545', '#E74856', '#0078D7', '#0099BC', '#7A7574', '#767676', '#FF8C00',
-    '#E81123', '#0063B1', '#2D7D9A', '#5D5A58', '#4C4A48', '#F7630C', '#EA005E', '#8E8CD8', '#00B7C3', '#68768A',
+let colors = ['#FFB900', '#69797E', '#847545', '#0078D7', '#0099BC', '#7A7574', '#767676', '#FF8C00', '#0063B1', '#2D7D9A', '#5D5A58', '#4C4A48', '#F7630C', '#EA005E', '#8E8CD8', '#00B7C3', '#68768A',
     '#CA5010', '#C30052', '#6B69D6', '#038387', '#515C6B', '#4A5459', '#DA3B01', '#E3008C', '#8764B8', '#00B294',
     '#567C73', '#647C64', '#EF6950', '#BF0077', '#744DA9', '#018574', '#486860', '#525E54', '#D13438', '#C239B3',
     '#B146C2', '#00CC6A', '#498205', '#FF4343', '#9A0089', '#881798', '#10893E', '#107C10', '#7E735F'];
+
+
 
 class Leaderboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             leaders: [],
-            maxScore: 100,
+            maxScore: 0,
         };
+    }
+
+    componentDidMount() {
+        socket.on('receive leaderboard', leaders=>{
+            let highScore = 0
+            leaders.map(leader => {
+                console.log(leader.teamScore)
+                console.log('kjghj')
+                if (leader.teamScore > highScore) {
+                    highScore = leader.teamScore
+                }
+            })
+            console.log(highScore)
+            this.setState({
+                maxScore: highScore
+            })
+
+        })
     }
 
     playAgain = () => {
@@ -31,11 +50,16 @@ class Leaderboard extends React.Component {
     }
 
     render() {
+
+
+
+
+
         return (
             <>
-                {this.props.leaders.length == 0 ? 
+                {this.props.leaders.length == 0 ?
                     (<>{this.props.player.captain ? < AddScore /> : < LeaderboardSplash />}</>)
-                    : 
+                    :
                     (<div className="leaderboard">
 
                         <h1 className="leaderboard-gameTitle">Quizzical</h1>
@@ -53,8 +77,8 @@ class Leaderboard extends React.Component {
                             )}
                         </div>
 
-                        <h1>Leaderboard</h1>
-                        <h3>{this.props.players.length} Person Teams</h3>
+                        <h1 className='leaderboard-title'>Leaderboard</h1>
+                        <h3 className='leaderboard-teamSize'>{this.props.players.length} Person Teams</h3>
                         <div className="leaders">
 
                             {this.props.leaders.map((leader, i) => (
@@ -87,7 +111,7 @@ class Leaderboard extends React.Component {
                                         <div className="leader-content">
                                             <div className="leader-name">{i + 1 + '. ' + leader.teamName}</div>
                                             <div className="leader-score">
-                                                <div className="leader-score_title">{leader.teamScore}%</div>
+                                                <div className="leader-score_title">{leader.teamScore} points</div>
                                             </div>
                                         </div>
                                     </div>
@@ -95,7 +119,7 @@ class Leaderboard extends React.Component {
                                         <div
                                             style={{
                                                 backgroundColor: colors[i],
-                                                width: leader.teamScore + '%'
+                                                width: ((leader.teamScore / this.state.maxScore) * 100) + '%'
                                             }}
                                             className="bar"
                                         />
