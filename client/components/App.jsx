@@ -20,9 +20,11 @@ import { resetPlayerResponses } from '../actions/index'
 import { clearPlayers } from '../actions/index'
 import { incrementAnswerCount, resetAnswerCount } from '../actions/index'
 import { resetClock, decrementClock } from '../actions/index'
-import { incrementScore, resetScore, saveStrike } from '../actions/index'
-import { incrementRound, resetRound} from '../actions/index'
+import { incrementScore, resetScore, saveStrike, saveStreak } from '../actions/index'
+import { incrementRound, resetRound, setTotalRounds} from '../actions/index'
 import { addLeaderboard, resetLeaderboard} from '../actions/index'
+  
+
 
 import UIfx from 'uifx'
 
@@ -38,14 +40,24 @@ export class App extends React.Component {
       missingPlayers:[],
       roundScores: [] 
     }
+
+
+     
   }
+
 
   componentDidMount(){ 
     // Handle browser navigation
+    
     window.addEventListener('popstate', () => {
       history.pushState(null, null, location.href)
       history.go(1)
     })
+    
+    const noSleep = new NoSleep()
+      document.addEventListener('touchstart', function() {
+        noSleep.enable()
+      })
 
     // Receives socket id from server, adds to state
     socket.on('send id', id=>{
@@ -84,6 +96,11 @@ export class App extends React.Component {
     // When back-end receives 'all players in', it makes the api call to get new questions
     socket.on('all players in', () => { 
       this.props.dispatch(goToGame())
+    })
+
+    // Set total rounds
+    socket.on('receive total rounds', totalRounds => {
+      this.props.dispatch(setTotalRounds(totalRounds))
     })
 
     // Prepare game to start new round
@@ -127,6 +144,7 @@ export class App extends React.Component {
     socket.on('check for strike', ()=>{
       if(!this.state.roundScores.includes(0)){
         this.props.dispatch(saveStrike(1))
+        this.props.dispatch(saveStreak(this.props.strikeCount))
       }
       else{
         this.props.dispatch(saveStrike(0))
@@ -141,6 +159,8 @@ export class App extends React.Component {
       this.props.dispatch(addLeaderboard(leaderboard))
     })
   }
+
+  
   
   render() {
     return (
@@ -163,6 +183,7 @@ function mapStateToProps(state) {
     pageNumber: state.pageNumber,
     clock: state.clock,
     players: state.players,
+    strikeCount: state.strikeCount
   }
 }
 

@@ -38,8 +38,20 @@
           border-radius: 7px;
           border: solid 2px rgb(39, 8, 110) ;
         }
+
+        &__answered {
+          font-family: 'Varela Round', sans-serif;
+          margin: .2rem;
+          background-color: transparent;
+          text-decoration: none;
+          padding: 8px 10px;
+          border-radius: 7px;
+          border: solid 2px rgb(39, 8, 110) ;
+        }
     }
 }
+
+
 
 .progress-bar {
   position: relative;
