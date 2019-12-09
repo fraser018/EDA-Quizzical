@@ -52,7 +52,7 @@ class Results extends React.Component {
       return (
         <div className='results'>
           <h1 className='results-gameTitle'>Quizzical</h1>
-           {this.props.strike && <h2>Strike!! +50 pts</h2>}
+           {this.props.strike && <h2 className="results-points">Strike!! +50 pts</h2>}
           {response != undefined ? (
             
             <div>
