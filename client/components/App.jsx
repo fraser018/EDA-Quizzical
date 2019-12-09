@@ -23,7 +23,6 @@ import { resetClock, decrementClock } from '../actions/index'
 import { incrementScore, resetScore, saveStrike } from '../actions/index'
 import { incrementRound, resetRound} from '../actions/index'
 import { addLeaderboard, resetLeaderboard} from '../actions/index'
-import NoSleep from 'nosleep.js'
   
 
 
@@ -35,7 +34,6 @@ export class App extends React.Component {
       roundScores: [] 
     }
 
-     const noSleep = new NoSleep()
 
      
   }
@@ -48,17 +46,11 @@ export class App extends React.Component {
       history.pushState(null, null, location.href)
       history.go(1)
     })
+    
     const noSleep = new NoSleep()
-      
       document.addEventListener('touchstart', function() {
         noSleep.enable()
       })
-
-      document.addEventListener('touchstart', function enableNoSleep() {
-        document.removeEventListener('touchstart', enableNoSleep, false)
-        noSleep.enable()
-      })
-    
 
     // Receives socket id from server, adds to state
     socket.on('send id', id=>{
