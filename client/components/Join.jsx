@@ -5,13 +5,14 @@ import {savePlayerDetails, incrementPage, saveTeamName} from '../actions'
 import { addPlayerToTeam, getTeams, getPlayersByTeam } from '../api/users'
 import socket from '../api/socket'
 
-class Join extends React.Component {
+ export class Join extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       player:'',
       team:''
     }
+    this.joinTeam = this.joinTeam.bind(this)
   }
 
   handleChange = (event) => {
@@ -26,7 +27,7 @@ class Join extends React.Component {
   }
 
 
-  joinTeam = () => {
+  joinTeam () {
     getTeams().then(res => {
       
       this.setState({
@@ -88,8 +89,9 @@ class Join extends React.Component {
           <h1 className='setup-gameTitle'>Quizzical</h1>
           <form>
             <section className='setup-team'>
-              <p className="setup-team__text">Team Code:</p>
+              <p className='setup-team__text'>Team Code:</p>
               <input
+                id='team-text'
                 className='setup-team__fields'
                 type='text'
                 name='team'
@@ -98,8 +100,9 @@ class Join extends React.Component {
               />
             </section>
             <section className='setup-user'>
-              <p className="setup-user__text">User Name:</p>
+              <p className='setup-user__text'>User Name:</p>
               <input
+                id='user-text'
                 className='setup-user__fields'
                 type='text'
                 name='player'
@@ -108,23 +111,35 @@ class Join extends React.Component {
               />
             </section>
             <section>
-              <div className='setup-btns__btn' onClick={this.joinTeam}>
+              <div className='setup-btns__btn' id="join-btn" onClick={this.joinTeam}>
                 Join Team
-                </div>
+              </div>
             </section>
             <section className='setup-join'>
               <p>Not quite what you want?</p>
-              <div className='setup-btns__btn' onClick={(e) => this.props.changePage(e, 'create')}>
+              <div
+                className='setup-btns__btn'
+                id='create-btn'
+                onClick={e => this.props.changePage(e, 'create')}
+              >
                 Create Team
-                </div>
-                <div className='setup-btns__btn' onClick={(e) => this.props.changePage(e, 'instructions')}>
+              </div>
+              <div
+                className='setup-btns__btn'
+                onClick={e => this.props.changePage(e, 'instructions')}
+              >
                 Rules
-                </div>
-                <div className='setup-btns__btn' onClick={(e)=>this.props.changePage(e, 'main')}>
-                  Main menu
-                </div>
+              </div>
+              <div
+                className='setup-btns__btn'
+                onClick={e => this.props.changePage(e, 'main')}
+              >
+                Main menu
+              </div>
             </section>
-            {this.state.message != '' && <h2 className='setup-errorMessage'>{this.state.message}</h2>}
+            {this.state.message != '' && (
+              <h2 className='setup-errorMessage'>{this.state.message}</h2>
+            )}
           </form>
         </section>
       </main>
