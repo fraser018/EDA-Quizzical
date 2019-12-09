@@ -26,6 +26,7 @@ class Lobby extends React.Component {
 
   handleClick = (e) => {
     e.preventDefault()
+    socket.emit('set total rounds', {teamName: this.props.teamName, totalRounds: this.props.totalRounds})
     socket.emit('all players in', { teamName: this.props.teamName, numOfPlayers: this.state.players.length })
   }
 
@@ -76,7 +77,8 @@ function mapStateToProps(state) {
   return {
     teamName: state.teamName,
     player: state.player,
-    players: state.players
+    players: state.players,
+    totalRounds: state.totalRounds
   }
 }
 

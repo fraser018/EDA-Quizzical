@@ -21,7 +21,7 @@ import { clearPlayers } from '../actions/index'
 import { incrementAnswerCount, resetAnswerCount } from '../actions/index'
 import { resetClock, decrementClock } from '../actions/index'
 import { incrementScore, resetScore, saveStrike, saveStreak } from '../actions/index'
-import { incrementRound, resetRound} from '../actions/index'
+import { incrementRound, resetRound, setTotalRounds} from '../actions/index'
 import { addLeaderboard, resetLeaderboard} from '../actions/index'
 
 export class App extends React.Component {
@@ -77,6 +77,11 @@ export class App extends React.Component {
     // When back-end receives 'all players in', it makes the api call to get new questions
     socket.on('all players in', () => { 
       this.props.dispatch(goToGame())
+    })
+
+    // Set total rounds
+    socket.on('receive total rounds', totalRounds => {
+      this.props.dispatch(setTotalRounds(totalRounds))
     })
 
     // Prepare game to start new round

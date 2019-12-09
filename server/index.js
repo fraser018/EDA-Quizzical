@@ -48,6 +48,11 @@ io.on('connection', function(socket){
     })
   })
 
+  // HANDLE ROUNDS
+  socket.on('set total rounds', data=> {
+    io.to(data.teamName).emit('receive total rounds', data.totalRounds)
+  })
+
   // HANDLE ANSWER SUBMISSION
   socket.on('submitted answer', teamName=>{
     io.to(teamName).emit('submitted answer')
