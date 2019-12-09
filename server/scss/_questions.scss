@@ -16,6 +16,7 @@
       padding-top: 12vh;
       padding-bottom: 8vh;
       margin-bottom: 1rem;
+      line-height: 1.3;
     }
 
     &-clock {
@@ -29,13 +30,13 @@
       grid-template-columns: repeat(2, 1fr);
 
         &__btn {
-            font-family: 'Varela Round', sans-serif;
+          font-family: 'Varela Round', sans-serif;
           margin: .2rem;
           background-color: $secondary-color;
           text-decoration: none;
           padding: 8px 10px;
           border-radius: 7px;
-          border: solid 2px rgb(142, 150, 153) ;
+          border: solid 2px rgb(39, 8, 110) ;
         }
     }
 }
@@ -45,7 +46,8 @@
   height: 20px;
   width: inherit;
   border-radius: 50px;
-  border: 1px solid #333;
+  border: 1px solid rgb(39, 8, 110);
+  top: 1.5rem;
 }
 
 .filler {

@@ -15,18 +15,20 @@ export class Welcome extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('popstate', () => {
-      let historyState = this.state.history
-      let historyIndex = this.state.historyIndex
-
-      if (historyIndex > 0) {
-        this.state.history.pop()
-        this.setState({
-          display: historyState[historyIndex - 1],
-          historyIndex: this.state.historyIndex - 1
-        })
-      }
-    })
+    if(this.props.window != false){
+      window.addEventListener('popstate', () => {
+        let historyState = this.state.history
+        let historyIndex = this.state.historyIndex
+        
+        if (historyIndex > 0) {
+          this.state.history.pop()
+          this.setState({
+            display: historyState[historyIndex - 1],
+            historyIndex: this.state.historyIndex - 1
+          })
+        }
+      })
+    }
   }
 
   startClick = (e) => {
@@ -68,7 +70,7 @@ export class Welcome extends React.Component {
                 className='home-btns__btn' id="instruct-btn"
                 onClick={(e) => this.changePage(e, 'instructions')}
               >
-                How to play
+                HOW TO PLAY
                   </div>
             </div>
           </section>

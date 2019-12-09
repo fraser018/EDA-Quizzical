@@ -36,19 +36,29 @@ class GameEnd extends React.Component {
     let sum = function (a, b) { return a + b }
     let data = { label: ['Right', 'Wrong'], series: [this.props.score.correct, this.props.score.total - this.props.score.correct] }
 
-
     return (
       <div className='end'>
         <h1 className='end-gameTitle'>Quizzical</h1>
         <h1 className='end-title'>
-          Congrats Team {this.props.teamName}, you played our game and survived!
+          Congrats!
         </h1>
         <ChartistGraph className='ct-chart' data={data} options={options} type={'Pie'} />
-        <h3>
+        <h3 className='end-scoreText'>
           Your team got {this.props.score.correct} out of{' '}
           {this.props.score.total} answers correct!
         </h3>
-        <div className='end-btns'>
+
+        {this.props.player.captain && (
+          <div className='home-btns'>
+            <div className='home-btns__btn' onClick={this.playAgain}>Play Again!!</div>
+            <div className='home-btns__btn' onClick={this.mainMenu}>Main Menu</div>
+            <div className='home-btns__btn' onClick={this.leaderboard}>Leaderboard</div>
+          </div>
+        )
+
+
+
+        /* <div className='end-btns'>
           {this.props.player.captain && (
             <div className='end-btns__btn' onClick={this.playAgain}>
               Play again!!
@@ -59,15 +69,15 @@ class GameEnd extends React.Component {
               Main Menu
             </div>
           )}
-        </div>
-        {this.props.player.captain && (
-          <div className='end-btns'>
-            {/* <h3>Keen to see how you measured up?</h3> */}
-            <div className='end-btns__btn' onClick={this.leaderboard}>
-              Leaderboard
-            </div>
-          </div>
-         )} 
+        </div> */}
+        {/* {this.props.player.captain && ( */}
+        {/* <div className='end-btns'> */}
+        {/* <h3>Keen to see how you measured up?</h3> */}
+        {/* <div className='end-btns__btn' onClick={this.leaderboard}> */}
+        {/* Leaderboard */}
+        {/* </div> */}
+        {/* </div> */}
+        {/* )}  */}
       </div>
     )
   }

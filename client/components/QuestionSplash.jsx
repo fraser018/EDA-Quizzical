@@ -16,6 +16,7 @@ class QuestionSplash extends React.Component {
         <main>
           <div className='loading'>
             <h1 className='loading-gameTitle'>Quizzical</h1>
+            <h1 className='loading-text'>Loading Question {this.props.roundCount} / {this.props.totalRounds}</h1>
             <div className='loading-art'>
               <div className='lds-grid'>
                 {this.props.questions.trivias ? <Countdown /> :
@@ -31,7 +32,6 @@ class QuestionSplash extends React.Component {
                     <div></div>
                   </>}
               </div>
-              <h1 className='loading-text'>Loading Question {this.props.roundCount} out of {this.props.totalRounds}...</h1>
             </div>
           </div>
         </main>
