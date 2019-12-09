@@ -126,6 +126,13 @@ export function saveStrike(strike) {
     }
 }
 
+export function saveStreak(streak) {
+    return {
+        type: 'STREAK',
+        streak
+    }
+}
+
 // ROUNDS
 export function incrementRound() {
     return {

@@ -20,7 +20,7 @@ import { resetPlayerResponses } from '../actions/index'
 import { clearPlayers } from '../actions/index'
 import { incrementAnswerCount, resetAnswerCount } from '../actions/index'
 import { resetClock, decrementClock } from '../actions/index'
-import { incrementScore, resetScore, saveStrike } from '../actions/index'
+import { incrementScore, resetScore, saveStrike, saveStreak } from '../actions/index'
 import { incrementRound, resetRound} from '../actions/index'
 import { addLeaderboard, resetLeaderboard} from '../actions/index'
 
@@ -118,6 +118,7 @@ export class App extends React.Component {
     socket.on('check for strike', ()=>{
       if(!this.state.roundScores.includes(0)){
         this.props.dispatch(saveStrike(1))
+        this.props.dispatch(saveStreak(this.props.strikeCount))
       }
       else{
         this.props.dispatch(saveStrike(0))
@@ -154,6 +155,7 @@ function mapStateToProps(state) {
     pageNumber: state.pageNumber,
     clock: state.clock,
     players: state.players,
+    strikeCount: state.strikeCount
   }
 }
 
