@@ -80,7 +80,7 @@ class Results extends React.Component {
                 onClick={this.nextQuestion}
               >
                 Next Question
-                    </div>
+              </div>
             )}
             {this.props.player.captain && this.props.roundCount == this.props.totalRounds && (
               <div

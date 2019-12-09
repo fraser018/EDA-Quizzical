@@ -330,9 +330,13 @@ h1, h2 {
 
 .results-question {
   font-size: 1.4rem;
-  padding-top: 20vh;
+  padding-top: 3rem;
   padding-bottom: 8vh;
   margin-bottom: 1rem;
+}
+
+.results-answers {
+  margin-bottom: 3rem;
 }
 
 .results-btns {
@@ -352,7 +356,7 @@ h1, h2 {
   text-decoration: none;
   padding: 8px 10px;
   border-radius: 7px;
-  border: solid 2px #8e9699;
+  border: solid 2px #27086e;
 }
 
 .end {
