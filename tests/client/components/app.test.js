@@ -22,7 +22,7 @@ describe('app', ()=>{
   let wrapper
   const pageNumber = 1
   beforeEach(()=>{
-    wrapper = shallow(<App pageNumber={pageNumber}/>)    
+    wrapper = shallow(<App pageNumber={pageNumber} window={false}/>)    
     console.log(wrapper)
   })
 

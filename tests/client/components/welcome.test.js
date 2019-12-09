@@ -1,4 +1,4 @@
-import Welcome from '../../../client/components/Welcome'
+import {Welcome} from '../../../client/components/Welcome'
 import Instructions from '../../../client/components/Instructions'
 import Join from '../../../client/components/Join'
 import Create from '../../../client/components/Create'

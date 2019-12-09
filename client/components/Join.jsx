@@ -5,7 +5,7 @@ import {savePlayerDetails, incrementPage, saveTeamName} from '../actions'
 import { addPlayerToTeam, getTeams, getPlayersByTeam } from '../api/users'
 import socket from '../api/socket'
 
-class Join extends React.Component {
+ export class Join extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -100,6 +100,7 @@ class Join extends React.Component {
             <section className='setup-user'>
               <p className="setup-user__text">User Name:</p>
               <input
+                id="user-text"
                 className='setup-user__fields'
                 type='text'
                 name='player'
@@ -114,7 +115,7 @@ class Join extends React.Component {
             </section>
             <section className='setup-join'>
               <p>Not quite what you want?</p>
-              <div className='setup-btns__btn' onClick={(e) => this.props.changePage(e, 'create')}>
+              <div className='setup-btns__btn' id="create-btn" onClick={(e) => this.props.changePage(e, 'create')}>
                 Create Team
                 </div>
                 <div className='setup-btns__btn' onClick={(e) => this.props.changePage(e, 'instructions')}>
