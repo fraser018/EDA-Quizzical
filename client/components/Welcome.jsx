@@ -15,18 +15,20 @@ export class Welcome extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('popstate', () => {
-      let historyState = this.state.history
-      let historyIndex = this.state.historyIndex
-
-      if (historyIndex > 0) {
-        this.state.history.pop()
-        this.setState({
-          display: historyState[historyIndex - 1],
-          historyIndex: this.state.historyIndex - 1
-        })
-      }
-    })
+    if(this.props.window != false){
+      window.addEventListener('popstate', () => {
+        let historyState = this.state.history
+        let historyIndex = this.state.historyIndex
+        
+        if (historyIndex > 0) {
+          this.state.history.pop()
+          this.setState({
+            display: historyState[historyIndex - 1],
+            historyIndex: this.state.historyIndex - 1
+          })
+        }
+      })
+    }
   }
 
   startClick = (e) => {
