@@ -49,7 +49,10 @@ class GameEnd extends React.Component {
         <h1 className='end-title'>
           Congrats!
         </h1>
-        {this.props.score.points == 0 ? <h3 className='end-allIncorrect'>Oops, you didn't get any answers correct...</h3> :
+        {this.props.score.points == 0 ?
+        <h3 className='end-allIncorrect'>Oops, you didn't get any answers correct...</h3> :
+        this.props.score.correct == this.props.score.total ?
+        <h3 className='end-allIncorrect'>Impressive, you got all of the answers correct!</h3> :
           <ChartistGraph className='ct-chart' data={data} options={options} type={'Pie'} />}
         <h3 className='end-scoreText'>
           Your score is {this.props.score.points}
