@@ -45,34 +45,11 @@ class GameEnd extends React.Component {
 
         {this.props.player.captain && (
           <div className='home-btns'>
+            <div className='home-btns__btn' onClick={this.leaderboard}>Leaderboard</div>
             <div className='home-btns__btn' onClick={this.playAgain}>Play Again!!</div>
             <div className='home-btns__btn' onClick={this.mainMenu}>Main Menu</div>
-            <div className='home-btns__btn' onClick={this.leaderboard}>Leaderboard</div>
           </div>
-        )
-
-
-
-        /* <div className='end-btns'>
-          {this.props.player.captain && (
-            <div className='end-btns__btn' onClick={this.playAgain}>
-              Play again!!
-            </div>
-          )}
-          {this.props.player.captain && (
-            <div className='end-btns__btn' onClick={this.mainMenu}>
-              Main Menu
-            </div>
-          )}
-        </div> */}
-        {/* {this.props.player.captain && ( */}
-        {/* <div className='end-btns'> */}
-        {/* <h3>Keen to see how you measured up?</h3> */}
-        {/* <div className='end-btns__btn' onClick={this.leaderboard}> */}
-        {/* Leaderboard */}
-        {/* </div> */}
-        {/* </div> */}
-        {/* )}  */}
+        )}
       </div>
     )
   }

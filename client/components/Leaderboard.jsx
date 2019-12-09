@@ -33,9 +33,9 @@ class Leaderboard extends React.Component {
     render() {
         return (
             <>
-                {this.props.leaders.length == 0 ? 
+                {this.props.leaders.length == 0 ?
                     (<>{this.props.player.captain ? < AddScore /> : < LeaderboardSplash />}</>)
-                    : 
+                    :
                     (<div className="leaderboard">
 
                         <h1 className="leaderboard-gameTitle">Quizzical</h1>
@@ -53,8 +53,8 @@ class Leaderboard extends React.Component {
                             )}
                         </div>
 
-                        <h1>Leaderboard</h1>
-                        <h3>{this.props.players.length} Person Teams</h3>
+                        <h1 className='leaderboard-title'>Leaderboard</h1>
+                        <h3 className='leaderboard-teamSize'>{this.props.players.length} Person Teams</h3>
                         <div className="leaders">
 
                             {this.props.leaders.map((leader, i) => (
@@ -73,7 +73,7 @@ class Leaderboard extends React.Component {
                                                 }}
                                                 className="leader-ava"
                                             >
-                                                <svg
+                                                  <svg
                                                     fill="#fff"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     height={24}

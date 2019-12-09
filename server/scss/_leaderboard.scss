@@ -12,10 +12,8 @@
     }
 
     &-title {
-      font-size: 1.4rem;
-      padding-top: 12vh;
-      padding-bottom: 8vh;
-      margin-bottom: 1rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
     }
 
     &-team {
@@ -26,12 +24,28 @@
 
         &__field {
           width: 100%;
+          height: 2rem;
+          margin-bottom: 1rem;
         }
 
         &__score {
           width: 100%;
           font-family: 'Comfortaa', cursive;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
         }
+    }
+
+    &-teamSize{
+      margin-bottom: 1rem;
+    }
+
+    &-btnSection{
+      position: absolute;
+      bottom: 3vh;
+      left: 50%;
+      margin-left: -100px;
+      width: 196px;
     }
 
 }
