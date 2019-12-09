@@ -302,6 +302,16 @@ h1, h2 {
   border: solid 2px #27086e;
 }
 
+.questions-btns__answered {
+  font-family: 'Varela Round', sans-serif;
+  margin: .2rem;
+  background-color: transparent;
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 7px;
+  border: solid 2px #27086e;
+}
+
 .progress-bar {
   position: relative;
   height: 20px;
