@@ -60,6 +60,9 @@ class Results extends React.Component {
         <div className='results'>
           <h1 className='results-gameTitle'>Quizzical</h1>
            {this.props.strike && <h2 className="results-points">Strike!! +50 pts</h2>}
+      {this.props.strike*this.props.strikeCount > 0 &&
+      <h4>You're on a roll! {this.props.strikeCount+1} strikes in a row!
+       +{(this.props.strikeCount)*50} pts.</h4>}
           {response != undefined ? (
             
             <div>
@@ -113,7 +116,8 @@ function mapStateToProps(state) {
     player: state.player,
     players: state.players,
     roundCount: state.roundCount,
-    totalRounds: state.totalRounds
+    totalRounds: state.totalRounds,
+    strikeCount: state.strikeCount
   }
 }
 

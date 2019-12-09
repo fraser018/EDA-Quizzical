@@ -34,6 +34,23 @@ const reducer = (state = {correct:0, total:0, points:0}, action) => {
         }
       }
     }
+    case 'STREAK':{
+      if(isNaN(action.streak)){
+        console.log('NaN')
+        return {
+          correct: state.correct,
+          total: state.total,
+          points: state.points
+        }
+      }
+      else{
+        return{
+          correct: state.correct,
+          total: state.total,
+          points: state.points + ((action.streak-1) * 50)
+        }
+      }
+    }
     case 'RESET_SCORE':{
       return{
         correct: 0,
