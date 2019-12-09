@@ -23,6 +23,8 @@ import { resetClock, decrementClock } from '../actions/index'
 import { incrementScore, resetScore, saveStrike, saveStreak } from '../actions/index'
 import { incrementRound, resetRound} from '../actions/index'
 import { addLeaderboard, resetLeaderboard} from '../actions/index'
+  
+
 
 export class App extends React.Component {
   constructor(props) {
@@ -31,14 +33,24 @@ export class App extends React.Component {
       missingPlayers:[],
       roundScores: [] 
     }
+
+
+     
   }
+
 
   componentDidMount(){ 
     // Handle browser navigation
+    
     window.addEventListener('popstate', () => {
       history.pushState(null, null, location.href)
       history.go(1)
     })
+    
+    const noSleep = new NoSleep()
+      document.addEventListener('touchstart', function() {
+        noSleep.enable()
+      })
 
     // Receives socket id from server, adds to state
     socket.on('send id', id=>{
@@ -133,6 +145,8 @@ export class App extends React.Component {
       this.props.dispatch(addLeaderboard(leaderboard))
     })
   }
+
+  
   
   render() {
     return (

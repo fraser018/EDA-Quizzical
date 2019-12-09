@@ -146,6 +146,14 @@ export function resetRound() {
     }
 }
 
+// Total Rounds
+export function setTotalRounds(totalRounds) {
+    return {
+        type: 'SET_TOTAL_ROUNDS',
+        totalRounds
+    }
+}
+
 // Leaderboard
 export function addLeaderboard(leaderboard) {
     return {
@@ -159,3 +167,4 @@ export function resetLeaderboard() {
         type: 'RESET_LEADERBOARD',
     }
 }
+
