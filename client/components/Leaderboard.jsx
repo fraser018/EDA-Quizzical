@@ -10,13 +10,33 @@ let colors = ['#FFB900', '#69797E', '#847545', '#0078D7', '#0099BC', '#7A7574', 
     '#567C73', '#647C64', '#EF6950', '#BF0077', '#744DA9', '#018574', '#486860', '#525E54', '#D13438', '#C239B3',
     '#B146C2', '#00CC6A', '#498205', '#FF4343', '#9A0089', '#881798', '#10893E', '#107C10', '#7E735F'];
 
+
+
 class Leaderboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             leaders: [],
-            maxScore: 100,
+            maxScore: 0,
         };
+    }
+
+    componentDidMount() {
+        socket.on('receive leaderboard', leaders=>{
+            let highScore = 0
+            leaders.map(leader => {
+                console.log(leader.teamScore)
+                console.log('kjghj')
+                if (leader.teamScore > highScore) {
+                    highScore = leader.teamScore
+                }
+            })
+            console.log(highScore)
+            this.setState({
+                maxScore: highScore
+            })
+
+        })
     }
 
     playAgain = () => {
@@ -30,6 +50,11 @@ class Leaderboard extends React.Component {
     }
 
     render() {
+
+
+
+
+
         return (
             <>
                 {this.props.leaders.length == 0 ?
@@ -72,7 +97,7 @@ class Leaderboard extends React.Component {
                                                 }}
                                                 className="leader-ava"
                                             >
-                                                  <svg
+                                                <svg
                                                     fill="#fff"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     height={24}
@@ -86,7 +111,7 @@ class Leaderboard extends React.Component {
                                         <div className="leader-content">
                                             <div className="leader-name">{i + 1 + '. ' + leader.teamName}</div>
                                             <div className="leader-score">
-                                                <div className="leader-score_title">{leader.teamScore}%</div>
+                                                <div className="leader-score_title">{leader.teamScore} points</div>
                                             </div>
                                         </div>
                                     </div>
@@ -94,7 +119,7 @@ class Leaderboard extends React.Component {
                                         <div
                                             style={{
                                                 backgroundColor: colors[i],
-                                                width: leader.teamScore + '%'
+                                                width: ((leader.teamScore / this.state.maxScore) * 100) + '%'
                                             }}
                                             className="bar"
                                         />
