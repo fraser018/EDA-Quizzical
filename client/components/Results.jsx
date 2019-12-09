@@ -4,6 +4,14 @@ import socket from '../api/socket'
 
 import ResultSplash from './ResultSplash'
 
+import UIfx from 'uifx'
+
+
+const correctfx = "/sfx/correct.mp3"
+const incorrectfx = "/sfx/incorrect.mp3"
+const correct = new UIfx(correctfx);
+const incorrect = new UIfx(incorrectfx)
+
 class Results extends React.Component {
   constructor(props) {
     super(props)
@@ -28,6 +36,14 @@ class Results extends React.Component {
       this.setState({
         showResults: true
       })
+      if(!this.props.playerResponses[0]){
+        incorrect.play()
+      }
+      else if(this.props.playerResponses[0].selectedAnswer == this.props.playerResponses[0].correctAnswer){
+        correct.play()
+      } else {
+        incorrect.play()
+      }
     }, 1000)
   }
 

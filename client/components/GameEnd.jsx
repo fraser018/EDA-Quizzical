@@ -3,12 +3,22 @@ import ChartistGraph from 'react-chartist'
 import { connect } from 'react-redux'
 import socket from '../api/socket'
 
+import UIfx from 'uifx'
+
+
+const gameEndFile = "/sfx/win.mp3"
+const gameEndFx = new UIfx(gameEndFile);
+
 class GameEnd extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       buttonClicked: false
     }
+  }
+
+  componentDidMount(){
+    gameEndFx.play()
   }
 
   playAgain = () => {

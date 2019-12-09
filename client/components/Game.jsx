@@ -3,6 +3,14 @@ import { connect } from 'react-redux'
 import socket from '../api/socket'
 
 import QuestionSplash from './QuestionSplash'
+import Countdown from './Countdown'
+
+import UIfx from 'uifx'
+
+
+const countdownFile = "/sfx/countdown.mp3"
+const countdownFx = new UIfx(countdownFile);
+
 
 class Game extends React.Component {
   constructor(props) {
@@ -78,14 +86,22 @@ class Game extends React.Component {
     socket.emit('submitted answer', this.props.teamName)
   }
 
+  
   render() {
+
     if (this.props.clock == 0 && this.props.player.captain && this.state.finishedRound == false) {
+ 
       this.finishRound()
       this.setState({
         finishedRound: true
       })
     }
     let q = this.props.questions
+
+    if (this.props.clock === 5){
+      countdownFx.play()
+    }
+
     return (
       !q.trivias ? < QuestionSplash /> :
         this.props.clock > this.props.players.length * 20 ? <QuestionSplash /> :

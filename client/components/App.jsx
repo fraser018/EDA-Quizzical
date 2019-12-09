@@ -26,6 +26,13 @@ import { addLeaderboard, resetLeaderboard} from '../actions/index'
   
 
 
+import UIfx from 'uifx'
+
+const cooldownfx = "/sfx/cooldown2.mp3"
+const cooldown = new UIfx(cooldownfx);
+
+
+
 export class App extends React.Component {
   constructor(props) {
     super(props)
@@ -111,6 +118,8 @@ export class App extends React.Component {
     socket.on('receive questions', questions => {
       this.props.dispatch(resetClock(this.props.players.length))
       this.props.dispatch(addQuestions(questions))
+      cooldown.play()
+
       this.interval = setInterval(() => {
         if (this.props.clock == 0 || this.props.pageNumber != 3) {
           clearInterval(this.interval)
