@@ -30,7 +30,7 @@ class Create extends React.Component {
   
   generateCode = () => {
     let prefix = new Array(2).fill().map(() => this.getRandomUppercaseChar()).join(""),
-      integer = Math.floor((Math.random() * 9999));
+      integer = Math.floor((Math.random() * 99));
     let code = prefix + integer
     getTeams().then(teams => {
       if (teams.text.includes(code)) {
