@@ -58,9 +58,6 @@ export class Create extends React.Component {
       // do nothing
     }
     else {
-      this.setState({
-        buttonClicked: true
-      })
       if (this.state.captainName == '') {
         this.setState({
           message: 'Please enter a username'
@@ -68,6 +65,9 @@ export class Create extends React.Component {
       }
       else {
         this.addPlayerToTeam(true)
+        this.setState({
+          buttonClicked: true
+        })
       }
     }
   }

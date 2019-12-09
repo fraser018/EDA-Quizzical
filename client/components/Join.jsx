@@ -33,9 +33,6 @@ import socket from '../api/socket'
       // do nothing
     }
     else{
-      this.setState({
-        buttonClicked: true
-      })
       getTeams().then(res => {
         
         this.setState({
@@ -67,6 +64,9 @@ import socket from '../api/socket'
               return player.name == this.state.player
             })) {
               this.addPlayerToTeam(false)
+              this.setState({
+                buttonClicked: true
+              })
             }
             else {
               this.setState({
