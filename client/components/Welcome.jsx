@@ -70,7 +70,7 @@ export class Welcome extends React.Component {
                 className='home-btns__btn' id="instruct-btn"
                 onClick={(e) => this.changePage(e, 'instructions')}
               >
-                How to play
+                HOW TO PLAY
                   </div>
             </div>
           </section>
