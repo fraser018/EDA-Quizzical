@@ -1,6 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import socket from '../api/socket'
+import UIfx from 'uifx'
+
+const joinfx = "/sfx/playerJoin.mp3"
+const join = new UIfx(joinfx);
 
 class Lobby extends React.Component {
   constructor(props) {
@@ -12,6 +16,9 @@ class Lobby extends React.Component {
 
   componentDidMount() {
     socket.on('show players in lobby', players => {
+      console.log('here!!');
+      join.play();
+      
       this.setState({
         players: players
       })
