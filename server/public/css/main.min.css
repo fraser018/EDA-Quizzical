@@ -102,10 +102,7 @@ h1, h2 {
 }
 
 .setup-join {
-  position: absolute;
-  bottom: 3vh;
-  left: 50%;
-  margin-left: -100px;
+  margin-top: 2rem;
 }
 
 .setup-team {
@@ -163,6 +160,15 @@ h1, h2 {
 .setup-errorMessage {
   margin-top: 2rem;
   line-height: 1.5;
+}
+
+@media (min-height: 500px) {
+  .setup-join {
+    position: absolute;
+    bottom: 3vh;
+    left: 50%;
+    margin-left: -100px;
+  }
 }
 
 .lobby {
@@ -476,11 +482,17 @@ h1, h2 {
 }
 
 .leaderboard-btnSection {
-  position: absolute;
-  bottom: 3vh;
-  left: 50%;
-  margin-left: -100px;
-  width: 196px;
+  margin-top: 2rem;
+}
+
+@media (min-height: 600px) {
+  .leaderboard-btnSection {
+    position: absolute;
+    bottom: 3vh;
+    left: 50%;
+    margin-left: -100px;
+    width: 196px;
+  }
 }
 
 body {
