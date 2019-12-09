@@ -6,7 +6,8 @@ class AddScore extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            team: ''
+            team: '',
+            buttonClicked: false
         };
     }
 
@@ -18,8 +19,16 @@ class AddScore extends React.Component {
 
     submitScore = () => {
         // let teamScore = this.props.score.correct / this.props.score.total * 100
-        let teamScore = this.props.score.points
-        socket.emit('add to leaderboard', { teamName: this.state.team, teamCode: this.props.teamName, teamSize: this.props.players.length, teamScore: teamScore })
+        if(this.state.buttonClicked == true){
+            // do nothing
+        }
+        else{
+            let teamScore = this.props.score.points
+            socket.emit('add to leaderboard', { teamName: this.state.team, teamCode: this.props.teamName, teamSize: this.props.players.length, teamScore: teamScore })
+            this.setState({
+                buttonClicked:true
+            })
+        }
     }
 
     playAgain = () => {
