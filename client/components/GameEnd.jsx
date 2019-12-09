@@ -8,6 +8,11 @@ class GameEnd extends React.Component {
     super(props)
   }
 
+  componentDidMount(){
+    console.log(this.props.score)
+    console.log(this.props.strikeCount)
+  }
+
   playAgain = () => {
     socket.emit('reset game', this.props.teamName)
     socket.emit('all players in', { teamName: this.props.teamName, numOfPlayers: this.props.players.length })
@@ -73,7 +78,8 @@ function mapStateToProps(state) {
     teamName: state.teamName,
     player: state.player,
     players: state.players,
-    score: state.score
+    score: state.score,
+    strikeCount: state.strikeCount
   }
 }
 

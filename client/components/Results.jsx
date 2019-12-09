@@ -39,8 +39,8 @@ class Results extends React.Component {
 
   endGame = (event) => {
     event.preventDefault()
-    socket.emit('increment pages', this.props.teamName)
     socket.emit('check for strike', this.props.teamName)
+    socket.emit('increment pages', this.props.teamName)
   }
 
   render() {
