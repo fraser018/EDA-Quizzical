@@ -11,7 +11,7 @@ h1, h2 {
 
 .home {
   height: 100%;
-  padding: 5vh 20vw;
+  padding: 5vh 10vw;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -41,7 +41,7 @@ h1, h2 {
 .home-btns__btn {
   font-family: 'Varela Round', sans-serif;
   margin: 0.5rem;
-  background-color: #91e4e7;
+  background-color: #4ad9de;
   text-decoration: none;
   padding: 8px 10px;
   border-radius: 7px;
@@ -73,8 +73,8 @@ h1, h2 {
   height: 100%;
   padding-top: 3vh;
   padding-bottom: 1vh;
-  padding-left: 10vh;
-  padding-right: 10vh;
+  padding-left: 5vh;
+  padding-right: 5vh;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -153,7 +153,7 @@ h1, h2 {
 .setup-btns__btn {
   font-family: 'Varela Round', sans-serif;
   margin: 0.5rem;
-  background-color: #91e4e7;
+  background-color: #4ad9de;
   text-decoration: none;
   padding: 8px 10px;
   border-radius: 7px;
@@ -167,7 +167,7 @@ h1, h2 {
 
 .lobby {
   height: 100%;
-  padding: 5vh 20vw;
+  padding: 5vh 10vw;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -205,7 +205,7 @@ h1, h2 {
   font-family: 'Varela Round', sans-serif;
   margin: 0.5rem;
   margin-top: 1.5rem;
-  background-color: #91e4e7;
+  background-color: #4ad9de;
   text-decoration: none;
   padding: 8px 10px;
   border-radius: 7px;
@@ -225,7 +225,7 @@ h1, h2 {
 
 .loading {
   height: 100%;
-  padding: 5vh 20vw;
+  padding: 5vh 10vw;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -251,7 +251,7 @@ h1, h2 {
 
 .questions {
   height: 100%;
-  padding: 5vh 20vw;
+  padding: 5vh 10vw;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -289,7 +289,7 @@ h1, h2 {
 .questions-btns__btn {
   font-family: 'Varela Round', sans-serif;
   margin: .2rem;
-  background-color: #91e4e7;
+  background-color: #4ad9de;
   text-decoration: none;
   padding: 8px 10px;
   border-radius: 7px;
@@ -315,7 +315,7 @@ h1, h2 {
 
 .results {
   height: 100%;
-  padding: 5vh 20vw;
+  padding: 5vh 10vw;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -335,6 +335,10 @@ h1, h2 {
   padding-bottom: 8vh;
   margin-bottom: 1rem;
   line-height: 1.2;
+}
+
+.results-points {
+  margin-top: 4rem;
 }
 
 .results-answers {
@@ -365,7 +369,7 @@ h1, h2 {
 .results-btns__btn {
   font-family: 'Varela Round', sans-serif;
   margin: .2rem;
-  background-color: #91e4e7;
+  background-color: #4ad9de;
   text-decoration: none;
   padding: 8px 10px;
   border-radius: 7px;
@@ -374,7 +378,7 @@ h1, h2 {
 
 .end {
   height: 100%;
-  padding: 5vh 20vw;
+  padding: 5vh 10vw;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -395,6 +399,12 @@ h1, h2 {
   margin-bottom: 0;
 }
 
+.end-allIncorrect {
+  line-height: 1.3;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .end-scoreText {
   line-height: 1.3;
   margin-bottom: 1.5rem;
@@ -413,7 +423,7 @@ h1, h2 {
 .end-btns__btn {
   font-family: 'Varela Round', sans-serif;
   margin: .2rem;
-  background-color: #91e4e7;
+  background-color: #4ad9de;
   text-decoration: none;
   padding: 8px 10px;
   border-radius: 7px;
@@ -422,7 +432,7 @@ h1, h2 {
 
 .leaderboard {
   height: 100%;
-  padding: 5vh 20vw;
+  padding: 5vh 10vw;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
