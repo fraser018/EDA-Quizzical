@@ -135,6 +135,7 @@ export class App extends React.Component {
   
   render() {
     return (
+      
       <Router>
         {this.props.pageNumber == 1 && <Welcome />}
         {this.props.pageNumber == 2 && <Lobby />}
