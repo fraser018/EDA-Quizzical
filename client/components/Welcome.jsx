@@ -45,9 +45,6 @@ export class Welcome extends React.Component {
       history: [...this.state.history, page],
       historyIndex: this.state.historyIndex + 1
     })
-    this.setState({
-      buttonClicked:[...this.state.buttonClicked, page]
-    })
   }
 
   render() {

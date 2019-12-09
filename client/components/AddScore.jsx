@@ -19,7 +19,6 @@ class AddScore extends React.Component {
     }
 
     submitScore = () => {
-        // let teamScore = this.props.score.correct / this.props.score.total * 100
         if(this.state.buttonClicked == true){
             // do nothing
         }
@@ -55,7 +54,7 @@ class AddScore extends React.Component {
 
                 <p className="leaderboard-team">Team name:</p>
                 <input className="leaderboard-team__field" name="team" onChange={this.handleChange} />
-                <h3 className="leaderboard-team__score">Your Score: {this.props.score.correct / this.props.score.total * 100}%</h3>
+                <h3 className="leaderboard-team__score">Your Score: {this.props.score.points}</h3>
                 <h2>{this.state.message}</h2>
                 <div className='home-btns'>
                     <div className='home-btns__btn' onClick={this.submitScore}>Submit Score</div>
