@@ -8,7 +8,7 @@ class GameEnd extends React.Component {
     super(props)
   }
 
-  componentDidMount(){
+  componentDidMount() {
   }
 
   playAgain = () => {
@@ -28,7 +28,7 @@ class GameEnd extends React.Component {
   render() {
     let options = {
       labelInterpolationFnc: function (value, index) {
-        return  data.label[index];
+        return data.label[index];
       }
     }
     // Math.round(value / data.series.reduce(sum) * 100) + '% '
@@ -41,12 +41,13 @@ class GameEnd extends React.Component {
         <h1 className='end-title'>
           Congrats!
         </h1>
-    <h5>Your score is {this.props.score.points}</h5>
-    {this.props.score.points == 0 ? <h3 className='end-scoreText'>Oops, you didn't get any answers correct...</h3> :
-        <ChartistGraph className='ct-chart' data={data} options={options} type={'Pie'} />}
+        {/* <h5>Your score is {this.props.score.points}</h5> */}
+        {this.props.score.points == 0 ? <h3 className='end-allIncorrect'>Oops, you didn't get any answers correct...</h3> :
+          <ChartistGraph className='ct-chart' data={data} options={options} type={'Pie'} />}
         <h3 className='end-scoreText'>
-          Your team got {this.props.score.correct} out of{' '}
-          {this.props.score.total} answers correct!
+          Your score is {this.props.score.points}
+          {/* Your team got {this.props.score.correct} out of{' '}
+          {this.props.score.total} answers correct! */}
         </h3>
 
         {this.props.player.captain && (
