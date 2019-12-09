@@ -20,7 +20,7 @@ import { resetPlayerResponses } from '../actions/index'
 import { clearPlayers } from '../actions/index'
 import { incrementAnswerCount, resetAnswerCount } from '../actions/index'
 import { resetClock, decrementClock } from '../actions/index'
-import { incrementScore, resetScore } from '../actions/index'
+import { incrementScore, resetScore, saveStrike } from '../actions/index'
 import { incrementRound, resetRound} from '../actions/index'
 import { addLeaderboard, resetLeaderboard} from '../actions/index'
 
@@ -28,7 +28,8 @@ export class App extends React.Component {
   constructor(props) {
     super(props)
     this.state={
-      missingPlayers:[]
+      missingPlayers:[],
+      roundScores: [] 
     }
   }
 
@@ -85,7 +86,7 @@ export class App extends React.Component {
       this.props.dispatch(resetQuestions())
       this.props.dispatch(resetPlayerResponses())
       this.props.dispatch(incrementRound())
-      this.props.dispatch(goToGame())      
+      this.props.dispatch(goToGame())
     })
 
     // Receives and sets questions array from API call, and starts the timer
@@ -106,9 +107,24 @@ export class App extends React.Component {
       this.props.dispatch(incrementAnswerCount())
     })
 
-    // Handle score count
+    // Handle score
     socket.on('score', score => {
+      this.setState({
+        roundScores: [...this.state.roundScores, score]
+      })
       this.props.dispatch(incrementScore(score))
+    })
+
+    socket.on('check for strike', ()=>{
+      if(!this.state.roundScores.includes(0)){
+        this.props.dispatch(saveStrike(1))
+      }
+      else{
+        this.props.dispatch(saveStrike(0))
+      }
+      this.setState({
+        roundScores: []
+      })
     })
 
     // Leaderboard
