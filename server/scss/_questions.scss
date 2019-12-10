@@ -63,8 +63,26 @@
 }
 
 .filler {
-  background: #1da598;
   height: 100%;
   border-radius: inherit;
   transition: width 1s ease-in-out;
+  -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+  // -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+  animation-name: colorChange;
+  // animation-duration: 38s;
 }
+
+@-webkit-keyframes colorChange {
+  from {background-color: red}
+  to {background-color: yellow;}
+}
+@keyframes colorChange {
+  from {background-color: red;}
+  to {background-color: yellow;}
+}
+
+// @mixin progress-width {
+//    progresswidth and (width) {
+//     @content;
+//   }
+// }

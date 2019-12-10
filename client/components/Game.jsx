@@ -6,6 +6,7 @@ import QuestionSplash from './QuestionSplash'
 import Countdown from './Countdown'
 
 import UIfx from 'uifx'
+import { duration } from 'tarn/lib/utils'
 
 
 const countdownFile = "/sfx/countdown.mp3"
@@ -86,8 +87,22 @@ class Game extends React.Component {
     socket.emit('submitted answer', this.props.teamName)
   }
 
+  animateTimer = () => {
+    if(document.getElementsByClassName('filler')[0]){
+      console.log(document.getElementsByClassName('filler')[0])
+      document.getElementsByClassName('filler')[0].style.WebkitAnimationDuration =
+      (this.props.players.length * 20)+'s'
+      document.getElementsByClassName('filler')[0].style.animationDuration =
+      (this.props.players.length * 20)+ 's'
+    }
+  }
   
+
   render() {
+    if(this.props.clock - (this.props.players.length *20) == 0){
+      this.animateTimer()
+
+    }
 
     if (this.props.clock == 0 && this.props.player.captain && this.state.finishedRound == false) {
  
