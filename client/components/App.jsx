@@ -35,16 +35,11 @@ export class App extends React.Component {
     this.state={
       missingPlayers:[],
       roundScores: [] 
-    }
-
-
-     
+    }     
   }
 
-
   componentDidMount(){ 
-    // Handle browser navigation
-    
+    // Handle browser navigation    
     window.addEventListener('popstate', () => {
       history.pushState(null, null, location.href)
       history.go(1)
