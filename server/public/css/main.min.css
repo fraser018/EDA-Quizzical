@@ -251,6 +251,11 @@ h1, h2 {
   font-size: 1.5rem;
 }
 
+.loading-questionCount {
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+
 .loading-art {
   padding-top: 10vh;
 }
