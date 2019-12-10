@@ -90,6 +90,10 @@ io.on('connection', function(socket){
     io.to(teamName).emit('reset game')
   })
 
+  //DELETE PLAYER FROM DB ON PLAY AGAIN
+  socket.on('delete player', socketId =>{
+    users.removePlayerBysocketId(socketId)
+  })
 })
 
 http.listen(port, function () {
