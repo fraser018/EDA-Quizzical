@@ -71,7 +71,6 @@ class Results extends React.Component {
       return < ResultSplash />
     }
     else {
-      console.log(this.props.questions)
       return (
         <div className='results'>
           <h1 className='results-gameTitle'>Quizzical</h1>

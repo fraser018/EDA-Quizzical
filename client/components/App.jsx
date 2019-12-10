@@ -22,16 +22,12 @@ import { incrementAnswerCount, resetAnswerCount } from '../actions/index'
 import { resetClock, decrementClock } from '../actions/index'
 import { incrementScore, resetScore, saveStrike, resetStrike, saveStreak } from '../actions/index'
 import { incrementRound, resetRound, setTotalRounds} from '../actions/index'
-import { addLeaderboard, resetLeaderboard} from '../actions/index'
-  
-
+import { addLeaderboard, resetLeaderboard} from '../actions/index' 
 
 import UIfx from 'uifx'
 
 const cooldownfx = "/sfx/cooldown2.mp3"
 const cooldown = new UIfx(cooldownfx);
-
-
 
 export class App extends React.Component {
   constructor(props) {
@@ -39,16 +35,11 @@ export class App extends React.Component {
     this.state={
       missingPlayers:[],
       roundScores: [] 
-    }
-
-
-     
+    }     
   }
 
-
   componentDidMount(){ 
-    // Handle browser navigation
-    
+    // Handle browser navigation    
     window.addEventListener('popstate', () => {
       history.pushState(null, null, location.href)
       history.go(1)

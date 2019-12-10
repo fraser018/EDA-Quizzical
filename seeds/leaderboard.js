@@ -5,8 +5,9 @@ exports.seed = function(knex) {
       .then(function () {
         // Inserts seed entries
         return knex('leaderboard').insert([
-          {id: 1, teamName: 'Woof', teamScore: 55, teamSize: 2},
-          {id: 2, teamName: 'Red', teamScore: 15, teamSize: 4},
+          {id: 1, teamName: 'Woof', teamScore: 50, teamSize: 2, totalRounds: 2},
+          {id: 2, teamName: 'Red', teamScore: 200, teamSize: 2, totalRounds: 5},
+          {id: 3, teamName: 'Cats', teamScore: 400, teamSize: 4, totalRounds: 5},
         ]);
       });
   };
