@@ -1,11 +1,17 @@
-# Quizzle
+# Quizzical
+
+Built in 5 days between 4 of us as our final group project for EDA.
+Using all the technologies learnt during our course and adding some new ones to learn as we went.
+
+Quizzical is a multi player quiz game designed for mobile use from the web browser.
+
 
 ## The Tech
 * [React](https://reactjs.org/docs/getting-started.html)
 * [Redux](https://redux.js.org/)
 * [Express](https://expressjs.com/en/api.html)
 * [Knex.js (SQL)](https://knexjs.org/)
-* Sockets
+* Sockets.io
 * SASS
 ---
 
